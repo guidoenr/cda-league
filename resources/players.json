@@ -88,23 +88,5 @@
       "goalsPerMatch": 3,
       "gamesWon": 0,
       "age": 24
-    },
-    {
-      "nickname": "Ferreto",
-      "name": "Facundo Ferreto",
-      "rank": 2,
-      "position": "defensor",
-      "goalsPerMatch": 0,
-      "gamesWon": 0,
-      "age": 24
-    },
-    {
-      "nickname": "Manucho",
-      "name": "Manuel Echenique",
-      "rank": 2,
-      "position": "defensor",
-      "goalsPerMatch": 0,
-      "gamesWon": 0,
-      "age": 24
     }
 ]

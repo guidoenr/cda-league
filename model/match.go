@@ -20,6 +20,7 @@ func (m *Match) Init(players []Player) {
 	m.Players = players
 }
 
+// InitFromJson set the players into the match, read from /resources/players.json
 func (m *Match) InitFromJson() error {
 	jsonData, err := os.ReadFile("resources/players.json")
 	if err != nil {
@@ -46,7 +47,6 @@ func (m *Match) GenerateTeams() {
 	// the Players by rank have a structure like the following
 	// 5 : [ Messi, Maradona ]
 	// 4 : [ Mbappe, Cristiano]
-	// and go on..
 	playersByRank := make(map[Rank][]Player)
 
 	// search for each player rank and append it to the rank slice
@@ -56,7 +56,7 @@ func (m *Match) GenerateTeams() {
 		playersByRank[rank] = append(playersByRank[rank], player)
 	}
 
-	// now shuffle the teams
+	// now shuffle the teams using the nano seconds as seed
 	rand.Seed(time.Now().UnixNano())
 	for i, group := range playersByRank {
 		rand.Shuffle(len(group), func(i, j int) {
@@ -67,10 +67,7 @@ func (m *Match) GenerateTeams() {
 
 	// setting the Players by rank
 	m.PlayersByRank = playersByRank
-
-	// choosing the Players
-	players1 := make([]Player, 0)
-	players2 := make([]Player, 0)
+	players1, players2 := make([]Player, 0), make([]Player, 0)
 
 	i := 5
 	for i > 0 {
@@ -84,18 +81,28 @@ func (m *Match) GenerateTeams() {
 		i--
 	}
 
+	// this aux team is only to compare the players of a team
+	var auxTeam Team
+	auxTeam.init("aux", len(players1), players1)
+
 	// creating the teams
 	var team1, team2 Team
 
 	team1.init("Team1", len(players1), players1)
 	team2.init("Team2", len(players2), players2)
 
-	totalPoints := team1.Points + team2.Points
-	chance1 := team1.Points / totalPoints
-	chance2 := team2.Points / totalPoints
+	// if the teams are some kind of 'equal' (3 players are the same)
+	// then we start the algorithm again
+	if !auxTeam.goodMixWith(&team1) {
+		fmt.Printf("------------------------------ REPEATED")
+		m.GenerateTeams()
+	}
 
-	team1.setChanceOfWinning(chance1)
-	team2.setChanceOfWinning(chance2)
+	// calculate the total points
+	totalPoints := team1.Points + team2.Points
+
+	team1.setChanceOfWinning(totalPoints)
+	team2.setChanceOfWinning(totalPoints)
 
 	m.Team1 = team1
 	m.Team2 = team2

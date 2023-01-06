@@ -1,7 +1,9 @@
 package model
 
 import (
+	"encoding/json"
 	"fmt"
+	"os"
 )
 
 type Team struct {
@@ -21,10 +23,38 @@ func (t *Team) init(name string, totalPlayers int, players []Player) {
 		t.Points += float64(p.Elo)
 	}
 
+	if name == "aux" {
+		jsonData, _ := json.MarshalIndent(t, "", "   ")
+		os.WriteFile("temp-aux.json", jsonData, 0644)
+	}
 }
 
-func (t *Team) setChanceOfWinning(score float64) {
-	t.ChanceOfWinning = score
+// goodMixWith determines if the teams that the match mixed are a good shuffle
+// this method is going to be used only for the 'auxTeam'
+func (t *Team) goodMixWith(otherTeam *Team) bool {
+	bytes, _ := os.ReadFile("temp-aux.json")
+
+	var auxTeam Team
+	json.Unmarshal(bytes, &auxTeam)
+
+	fmt.Printf("----------------AUX TEAM\n")
+	auxTeam.Show()
+	fmt.Printf("----------------AUX TEAM\n")
+
+	var count int
+	for _, playerOne := range auxTeam.Players {
+		for _, playerTwo := range otherTeam.Players {
+			if playerTwo.Nickname == playerOne.Nickname {
+				count++
+			}
+		}
+	}
+	fmt.Println(count)
+	return count < 3
+}
+
+func (t *Team) setChanceOfWinning(totalPoints float64) {
+	t.ChanceOfWinning = t.Points / totalPoints
 }
 
 func (t *Team) Show() {
