@@ -1,0 +1,110 @@
+[
+    {
+      "nickname": "Guidoti",
+      "name": "Guido Enrique",
+      "rank": 3,
+      "position": "volante",
+      "goalsPerMatch": 3,
+      "gamesWon": 0,
+      "age": 24
+    },
+    {
+      "nickname": "Marcos",
+      "name": "Marcos Fitzsimons",
+      "rank": 5,
+      "position": "volante",
+      "goalsPerMatch": 4,
+      "gamesWon": 0,
+      "age": 24
+    },
+    {
+      "nickname": "Marto",
+      "name": "Martin Chapman",
+      "rank": 4,
+      "position": "defensor",
+      "goalsPerMatch": 2,
+      "gamesWon": 0,
+      "age": 24
+    },
+    {
+      "nickname": "Nacho",
+      "name": "Ignacio Rivarola",
+      "rank": 3,
+      "position": "defensor",
+      "goalsPerMatch": 1,
+      "gamesWon": 0,
+      "age": 24
+    },
+    {
+      "nickname": "Leo",
+      "name": "Leo Usar",
+      "rank": 4,
+      "position": "delantero",
+      "goalsPerMatch": 4,
+      "gamesWon": 0,
+      "age": 24
+    },
+    {
+      "nickname": "Goyo",
+      "name": "Gregorio Zanzottera",
+      "rank": 3,
+      "position": "defensor",
+      "goalsPerMatch": 1,
+      "gamesWon": 0,
+      "age": 24
+    },
+    {
+      "nickname": "Oliveti",
+      "name": "Nicolas Oliva",
+      "rank": 5,
+      "position": "volante",
+      "goalsPerMatch": 4,
+      "gamesWon": 0,
+      "age": 24
+    },
+    {
+      "nickname": "Flaco",
+      "name": "Augusto Depierro",
+      "rank": 2,
+      "position": "defensor",
+      "goalsPerMatch": 0,
+      "gamesWon": 0,
+      "age": 24
+    },
+    {
+      "nickname": "Gonza",
+      "name": "Gonzalo Fitzsimons",
+      "rank": 4,
+      "position": "defensor",
+      "goalsPerMatch": 2,
+      "gamesWon": 0,
+      "age": 24
+    },
+    {
+      "nickname": "Kapanga",
+      "name": "Genaro Moretti",
+      "rank": 3,
+      "position": "delantero",
+      "goalsPerMatch": 3,
+      "gamesWon": 0,
+      "age": 24
+    },
+    {
+      "nickname": "Ferreto",
+      "name": "Facundo Ferreto",
+      "rank": 2,
+      "position": "defensor",
+      "goalsPerMatch": 0,
+      "gamesWon": 0,
+      "age": 24
+    },
+    {
+      "nickname": "Manucho",
+      "name": "Manuel Echenique",
+      "rank": 2,
+      "position": "defensor",
+      "goalsPerMatch": 0,
+      "gamesWon": 0,
+      "age": 24
+    }
+]
