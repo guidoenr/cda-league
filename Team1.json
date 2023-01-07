@@ -1,5 +1,5 @@
 {
-   "Name": "aux",
+   "Name": "Team1",
    "TotalPlayers": 5,
    "Players": [
       {
@@ -11,7 +11,7 @@
          "goalsPerMatch": 0,
          "gamesWon": 0,
          "age": 24,
-         "elo": 20
+         "elo": 25
       },
       {
          "ID": 0,
@@ -22,18 +22,29 @@
          "goalsPerMatch": 0,
          "gamesWon": 0,
          "age": 24,
-         "elo": 16
+         "elo": 20
       },
       {
          "ID": 0,
-         "nickname": "Marto",
-         "name": "Martin Chapman",
+         "nickname": "Leo",
+         "name": "Leo Usar",
          "rank": 4,
+         "position": "delantero",
+         "goalsPerMatch": 0,
+         "gamesWon": 0,
+         "age": 24,
+         "elo": 20
+      },
+      {
+         "ID": 0,
+         "nickname": "Goyo",
+         "name": "Gregorio Zanzottera",
+         "rank": 3,
          "position": "defensor",
          "goalsPerMatch": 0,
          "gamesWon": 0,
          "age": 24,
-         "elo": 16
+         "elo": 15
       },
       {
          "ID": 0,
@@ -44,20 +55,9 @@
          "goalsPerMatch": 0,
          "gamesWon": 0,
          "age": 24,
-         "elo": 12
-      },
-      {
-         "ID": 0,
-         "nickname": "Nacho",
-         "name": "Ignacio Rivarola",
-         "rank": 3,
-         "position": "defensor",
-         "goalsPerMatch": 0,
-         "gamesWon": 0,
-         "age": 24,
-         "elo": 12
+         "elo": 15
       }
    ],
-   "Points": 76,
+   "Points": 95,
    "ChanceOfWinning": 0
 }

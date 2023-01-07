@@ -1,28 +1,17 @@
 {
-   "Name": "aux",
+   "Name": "Team2",
    "TotalPlayers": 5,
    "Players": [
       {
          "ID": 0,
-         "nickname": "Marcos",
-         "name": "Marcos Fitzsimons",
+         "nickname": "Oliveti",
+         "name": "Nicolas Oliva",
          "rank": 5,
          "position": "volante",
          "goalsPerMatch": 0,
          "gamesWon": 0,
          "age": 24,
-         "elo": 20
-      },
-      {
-         "ID": 0,
-         "nickname": "Gonza",
-         "name": "Gonzalo Fitzsimons",
-         "rank": 4,
-         "position": "defensor",
-         "goalsPerMatch": 0,
-         "gamesWon": 0,
-         "age": 24,
-         "elo": 16
+         "elo": 25
       },
       {
          "ID": 0,
@@ -33,18 +22,7 @@
          "goalsPerMatch": 0,
          "gamesWon": 0,
          "age": 24,
-         "elo": 16
-      },
-      {
-         "ID": 0,
-         "nickname": "Kapanga",
-         "name": "Genaro Moretti",
-         "rank": 3,
-         "position": "delantero",
-         "goalsPerMatch": 0,
-         "gamesWon": 0,
-         "age": 24,
-         "elo": 12
+         "elo": 20
       },
       {
          "ID": 0,
@@ -55,9 +33,31 @@
          "goalsPerMatch": 0,
          "gamesWon": 0,
          "age": 24,
-         "elo": 12
+         "elo": 15
+      },
+      {
+         "ID": 0,
+         "nickname": "Guidoti",
+         "name": "Guido Enrique",
+         "rank": 3,
+         "position": "volante",
+         "goalsPerMatch": 0,
+         "gamesWon": 0,
+         "age": 24,
+         "elo": 15
+      },
+      {
+         "ID": 0,
+         "nickname": "Flaco",
+         "name": "Augusto Depierro",
+         "rank": 2,
+         "position": "defensor",
+         "goalsPerMatch": 0,
+         "gamesWon": 0,
+         "age": 24,
+         "elo": 10
       }
    ],
-   "Points": 76,
+   "Points": 85,
    "ChanceOfWinning": 0
 }

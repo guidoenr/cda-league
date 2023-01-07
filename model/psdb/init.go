@@ -3,7 +3,9 @@ package psdb
 import (
 	"crypto/tls"
 	"database/sql"
+	"errors"
 	"fmt"
+	"github.com/rs/zerolog/log"
 	"github.com/uptrace/bun"
 	"github.com/uptrace/bun/dialect/pgdialect"
 	"github.com/uptrace/bun/driver/pgdriver"
@@ -13,6 +15,7 @@ import (
 type PostgreDB struct {
 	dbname    string
 	connector *pgdriver.Connector
+	BunDB     *bun.DB
 }
 
 // InitDB initializes the postgresql database
@@ -24,15 +27,37 @@ func (pdb *PostgreDB) InitDB() error {
 	sqldb := sql.OpenDB(pdb.connector)
 
 	// creating new bun DB
-	db := bun.NewDB(sqldb, pgdialect.New())
+	bunDB := bun.NewDB(sqldb, pgdialect.New())
+
+	// connection pool
+	bunDB.SetMaxIdleConns(5)
+	bunDB.SetMaxOpenConns(10)
 
 	// pinging to DB
-	err := db.Ping()
+	err := bunDB.Ping()
 	if err != nil {
-		return fmt.Errorf("pinging to db: %v", err)
+		msg := fmt.Sprintf("pinging to bunDB: %v", err)
+		log.Error().Msgf(msg)
+		return errors.New(msg)
 	}
 
-	fmt.Printf("connected to db '%s' succesfully", pdb.dbname)
+	// setting the bunDB
+	pdb.BunDB = bunDB
+
+	fmt.Printf("connected to bunDB '%s' succesfully", pdb.dbname)
+	return nil
+}
+
+// CloseDB closes the postgresql database
+func (pdb *PostgreDB) CloseDB() error {
+	err := pdb.BunDB.Close()
+	if err != nil {
+		msg := fmt.Sprintf("closing db: %v", err)
+		log.Error().Msgf(msg)
+		return errors.New(msg)
+	}
+
+	log.Info().Msg("database closed successfully")
 	return nil
 }
 

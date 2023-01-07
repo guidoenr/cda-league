@@ -1,10 +1,7 @@
 package model
 
 import (
-	"encoding/json"
-	"fmt"
 	"math/rand"
-	"os"
 	"time"
 )
 
@@ -18,28 +15,6 @@ type Match struct {
 
 func (m *Match) Init(players []Player) {
 	m.Players = players
-}
-
-// InitFromJson set the players into the match, read from /resources/players.json
-func (m *Match) InitFromJson() error {
-	jsonData, err := os.ReadFile("resources/players.json")
-	if err != nil {
-		return fmt.Errorf("error reading file")
-	}
-
-	var players []JsonPlayer
-	err = json.Unmarshal(jsonData, &players)
-	if err != nil {
-		return fmt.Errorf("error unmarshalling: %v", err)
-	}
-
-	var player Player
-	for _, p := range players {
-		_ = player.Init(p.Nickname, p.Name, Rank(p.Rank), Position(p.Position), p.Age)
-		m.Players = append(m.Players, player)
-	}
-
-	return nil
 }
 
 // GenerateTeams is the complete algorithm to create evenly teams based on the player's ranking
@@ -56,7 +31,7 @@ func (m *Match) GenerateTeams() {
 		playersByRank[rank] = append(playersByRank[rank], player)
 	}
 
-	// now shuffle the teams using the nano seconds as seed
+	// now shuffle the teams using the nanoseconds as seed
 	rand.Seed(time.Now().UnixNano())
 	for i, group := range playersByRank {
 		rand.Shuffle(len(group), func(i, j int) {
@@ -67,6 +42,8 @@ func (m *Match) GenerateTeams() {
 
 	// setting the Players by rank
 	m.PlayersByRank = playersByRank
+
+	// creating the two teams
 	players1, players2 := make([]Player, 0), make([]Player, 0)
 
 	i := 5
@@ -81,22 +58,22 @@ func (m *Match) GenerateTeams() {
 		i--
 	}
 
-	// this aux team is only to compare the players of a team
-	var auxTeam Team
-	auxTeam.init("aux", len(players1), players1)
-
 	// creating the teams
 	var team1, team2 Team
 
-	team1.init("Team1", len(players1), players1)
-	team2.init("Team2", len(players2), players2)
+	team1.Init("Team1", len(players1), players1)
+	team2.Init("Team2", len(players2), players2)
 
-	// if the teams are some kind of 'equal' (3 players are the same)
-	// then we start the algorithm again
-	if !auxTeam.goodMixWith(&team1) {
-		fmt.Printf("------------------------------ REPEATED")
-		m.GenerateTeams()
-	}
+	/*
+		// this aux team is only to compare the players of a team
+		var auxTeam Team
+		auxTeam.Init("aux", len(players1), players1)
+		// if the teams are some kind of 'equal' (3 players are the same)
+		// then we start the algorithm again
+		if !auxTeam.goodMixWith(&team1) {
+			m.GenerateTeams()
+			return
+		} */
 
 	// calculate the total points
 	totalPoints := team1.Points + team2.Points

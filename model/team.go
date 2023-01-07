@@ -3,6 +3,7 @@ package model
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/rs/zerolog/log"
 	"os"
 )
 
@@ -14,7 +15,7 @@ type Team struct {
 	ChanceOfWinning float64
 }
 
-func (t *Team) init(name string, totalPlayers int, players []Player) {
+func (t *Team) Init(name string, totalPlayers int, players []Player) {
 	t.Name = name
 	t.TotalPlayers = totalPlayers
 	t.Players = players
@@ -23,34 +24,20 @@ func (t *Team) init(name string, totalPlayers int, players []Player) {
 		t.Points += float64(p.Elo)
 	}
 
-	if name == "aux" {
-		jsonData, _ := json.MarshalIndent(t, "", "   ")
-		os.WriteFile("temp-aux.json", jsonData, 0644)
+	// saving the team as a file
+	fileName := fmt.Sprintf("%s.json", t.Name)
+	jsonData, _ := json.MarshalIndent(t, "", "   ")
+	err := os.WriteFile(fileName, jsonData, 0644)
+	if err != nil {
+		log.Error().Msgf("writing file: %v", err)
 	}
 }
 
 // goodMixWith determines if the teams that the match mixed are a good shuffle
 // this method is going to be used only for the 'auxTeam'
 func (t *Team) goodMixWith(otherTeam *Team) bool {
-	bytes, _ := os.ReadFile("temp-aux.json")
-
-	var auxTeam Team
-	json.Unmarshal(bytes, &auxTeam)
-
-	fmt.Printf("----------------AUX TEAM\n")
-	auxTeam.Show()
-	fmt.Printf("----------------AUX TEAM\n")
-
-	var count int
-	for _, playerOne := range auxTeam.Players {
-		for _, playerTwo := range otherTeam.Players {
-			if playerTwo.Nickname == playerOne.Nickname {
-				count++
-			}
-		}
-	}
-	fmt.Println(count)
-	return count < 3
+	// TODO THIS
+	return true
 }
 
 func (t *Team) setChanceOfWinning(totalPoints float64) {

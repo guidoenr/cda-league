@@ -2,7 +2,9 @@ package model
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
+	"github.com/rs/zerolog/log"
 	"github.com/uptrace/bun"
 )
 
@@ -33,13 +35,19 @@ type JsonPlayer struct {
 func (p *Player) Init(nickname string, name string, rank Rank, position Position, age int) error {
 
 	if nickname == "" {
-		return fmt.Errorf("nickname cannot be empty")
+		msg := fmt.Sprint("nickname cannot be empty")
+		log.Error().Msg(msg)
+		return errors.New(msg)
 	}
 	if name == "" {
-		return fmt.Errorf("name cannot be empty")
+		msg := fmt.Sprint("name cannot be empty")
+		log.Error().Msg(msg)
+		return errors.New(msg)
 	}
 	if rank > Five || rank < One {
-		return fmt.Errorf("the rank must be a value between 1 and 5 stars")
+		msg := fmt.Sprintf("rank is not between 1 and 5: %d", rank)
+		log.Error().Msg(msg)
+		return errors.New(msg)
 	}
 
 	p.Nickname = nickname
@@ -47,19 +55,19 @@ func (p *Player) Init(nickname string, name string, rank Rank, position Position
 	p.Rank = rank
 	p.Position = position
 	p.Age = age
-	p.Elo = int(p.Rank)*4 + p.GamesWon + p.GoalsPerMatch*3
+	p.Elo = int(p.Rank)*5 + p.GoalsPerMatch*3
 
 	return nil
-}
-
-func (p *Player) updateRank(rank Rank) {
-	// TODO db
-	p.Rank = rank
 }
 
 func (p *Player) Info() string {
 	jsonData, _ := json.MarshalIndent(*p, "", "   ")
 	return string(jsonData)
+}
+
+func (p *Player) updateRank(rank Rank) {
+	// TODO db
+	p.Rank = rank
 }
 
 func (p *Player) Show() {
