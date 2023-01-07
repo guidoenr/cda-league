@@ -60,16 +60,12 @@ func (p *Player) Init(nickname string, name string, rank Rank, position Position
 	return nil
 }
 
-func (p *Player) Info() string {
-	jsonData, _ := json.MarshalIndent(*p, "", "   ")
-	return string(jsonData)
+func (p *Player) ToJSON() []byte {
+	bytes, _ := json.Marshal(p)
+	return bytes
 }
 
 func (p *Player) updateRank(rank Rank) {
 	// TODO db
 	p.Rank = rank
-}
-
-func (p *Player) Show() {
-	fmt.Printf("|%s| - %d - %s \n", p.Nickname, p.Rank, p.Position)
 }

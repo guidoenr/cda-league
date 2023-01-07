@@ -26,9 +26,11 @@ func (h *Helper) DumpPlayersToDB() error {
 	h.readPlayersFromJSON()
 
 	// making the query
-	_, err := h.db.BunDB.NewInsert().
+	whatisTis, err := h.db.BunDB.NewInsert().
 		Model(&h.players).
 		Exec(context.Background())
+
+	log.Error().Msgf("WHAT IS THIS?: %v", whatisTis)
 
 	if err != nil {
 		msg := fmt.Sprintf("dumping players to db: %v", err)
@@ -39,10 +41,13 @@ func (h *Helper) DumpPlayersToDB() error {
 }
 
 func (h *Helper) CreateSchemas() error {
+	
 	// creating players table
-	_, err := h.db.BunDB.NewCreateTable().
+	as, err := h.db.BunDB.NewCreateTable().
 		Model((*model.Player)(nil)).
 		Exec(context.Background())
+
+	fmt.Printf("what is this>>> %v", as)
 
 	if err != nil {
 		msg := fmt.Sprintf("creating schemas: %v", err)

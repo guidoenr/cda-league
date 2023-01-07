@@ -3,6 +3,7 @@ package controller
 import (
 	"context"
 	"errors"
+	"fmt"
 	"github.com/guidoenr/fulbo/model"
 	"github.com/guidoenr/fulbo/model/psdb"
 	"github.com/rs/zerolog/log"
@@ -11,30 +12,27 @@ import (
 
 // GetPlayers (GET /players)
 // check in the DB all the stored players and return them in JSON format
-func GetPlayers(db *psdb.PostgreDB) (string, error) {
+func GetPlayers(db *psdb.PostgreDB) ([]model.Player, error) {
 	log.Info().Msgf("getting players")
 	var players []model.Player
 
-	// making the query
+	// SELECT * FROM players
 	err := db.BunDB.NewSelect().
 		Model(&players).
 		Scan(context.Background())
 
 	if err != nil {
-		return "", errors.New(err.Error())
+		msg := fmt.Sprintf("making GetPlayers() query to db: %v", err)
+		log.Error().Msg(msg)
+		return players, errors.New(msg)
 	}
 
-	playersString := ""
-	for _, p := range players {
-		playersString += p.Info()
-	}
-
-	return playersString, nil
+	return players, nil
 }
 
 // GetPlayerByID (GET /players/:id)
 // check in the DB the player finding by id
-func GetPlayerByID(db *psdb.PostgreDB, id string) (string, error) {
+func GetPlayerByID(db *psdb.PostgreDB, id string) (model.Player, error) {
 	var player model.Player
 	playerId, _ := strconv.Atoi(id)
 
@@ -44,13 +42,14 @@ func GetPlayerByID(db *psdb.PostgreDB, id string) (string, error) {
 		Scan(context.Background())
 
 	if err != nil {
-		return "", errors.New(err.Error())
+		return player, errors.New(err.Error())
 	}
 
-	return player.Info(), nil
+	return player, nil
 }
 
-func GetPlayerByNickname(db *psdb.PostgreDB, nickname string) (string, error) {
+// GetPlayerByNickname (GET /players/) found a player by their nickname
+func GetPlayerByNickname(db *psdb.PostgreDB, nickname string) (model.Player, error) {
 	var player model.Player
 
 	err := db.BunDB.NewSelect().
@@ -59,10 +58,10 @@ func GetPlayerByNickname(db *psdb.PostgreDB, nickname string) (string, error) {
 		Scan(context.Background())
 
 	if err != nil {
-		return "", errors.New(err.Error())
+		return player, errors.New(err.Error())
 	}
 
-	return player.Info(), nil
+	return player, nil
 }
 
 func CreatePlayer(db *psdb.PostgreDB) (string, error) {

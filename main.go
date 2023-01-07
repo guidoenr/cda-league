@@ -33,5 +33,5 @@ func main() {
 		log.Error().Msg(msg)
 	}
 
-	controller.StartRouter(&db)
+	//controller.StartRouter(&db)
 }
