@@ -28,7 +28,7 @@ func (t *Team) goodMixWith(otherTeam *Team) bool {
 }
 
 func (t *Team) setChanceOfWinning(totalPoints float64) {
-	t.ChanceOfWinning = t.Points / totalPoints
+	t.ChanceOfWinning = (t.Points / totalPoints) * 100
 }
 
 func (t *Team) ToJSON() string {

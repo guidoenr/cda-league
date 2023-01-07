@@ -13,26 +13,16 @@ type Player struct {
 	ID            int64    `bun:"id,pk,autoincrement"`
 	Nickname      string   `bun:"nickname,unique" json:"nickname"`
 	Name          string   `bun:"name" json:"name"`
+	Age           int      `bun:"age" json:"age"`
 	Rank          Rank     `bun:"rank" json:"rank"`
 	Position      Position `bun:"position" json:"position"`
-	GoalsPerMatch int      `bun:"goals" json:"goalsPerMatch"`
-	GamesWon      int      `bun:"gamesWon" json:"gamesWon"`
-	Age           int      `bun:"age" json:"age"`
 	Elo           int      `bun:"elo" json:"elo"`
-}
-
-type JsonPlayer struct {
-	Nickname      string `json:"nickname"`
-	Name          string `json:"name"`
-	Rank          int    `json:"rank"`
-	Position      string `json:"position"`
-	GoalsPerMatch int    `json:"goalsPerMatch"`
-	GamesWon      int    `json:"gamesWon"`
-	Age           int    `json:"age"`
+	GoalsPerMatch int      `bun:"goalsPerMatch" json:"goalsPerMatch"`
+	GamesWon      int      `bun:"gamesWon" json:"gamesWon"`
 }
 
 // Init creates the player with their values
-func (p *Player) Init(nickname string, name string, rank Rank, position Position, age int) error {
+func (p *Player) Init(nickname string, name string, age int, rank Rank, position Position, goalsPerMatch int, gamesWon int) error {
 
 	if nickname == "" {
 		msg := fmt.Sprint("nickname cannot be empty")
@@ -55,7 +45,9 @@ func (p *Player) Init(nickname string, name string, rank Rank, position Position
 	p.Rank = rank
 	p.Position = position
 	p.Age = age
-	p.Elo = int(p.Rank)*5 + p.GoalsPerMatch*3
+	p.GoalsPerMatch = goalsPerMatch
+	p.GamesWon = gamesWon
+	p.Elo = int(p.Rank)*5 + p.GoalsPerMatch*3 + p.GamesWon
 
 	return nil
 }
@@ -63,9 +55,4 @@ func (p *Player) Init(nickname string, name string, rank Rank, position Position
 func (p *Player) ToJSON() []byte {
 	bytes, _ := json.Marshal(p)
 	return bytes
-}
-
-func (p *Player) updateRank(rank Rank) {
-	// TODO db
-	p.Rank = rank
 }

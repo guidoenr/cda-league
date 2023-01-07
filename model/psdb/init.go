@@ -12,10 +12,11 @@ import (
 	"os"
 )
 
+// PostgreDB structs contains the bunDB database (initialized) to interact with the DB
 type PostgreDB struct {
+	BunDB     *bun.DB
 	dbname    string
 	connector *pgdriver.Connector
-	BunDB     *bun.DB
 }
 
 // InitDB initializes the postgresql database
@@ -78,6 +79,7 @@ func (pdb *PostgreDB) loadConnector() {
 		pgdriver.WithUser(user),
 		pgdriver.WithPassword(password),
 		pgdriver.WithDatabase(dbname))
+
 	// setting the connector
 	pdb.dbname = dbname
 	pdb.connector = pgconn
