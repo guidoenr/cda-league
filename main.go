@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/guidoenr/fulbo/controller"
+	"github.com/guidoenr/fulbo/api"
 	"github.com/guidoenr/fulbo/model/psdb"
 	"github.com/rs/zerolog/log"
 )
@@ -17,7 +17,7 @@ func main() {
 	defer db.CloseDB()
 
 	// creating the helper
-	var helper controller.Helper
+	var helper api.Helper
 	helper.Init(&db)
 
 	// cleaning the DB
@@ -41,5 +41,5 @@ func main() {
 		log.Error().Msg(msg)
 	}
 
-	controller.StartRouter(&db)
+	api.StartRouter(&db)
 }
