@@ -22,7 +22,7 @@ func GetPlayers(db *psdb.PostgreDB) ([]model.Player, error) {
 		Scan(context.Background())
 
 	if err != nil {
-		msg := fmt.Sprintf("making GetPlayers() query to db: %v", err)
+		msg := fmt.Sprintf("getting all players - select query to db: %v", err)
 		log.Error().Msg(msg)
 		return players, errors.New(msg)
 	}
@@ -42,7 +42,9 @@ func GetPlayerByID(db *psdb.PostgreDB, id string) (model.Player, error) {
 		Scan(context.Background())
 
 	if err != nil {
-		return player, errors.New(err.Error())
+		msg := fmt.Sprintf("selecting player '%s' by id: %v", id, err)
+		log.Error().Msg(msg)
+		return player, errors.New(msg)
 	}
 
 	return player, nil
@@ -58,10 +60,35 @@ func GetPlayerByNickname(db *psdb.PostgreDB, nickname string) (model.Player, err
 		Scan(context.Background())
 
 	if err != nil {
-		return player, errors.New(err.Error())
+		msg := fmt.Sprintf("selecting player '%s' by nickname: %v", nickname, err)
+		log.Error().Msg(msg)
+		return player, errors.New(msg)
 	}
 
 	return player, nil
+}
+
+// UpdatePlayer (POST /players/:id/update) updates the player fields
+func UpdatePlayer(db *psdb.PostgreDB) (string, error) {
+	/*var player model.Player
+
+	err, _ := db.BunDB.NewUpdate().
+		Model(&player).
+		Where("id = ?", id).
+		Set("nickname = ?", nickname).
+		Set("age = ?", age).
+		Set("rank = ?", rank).
+		Set("position = ?", position).
+		Set("goalsPerMatch = ?", goalsPerMatch).
+		Set("gamesWon = ?", gamesWon).
+		Exec(context.Background())
+
+	if err != nil {
+		msg := fmt.Sprintf("updating player fields '%s' by id: %v", id, err)
+		log.Error().Msg(msg)
+		return player, errors.New(msg)
+	}*/
+	return "TODO--> NOT IMPLEMENTED YET", nil
 }
 
 func CreatePlayer(db *psdb.PostgreDB) (string, error) {

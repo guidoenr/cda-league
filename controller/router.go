@@ -40,6 +40,7 @@ func StartRouter(postgreDB *psdb.PostgreDB) {
 		players.GET("/:id", showPlayerByID(postgreDB))
 		players.GET("/nickname/:nickname", showPlayerByNickname(postgreDB))
 		players.POST("/:id/create", createPlayer(postgreDB))
+		players.POST("/:id/update", updatePlayer(postgreDB))
 	}
 
 	// match routes
@@ -92,6 +93,19 @@ func showPlayerByNickname(db *psdb.PostgreDB) gin.HandlerFunc {
 
 // createPlayer creates a player
 func createPlayer(db *psdb.PostgreDB) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		// TODO, this will be one of the latest thing to code
+		player, err := CreatePlayer(db)
+		if err != nil {
+			c.IndentedJSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+			return
+		}
+		c.IndentedJSON(200, gin.H{"ok": player})
+	}
+}
+
+// createPlayer creates a player
+func updatePlayer(db *psdb.PostgreDB) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		// TODO, this will be one of the latest thing to code
 		player, err := CreatePlayer(db)
