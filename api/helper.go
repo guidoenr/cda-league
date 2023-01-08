@@ -78,7 +78,7 @@ func (h *Helper) readPlayersFromJSON() {
 	// we must initialize each player to calculate the elo
 	var newPlayer model.Player
 	for _, p := range jsonPlayers {
-		newPlayer.Init(p.Nickname, p.Name, p.Description, p.Age, p.Rank, p.Position, p.GoalsPerMatch, p.GamesWon)
+		newPlayer.Init(p.Nickname, p.Name, p.Description, p.Age, p.Rank, p.Position, p.GoalsPerMatch, p.GamesPlayed, p.GamesWon, p.GamesLost)
 		h.players = append(h.players, newPlayer)
 	}
 

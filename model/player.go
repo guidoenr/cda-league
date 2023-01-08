@@ -13,17 +13,20 @@ type Player struct {
 	ID            int64    `bun:"id,pk,autoincrement"`
 	Nickname      string   `bun:"nickname,unique" json:"nickname"`
 	Name          string   `bun:"name" json:"name"`
+	Rank          Rank     `bun:"rank" json:"rank"`
 	Description   string   `bun:"description" json:"description"`
 	Age           int      `bun:"age" json:"age"`
-	Rank          Rank     `bun:"rank" json:"rank"`
 	Position      Position `bun:"position" json:"position"`
-	Elo           float64  `bun:"elo" json:"elo"`
 	GoalsPerMatch int      `bun:"goalsPerMatch" json:"goalsPerMatch"`
+	GamesPlayed   int      `bun:"gamesPlayed" json:"gamesPlayed"`
 	GamesWon      int      `bun:"gamesWon" json:"gamesWon"`
+	GamesLost     int      `bun:"gamesLost" json:"gamesLost"`
+	Diff          int      `bun:"diff" json:"diff"`
+	Elo           float64  `bun:"elo" json:"elo"`
 }
 
 // Init creates the player with their values
-func (p *Player) Init(nickname string, name string, description string, age int, rank Rank, position Position, goalsPerMatch int, gamesWon int) error {
+func (p *Player) Init(nickname string, name string, description string, age int, rank Rank, position Position, goalsPerMatch int, gamesPlayed int, gamesWon int, gamesLost int) error {
 
 	if nickname == "" {
 		msg := fmt.Sprint("nickname cannot be empty")
@@ -48,7 +51,10 @@ func (p *Player) Init(nickname string, name string, description string, age int,
 	p.Position = position
 	p.Age = age
 	p.GoalsPerMatch = goalsPerMatch
+	p.GamesPlayed = gamesPlayed
 	p.GamesWon = gamesWon
+	p.GamesLost = gamesLost
+	p.Diff = p.GamesWon - p.GamesLost
 	p.Elo = p.CalculateELO()
 
 	return nil
@@ -59,7 +65,7 @@ func (p *Player) Init(nickname string, name string, description string, age int,
 func (p *Player) CalculateELO() float64 {
 	var ELO float64
 	// the formula is rank * 5 - goals * 3 + gamesWon - (age-23) * 0.2
-	ELO = float64(p.Rank*5) + float64(p.GoalsPerMatch*3) + float64(p.GamesWon) - float64(p.Age-23)*0.2
+	ELO = float64(p.Rank*5) + float64(p.GoalsPerMatch*3) + float64(p.Diff) - float64(p.Age-23)*0.2
 	return ELO
 }
 
