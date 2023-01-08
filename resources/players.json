@@ -2,6 +2,7 @@
     {
       "nickname": "Guidoti",
       "name": "Guido Enrique",
+      "description": "Tambien llamado 'Eden Hazard criado a puchos'. En su mejor dia te mete +3 goles, te la deja en el pie y no lo agarras, pero en un dia normal es el mas perro de la cancha. Vos tantealo, y tomas la decision de pasarsela o no a este flor de amargo.",
       "rank": 3,
       "position": "volante",
       "goalsPerMatch": 3,
@@ -11,6 +12,7 @@
     {
       "nickname": "Marcos",
       "name": "Marcos Fitzsimons",
+      "description": "Jugador de elite, con cosas de 'Kevin de Bruyne' en sus dias. Cuando esta en su PRIME, este pibe realmente cuida la caprichosa y genera situaciones de goles, pero de no ser asi, te putea.",
       "rank": 5,
       "position": "volante",
       "goalsPerMatch": 3,
@@ -20,6 +22,7 @@
     {
       "nickname": "Marto",
       "name": "Martin Chapman",
+      "description": "Nuestro 'Virgil Van Dijk', de mas de 2 metros (donde 1.5 metros corresponden a las piernas). No se entiende la agilidad de este hijo de puta, imposible encararlo. Si juega en contra olvidate del juego aereo",
       "rank": 4,
       "position": "defensor",
       "goalsPerMatch": 2,
@@ -29,6 +32,7 @@
     {
       "nickname": "Nacho",
       "name": "Ignacio Rivarola",
+      "description": "Tremenda gallina, con destellos de 'Dani Alves' en su mejor dia, a veces le pega y no entendes el golazo que mete. En un dia normal? le tiras un pase y no la sabe parar, gallina amarga",
       "rank": 3,
       "position": "defensor",
       "goalsPerMatch": 1,
@@ -38,6 +42,7 @@
     {
       "nickname": "Leo",
       "name": "Leo Usar",
+      "description": "El hincha termo del equipo, boca por sobre todas las cosas. Sabe ser 'Luis Suarez' en un buen dia, +4 goles por partido, le apunta al corner y te mete un gol (ni el sabe como los hace). Aprovechalo un dia que no vaya a donar sangre, porque sino, es lo mismo poner un cono en la cancha.",
       "rank": 4,
       "position": "delantero",
       "goalsPerMatch": 4,
@@ -47,6 +52,7 @@
     {
       "nickname": "Goyo",
       "name": "Gregorio Zanzottera",
+      "description": "Soldado complicado de pasar, de los mas regulares del equipo. Conocido tambien como 'Oscar Ruggeri', pasa la pelota o pasas vos... y bueno, algunos dias pasa hasta el viento",
       "rank": 3,
       "position": "defensor",
       "goalsPerMatch": 1,
@@ -56,6 +62,7 @@
     {
       "nickname": "Oliveti",
       "name": "Nicolas Oliva",
+      "description": "JOGO BONITO, Futbol Playa, Brasilero de nacimiento. Iluminado por 'O Rei'. Magia y distribucion, nuestro 'Ronaldinho'. Tambien con lo malo, falta a entrenar, llega fumado y aveces de gira. 'Ricky Centurion' le diria yo",
       "rank": 5,
       "position": "volante",
       "goalsPerMatch": 4,
@@ -65,6 +72,7 @@
     {
       "nickname": "Flaco",
       "name": "Augusto Depierro",
+      "description": "en honor al 'Flaco Schiavi'. Otro mas que te caga a patadas y no te deja pasar ni loco, es como chocarse una pared (algunos dias, otros dias rezas porque te toque en contra)",
       "rank": 2,
       "position": "defensor",
       "goalsPerMatch": 0,
@@ -74,6 +82,7 @@
     {
       "nickname": "Gonza",
       "name": "Gonzalo Fitzsimons",
+      "description": "Me p",
       "rank": 4,
       "position": "defensor",
       "goalsPerMatch": 3,
