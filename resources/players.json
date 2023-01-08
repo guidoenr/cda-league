@@ -103,10 +103,20 @@
         "nickname": "Manucho",
         "name": "Manuel Echenique",
         "description": "Se siguen haciendo estudios para determinar si es zurdo o derecho (hoy en dia se cree que es zurdo), Un 'Jordi Alba' pasado un poco de peso que en un EXCELENTE dia no falla.",
-        "rank": 3,
+        "rank": 2,
         "position": "delantero",
-        "goalsPerMatch": 3,
-        "gamesWon": 1,
+        "goalsPerMatch": 0,
+        "gamesWon": 0,
         "age": 24
+    },
+    {
+        "nickname": "Serra",
+        "name": "Facundo Serrano",
+        "description": "Y este? sisi, juega al futbol che. Corre como un enfermito, 'Antonio Valencia' en su prime, buen estado. No mas que eso, mucho instagram, poco fulbo.",
+        "rank": 2,
+        "position": "defensor",
+        "goalsPerMatch": 0,
+        "gamesWon": 0,
+        "age": 23
     }
 ]
