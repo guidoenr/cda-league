@@ -16,7 +16,7 @@ type Player struct {
 	Age           int      `bun:"age" json:"age"`
 	Rank          Rank     `bun:"rank" json:"rank"`
 	Position      Position `bun:"position" json:"position"`
-	Elo           int      `bun:"elo" json:"elo"`
+	Elo           float64  `bun:"elo" json:"elo"`
 	GoalsPerMatch int      `bun:"goalsPerMatch" json:"goalsPerMatch"`
 	GamesWon      int      `bun:"gamesWon" json:"gamesWon"`
 }
@@ -47,9 +47,18 @@ func (p *Player) Init(nickname string, name string, age int, rank Rank, position
 	p.Age = age
 	p.GoalsPerMatch = goalsPerMatch
 	p.GamesWon = gamesWon
-	p.Elo = int(p.Rank)*5 + p.GoalsPerMatch*3 + p.GamesWon
+	p.Elo = p.CalculateELO()
 
 	return nil
+}
+
+// CalculateELO calculates the player's ELO considering their points (age, goals, gamesWon, etc)
+// is a simple formula, maybe improve it in a future
+func (p *Player) CalculateELO() float64 {
+	var ELO float64
+	// the formula is rank * 5 - goals * 3 + gamesWon - (age-23) * 0.2
+	ELO = float64(p.Rank*5) + float64(p.GoalsPerMatch*3) + float64(p.GamesWon) - float64(p.Age-23)*0.2
+	return ELO
 }
 
 func (p *Player) ToJSON() []byte {

@@ -15,6 +15,7 @@ func (t *Team) Init(name string, totalPlayers int, players []Player) {
 	t.TotalPlayers = totalPlayers
 	t.Players = players
 
+	// the total points of a team is the sum of the Elo's of each player
 	for _, p := range players {
 		t.Points += float64(p.Elo)
 	}

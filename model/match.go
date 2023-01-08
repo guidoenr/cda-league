@@ -34,6 +34,7 @@ func (m *Match) GenerateTeams() {
 	// now shuffle the teams using the nanoseconds as seed
 	rand.Seed(time.Now().UnixNano())
 	for i, group := range playersByRank {
+		// group is the list of players of a rank
 		rand.Shuffle(len(group), func(i, j int) {
 			group[i], group[j] = group[j], group[i]
 		})
@@ -46,16 +47,17 @@ func (m *Match) GenerateTeams() {
 	// creating the two teams
 	players1, players2 := make([]Player, 0), make([]Player, 0)
 
-	i := 5
-	for i > 0 {
-		for _, p := range m.PlayersByRank[Rank(i)] {
+	// distributing the players
+	rank := Five
+	for rank > 0 {
+		for _, p := range m.PlayersByRank[rank] {
 			if len(players1) > len(players2) {
 				players2 = append(players2, p)
 			} else {
 				players1 = append(players1, p)
 			}
 		}
-		i--
+		rank--
 	}
 
 	// creating the teams
