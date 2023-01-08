@@ -1,13 +1,16 @@
 package model
 
-import "encoding/json"
+import (
+	"encoding/json"
+	"fmt"
+)
 
 type Team struct {
 	Name            string
 	TotalPlayers    int
 	Players         []Player
-	Points          float64
-	ChanceOfWinning float64
+	points          float64
+	ChanceOfWinning string
 }
 
 func (t *Team) Init(name string, totalPlayers int, players []Player) {
@@ -17,7 +20,7 @@ func (t *Team) Init(name string, totalPlayers int, players []Player) {
 
 	// the total points of a team is the sum of the Elo's of each player
 	for _, p := range players {
-		t.Points += float64(p.Elo)
+		t.points += p.Elo
 	}
 }
 
@@ -29,7 +32,7 @@ func (t *Team) goodMixWith(otherTeam *Team) bool {
 }
 
 func (t *Team) setChanceOfWinning(totalPoints float64) {
-	t.ChanceOfWinning = (t.Points / totalPoints) * 100
+	t.ChanceOfWinning = fmt.Sprintf("%.2f", (t.points/totalPoints)*100)
 }
 
 func (t *Team) ToJSON() string {

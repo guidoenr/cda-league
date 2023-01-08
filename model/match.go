@@ -94,7 +94,7 @@ func (m *Match) GenerateTeams() {
 		} */
 
 	// calculate the total points
-	totalPoints := team1.Points + team2.Points
+	totalPoints := team1.points + team2.points
 
 	team1.setChanceOfWinning(totalPoints)
 	team2.setChanceOfWinning(totalPoints)
