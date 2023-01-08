@@ -13,6 +13,7 @@ type Player struct {
 	ID            int64    `bun:"id,pk,autoincrement"`
 	Nickname      string   `bun:"nickname,unique" json:"nickname"`
 	Name          string   `bun:"name" json:"name"`
+	Description   string   `bun:"description" json:"description"`
 	Age           int      `bun:"age" json:"age"`
 	Rank          Rank     `bun:"rank" json:"rank"`
 	Position      Position `bun:"position" json:"position"`
@@ -22,7 +23,7 @@ type Player struct {
 }
 
 // Init creates the player with their values
-func (p *Player) Init(nickname string, name string, age int, rank Rank, position Position, goalsPerMatch int, gamesWon int) error {
+func (p *Player) Init(nickname string, name string, description string, age int, rank Rank, position Position, goalsPerMatch int, gamesWon int) error {
 
 	if nickname == "" {
 		msg := fmt.Sprint("nickname cannot be empty")
@@ -42,6 +43,7 @@ func (p *Player) Init(nickname string, name string, age int, rank Rank, position
 
 	p.Nickname = nickname
 	p.Name = name
+	p.Description = description
 	p.Rank = rank
 	p.Position = position
 	p.Age = age
