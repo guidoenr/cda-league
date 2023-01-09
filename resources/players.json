@@ -7,9 +7,9 @@
         "rank": 3,
         "position": "volante",
         "goalsPerMatch": 4,
-        "gamesPlayed": 2,
+        "gamesPlayed": 0,
         "gamesWon": 0,
-        "gamesLost": 2
+        "gamesLost": 0
     },
     {
         "nickname": "Marcos",
@@ -18,10 +18,10 @@
         "age": 24,
         "rank": 5,
         "position": "volante",
-        "goalsPerMatch": 3,
-        "gamesPlayed": 1,
+        "goalsPerMatch": 4,
+        "gamesPlayed": 0,
         "gamesWon": 0,
-        "gamesLost": 1
+        "gamesLost": 0
     },
     {
         "nickname": "Marto",
@@ -30,9 +30,9 @@
         "age": 23,
         "rank": 4,
         "position": "defensor",
-        "goalsPerMatch": 2,
-        "gamesPlayed": 1,
-        "gamesWon": 1,
+        "goalsPerMatch": 3,
+        "gamesPlayed": 0,
+        "gamesWon": 0,
         "gamesLost": 0
     },
     {
@@ -42,21 +42,21 @@
         "age": 23,
         "rank": 3,
         "position": "defensor",
-        "goalsPerMatch": 1,
-        "gamesPlayed": 2,
+        "goalsPerMatch": 2,
+        "gamesPlayed": 0,
         "gamesWon": 0,
-        "gamesLost": 2
+        "gamesLost": 0
     },
     {
         "nickname": "Leo",
         "name": "Leo Usar",
         "description": "Boca por sobre todas las cosas. Sabe ser 'Luis Suarez' en un buen dia, +4 goles por partido, le apunta al corner y te mete un gol (ni el sabe como los hace). Aprovechalo un dia que no vaya a donar sangre, porque sino, es lo mismo poner un cono en la cancha. Con razon empezaste a jugar al paddle",
-        "age": 32,
+        "age": 30,
         "rank": 4,
         "position": "delantero",
         "goalsPerMatch": 3,
-        "gamesPlayed": 1,
-        "gamesWon": 1,
+        "gamesPlayed": 0,
+        "gamesWon": 0,
         "gamesLost": 0
     },
     {
@@ -66,10 +66,10 @@
         "age": 23,
         "rank": 3,
         "position": "defensor",
-        "goalsPerMatch": 0,
-        "gamesPlayed": 2,
-        "gamesWon": 1,
-        "gamesLost": 1
+        "goalsPerMatch": 2,
+        "gamesPlayed": 0,
+        "gamesWon": 0,
+        "gamesLost": 0
     },
     {
         "nickname": "Oliveti",
@@ -78,10 +78,10 @@
         "age": 23,
         "rank": 5,
         "position": "volante",
-        "goalsPerMatch": 3,
-        "gamesPlayed": 2,
-        "gamesWon": 1,
-        "gamesLost": 1
+        "goalsPerMatch": 4,
+        "gamesPlayed": 0,
+        "gamesWon": 0,
+        "gamesLost": 0
     },
     {
         "nickname": "Flaco",
@@ -91,8 +91,8 @@
         "rank": 2,
         "position": "defensor",
         "goalsPerMatch": 0,
-        "gamesPlayed": 2,
-        "gamesWon": 2,
+        "gamesPlayed": 0,
+        "gamesWon": 0,
         "gamesLost": 0
     },
     {
@@ -102,10 +102,10 @@
         "age": 30,
         "rank": 4,
         "position": "defensor",
-        "goalsPerMatch": 2,
-        "gamesPlayed": 2,
-        "gamesWon": 1,
-        "gamesLost": 1
+        "goalsPerMatch": 4,
+        "gamesPlayed": 0,
+        "gamesWon": 0,
+        "gamesLost": 0
     },
     {
         "nickname": "Kapanga",
@@ -114,9 +114,9 @@
         "age": 23,
         "rank": 3,
         "position": "delantero",
-        "goalsPerMatch": 2,
-        "gamesPlayed": 1,
-        "gamesWon": 1,
+        "goalsPerMatch": 3,
+        "gamesPlayed": 0,
+        "gamesWon": 0,
         "gamesLost": 0
     },
     {
@@ -139,7 +139,7 @@
         "rank": 2,
         "position": "defensor",
         "goalsPerMatch": 0,
-        "gamesPlayed": 1,
+        "gamesPlayed": 0,
         "gamesWon": 0,
         "gamesLost": 0
     }

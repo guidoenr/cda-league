@@ -41,5 +41,8 @@ func main() {
 		log.Error().Msg(msg)
 	}
 
-	api.StartRouter(&db)
+	var Router api.Router
+	Router.Init(&db)
+
+	Router.StartRouter()
 }

@@ -10,14 +10,22 @@ import (
 	"strconv"
 )
 
+type PlayerControler struct {
+	db *psdb.PostgreDB
+}
+
+func (pc *PlayerControler) Init(db *psdb.PostgreDB) {
+	pc.db = db
+}
+
 // GetPlayers (GET /players)
 // check in the DB all the stored players and return them in JSON format
-func GetPlayers(db *psdb.PostgreDB) ([]model.Player, error) {
+func (pc *PlayerControler) GetPlayers() ([]model.Player, error) {
 	log.Info().Msgf("getting players")
 	var players []model.Player
 
 	// SELECT * FROM players
-	err := db.BunDB.NewSelect().
+	err := pc.db.BunDB.NewSelect().
 		Model(&players).
 		Scan(context.Background())
 
@@ -30,13 +38,36 @@ func GetPlayers(db *psdb.PostgreDB) ([]model.Player, error) {
 	return players, nil
 }
 
+// GetPlayersRankedByElo (GET /players)
+// returns all the players sorted by their elo, maybe you can think
+// "ok, but you can use getplayers and then sort it" but no...
+// queries in an SQL motor are more performant than in the code
+func (pc *PlayerControler) GetPlayersRankedByElo() ([]model.Player, error) {
+	log.Info().Msgf("getting ranked by elo players")
+	var players []model.Player
+
+	// SELECT * FROM players
+	err := pc.db.BunDB.NewSelect().
+		Model(&players).
+		OrderExpr("elo DESC").
+		Scan(context.Background())
+
+	if err != nil {
+		msg := fmt.Sprintf("getting all players ranked by elo - select query to db: %v", err)
+		log.Error().Msg(msg)
+		return players, errors.New(msg)
+	}
+
+	return players, nil
+}
+
 // GetPlayerByID (GET /players/:id)
 // check in the DB the player finding by id
-func GetPlayerByID(db *psdb.PostgreDB, id string) (model.Player, error) {
+func (pc *PlayerControler) GetPlayerByID(id string) (model.Player, error) {
 	var player model.Player
 	playerId, _ := strconv.Atoi(id)
 
-	err := db.BunDB.NewSelect().
+	err := pc.db.BunDB.NewSelect().
 		Model(&player).
 		Where("id = ?", playerId).
 		Scan(context.Background())
@@ -51,10 +82,10 @@ func GetPlayerByID(db *psdb.PostgreDB, id string) (model.Player, error) {
 }
 
 // GetPlayerByNickname (GET /players/) found a player by their nickname
-func GetPlayerByNickname(db *psdb.PostgreDB, nickname string) (model.Player, error) {
+func (pc *PlayerControler) GetPlayerByNickname(nickname string) (model.Player, error) {
 	var player model.Player
 
-	err := db.BunDB.NewSelect().
+	err := pc.db.BunDB.NewSelect().
 		Model(&player).
 		Where("nickname = ?", nickname).
 		Scan(context.Background())
@@ -69,7 +100,7 @@ func GetPlayerByNickname(db *psdb.PostgreDB, nickname string) (model.Player, err
 }
 
 // UpdatePlayer (POST /players/:id/update) updates the player fields
-func UpdatePlayer(db *psdb.PostgreDB) (string, error) {
+func (pc *PlayerControler) UpdatePlayer() (string, error) {
 	/*var player model.Player
 
 	err, _ := db.BunDB.NewUpdate().
@@ -91,7 +122,7 @@ func UpdatePlayer(db *psdb.PostgreDB) (string, error) {
 	return "TODO--> NOT IMPLEMENTED YET", nil
 }
 
-func CreatePlayer(db *psdb.PostgreDB) (string, error) {
+func (pc *PlayerControler) CreatePlayer() (string, error) {
 	var players string
 
 	return players, nil

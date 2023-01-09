@@ -5,19 +5,32 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/guidoenr/fulbo/model"
 	"github.com/guidoenr/fulbo/model/psdb"
-	"github.com/rs/zerolog/log"
 	"net/http"
 	"time"
 )
 
+type Router struct {
+	db         *psdb.PostgreDB
+	controller *PlayerControler
+	ginRouter  *gin.Engine
+}
+
+func (r *Router) Init(postgreDB *psdb.PostgreDB) {
+	var controller PlayerControler
+	controller.Init(postgreDB)
+
+	// gin.SetMode(gin.ReleaseMode) TODO:later
+	r.ginRouter = gin.Default()
+	r.db = postgreDB
+	r.controller = &controller
+}
+
 // StartRouter turns on the gin-gonic server and initialize the entire REST-API
 // routes and endpoints
-func StartRouter(postgreDB *psdb.PostgreDB) {
-	//gin.SetMode(gin.ReleaseMode)
-	router := gin.Default()
+func (r *Router) StartRouter() {
 
 	// setting the cors config
-	router.Use(cors.New(cors.Config{
+	r.ginRouter.Use(cors.New(cors.Config{
 		AllowOrigins:     []string{"http://localhost:3000"},
 		AllowMethods:     []string{"GET, POST"},
 		AllowHeaders:     []string{"Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control, X-Requested-With"},
@@ -26,39 +39,45 @@ func StartRouter(postgreDB *psdb.PostgreDB) {
 		MaxAge:           12 * time.Hour,
 	}))
 
-	// initializing the postgreDB to use the connection pool
-	err := postgreDB.InitDB()
-	if err != nil {
-		log.Error().Msgf("initializing postgreDB: %v", err)
-	}
-	defer postgreDB.CloseDB()
-
 	// players routes
-	players := router.Group("/players")
+	players := r.ginRouter.Group("/players")
 	{
-		players.GET("/", showPlayers(postgreDB))
-		players.GET("/:id", showPlayerByID(postgreDB))
-		players.GET("/nickname/:nickname", showPlayerByNickname(postgreDB))
-		players.POST("/:id/create", createPlayer(postgreDB))
-		players.POST("/:id/update", updatePlayer(postgreDB))
+		players.GET("/", r.showPlayers())
+		players.GET("/rank", r.showPlayersRanked())
+		players.GET("/:id", r.showPlayerByID())
+		players.GET("/nickname/:nickname", r.showPlayerByNickname())
+		players.POST("/:id/create", r.createPlayer())
+		players.POST("/:id/update", r.updatePlayer())
 	}
 
 	// match routes
-	match := router.Group("/match")
+	match := r.ginRouter.Group("/match")
 	{
-		match.GET("/", generateMatch(postgreDB))
+		match.GET("/", r.generateMatch())
 	}
 
-	router.Run()
+	r.ginRouter.Run()
 }
 
 // -------------------------- CONTROLLERS
 // -------------------------- PLAYERS
 
 // showPlayers is the main page for the players
-func showPlayers(db *psdb.PostgreDB) gin.HandlerFunc {
+func (r *Router) showPlayers() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		players, err := GetPlayers(db)
+		players, err := r.controller.GetPlayers()
+		if err != nil {
+			c.IndentedJSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+			return
+		}
+		c.IndentedJSON(200, gin.H{"players": players})
+	}
+}
+
+// showPlayersRanked returns the list of players ordered by their elo-gamesWon-goalsPerMatch
+func (r *Router) showPlayersRanked() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		players, err := r.controller.GetPlayersRankedByElo()
 		if err != nil {
 			c.IndentedJSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 			return
@@ -68,9 +87,9 @@ func showPlayers(db *psdb.PostgreDB) gin.HandlerFunc {
 }
 
 // showPlayerByID find the player given the id(PK)
-func showPlayerByID(db *psdb.PostgreDB) gin.HandlerFunc {
+func (r *Router) showPlayerByID() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		player, err := GetPlayerByID(db, c.Param("id"))
+		player, err := r.controller.GetPlayerByID(c.Param("id"))
 		if err != nil {
 			c.IndentedJSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 			return
@@ -80,9 +99,9 @@ func showPlayerByID(db *psdb.PostgreDB) gin.HandlerFunc {
 }
 
 // showPlayerByNickname find the player given the nickname
-func showPlayerByNickname(db *psdb.PostgreDB) gin.HandlerFunc {
+func (r *Router) showPlayerByNickname() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		player, err := GetPlayerByNickname(db, c.Param("nickname"))
+		player, err := r.controller.GetPlayerByNickname(c.Param("nickname"))
 		if err != nil {
 			c.IndentedJSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 			return
@@ -92,10 +111,11 @@ func showPlayerByNickname(db *psdb.PostgreDB) gin.HandlerFunc {
 }
 
 // createPlayer creates a player
-func createPlayer(db *psdb.PostgreDB) gin.HandlerFunc {
+func (r *Router) createPlayer() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		// TODO, this will be one of the latest thing to code
-		player, err := CreatePlayer(db)
+		// you will need a param inside the CreatePlayer() func for sure
+		player, err := r.controller.CreatePlayer()
 		if err != nil {
 			c.IndentedJSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 			return
@@ -105,10 +125,10 @@ func createPlayer(db *psdb.PostgreDB) gin.HandlerFunc {
 }
 
 // createPlayer creates a player
-func updatePlayer(db *psdb.PostgreDB) gin.HandlerFunc {
+func (r *Router) updatePlayer() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		// TODO, this will be one of the latest thing to code
-		player, err := CreatePlayer(db)
+		player, err := r.controller.CreatePlayer()
 		if err != nil {
 			c.IndentedJSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 			return
@@ -120,14 +140,14 @@ func updatePlayer(db *psdb.PostgreDB) gin.HandlerFunc {
 // -------------------------- CONTROLLERS
 // -------------------------- MATCH
 // createPlayer creates a player
-func generateMatch(db *psdb.PostgreDB) gin.HandlerFunc {
+func (r *Router) generateMatch() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		// TODO
 		// ok, here we have to obtain the list of players
 		// that the user put in the website, then with that
 		// list of players we gonna generate a match
 		// suppose this list of players is the one that the user send us
-		players, _ := GetPlayers(db)
+		players, _ := r.controller.GetPlayers()
 
 		var match model.Match
 		match.Init(players)

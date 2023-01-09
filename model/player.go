@@ -65,7 +65,7 @@ func (p *Player) Init(nickname string, name string, description string, age int,
 func (p *Player) CalculateELO() float64 {
 	var ELO float64
 	// the formula is rank * 5 - goals * 3 + gamesWon - (age-23) * 0.2
-	ELO = float64(p.Rank*5) + float64(p.GoalsPerMatch*3) + float64(p.Diff) - float64(p.Age-23)*0.2
+	ELO = float64(p.Rank*5) + float64(p.GoalsPerMatch*3) + float64(p.Diff)*2.5 - float64(p.Age-23)*0.2
 	return ELO
 }
 

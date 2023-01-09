@@ -10,7 +10,7 @@ function PlayersCard(props) {
                 <div key={player.ID} className="player-card">
                     <div
                         className="player-photo"
-                        style={{ backgroundImage: 'url(./cartoon/cfacu.jpeg) no-repeat center/cover' }}
+                        style={{ backgroundImage: 'url(./cfacu.jpeg)' }}
 
                     ></div>
                     <div className="player-info">
