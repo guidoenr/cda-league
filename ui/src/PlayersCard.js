@@ -25,7 +25,7 @@ function PlayersCard(props) {
                             <p>{player.name}</p>
                             <p>{player.position}</p>
                             <p>
-                                <b>ELO</b>: {player.elo}
+                                <b>ELO</b>:{player.elo}
                             </p>
                         </div>
                     </div>
