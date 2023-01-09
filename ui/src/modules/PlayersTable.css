@@ -1,0 +1,25 @@
+.players-table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.players-table th,
+.players-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.players-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.players-table th {
+    background-color: #4caf50;
+    color: white;
+}
+
+.table-container {
+    width: 50%;
+    margin: 0 auto;
+}
