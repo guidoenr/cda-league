@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './PlayersCard.css';
 
 function PlayersCard(props) {
@@ -6,28 +6,31 @@ function PlayersCard(props) {
 
     return (
         <div className="players-cards">
-            {players.map(player => (
-                <div key={player.ID} className="player-card">
-                    <div
-                        className="player-photo"
-                        style={{ backgroundImage: 'url(./cfacu.jpeg)' }}
+            {players.map(player => {
+                const photo = require(`./cartoon/${player.nickname.toLowerCase()}.jpeg`); // import the photo using the player's name
 
-                    ></div>
-                    <div className="player-info">
-                        <h3>{player.nickname}</h3>
-
-                        <p>{player.name}</p>
-                        <p>{player.description}</p>
-                        <p>
-                            Age: {player.age} | Rank: {player.rank} | Position: {player.position}
-                        </p>
-                        <p>Elo: {player.elo}</p>
-                        <p>
-                            Goals per match: {player.goalsPerMatch} | Games won: {player.gamesWon}
-                        </p>
+                return (
+                    <div key={player.ID} className="player-card">
+                        <div
+                            className="player-photo"
+                            style={{ backgroundImage: `url(${photo})` }}
+                        ></div>
+                        <div className="player-info">
+                            <h3>{player.nickname}</h3>
+                            <p>
+                <span className="rank-stars">
+                  {Array.from({ length: player.rank }, () => '⭐️').join('')}
+                </span>
+                            </p>
+                            <p>{player.name}</p>
+                            <p>{player.position}</p>
+                            <p>
+                                <b>ELO</b>: {player.elo}
+                            </p>
+                        </div>
                     </div>
-                </div>
-            ))}
+                );
+            })}
         </div>
     );
 }

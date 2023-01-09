@@ -8,7 +8,7 @@ import PlayersCard from './PlayersCard';
 function App(){
     return (
         <div>
-            <PlayersList />
+            {/*<PlayersList />*/}
             <PlayersRanked />
         </div>
     )

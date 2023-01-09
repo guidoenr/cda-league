@@ -1,31 +1,75 @@
 .players-cards {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 .player-card {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    border: 1px solid #ccc;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    margin: 20px;
+    padding: 20px;
     width: 300px;
-    margin: 16px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
-    overflow: hidden;
+}
+
+
+
+@media (max-width: 1200px) {
+    .player-card {
+        width: 50%; /* Set the width to 50% on screens smaller than 1200px */
+    }
+}
+
+@media (max-width: 768px) {
+    .player-card {
+        width: 100%; /* Set the width to 100% on screens smaller than 768px */
+    }
 }
 
 .player-photo {
-    width: 50%;
-    height: 200px;
+    width: 100px;
+    height: 100px;
     background-size: cover;
     background-position: center;
 }
 
 .player-info {
-    padding: 16px;
+    padding: 20px;
 }
 
 .player-info h3 {
-    margin: 0 0 8px 0;
+    margin: 0;
+    font-size: 20px;
+    font-weight: 500;
+    color: #333;
 }
 
 .player-info p {
-    margin: 0;
+    margin: 10px 0;
+    font-size: 16px;
+    color: #666;
 }
+
+@media (max-width: 768px) {
+    .player-card {
+        flex-direction: column;
+    }
+
+    .player-photo {
+        width: 100%;
+        height: 200px;
+    }
+}
+
+.rank-stars {
+    font-size: 13px;
+    color: goldenrod;
+    position: relative;
+}
+
