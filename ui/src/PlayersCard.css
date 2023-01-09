@@ -1,0 +1,31 @@
+.players-cards {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.player-card {
+    width: 300px;
+    margin: 16px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.player-photo {
+    width: 100%;
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+}
+
+.player-info {
+    padding: 16px;
+}
+
+.player-info h3 {
+    margin: 0 0 8px 0;
+}
+
+.player-info p {
+    margin: 0;
+}
