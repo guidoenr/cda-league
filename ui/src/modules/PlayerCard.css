@@ -9,7 +9,11 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     overflow: hidden;
+    transition: all 0.3s ease-in-out;
+}
 
+.player-card:hover {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
 .player-photo {

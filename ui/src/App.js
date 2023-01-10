@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import PlayerCard from './modules/PlayerCard'
 import PlayersList from './modules/PlayersList'
 
 function App(){

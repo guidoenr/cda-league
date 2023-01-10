@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useTransition } from 'react';
+import { useSpring, animated } from 'react-spring';
 import PlayerCard from './PlayerCard'; // Import the PlayerCard component
 import './PlayersList.css'
 
 const PlayerList = () => {
     // Use the useState hook to create state variables for the player data and the loading state
     const [players, setPlayers] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
 
     // Use the useEffect hook to fetch the player data from the REST API when the component mounts
@@ -22,6 +23,12 @@ const PlayerList = () => {
         };
         fetchPlayers()
     }, []);
+
+    const transitions = useTransition(players, player => player.id, {
+        from: { transform: 'translate3d(-100%,0,0)' },
+        enter: { transform: 'translate3d(0%,0,0)' },
+        leave: { transform: 'translate3d(100%,0,0)' },
+    });
 
     return (
         <div>
