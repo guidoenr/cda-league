@@ -10,7 +10,7 @@ const PlayerCard = ({ nickname, name, rank, elo, position}) => {
 
 
     return (
-        <div className="player-card">
+        <div className="player-card ">
             <img src={getPhoto(nickname)} alt={`${name}'s profile photo`} className="player-photo" />
             <div className="player-info">
                 <h2 className="player-nickname">{nickname}</h2>
@@ -19,7 +19,7 @@ const PlayerCard = ({ nickname, name, rank, elo, position}) => {
                 </div>
                 <div className="player-name">{name}</div>
                 <div className="player-elo">ELO: {elo}</div>
-                <div className="position-shape" style={{backgroundColor: getColor()}}> {position.toUpperCase()}</div>
+                <div className="position-shape" style={{backgroundColor: getColor(position)}}> {position.toUpperCase().substring(0,3)}</div>
                 {/* Add a button to show and hide the player description */}
                 {/* Only show the player description if the isDescriptionVisible state variable is true */}
             </div>

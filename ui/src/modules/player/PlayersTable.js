@@ -50,7 +50,7 @@ const PlayersTableRank = () => {
 
                         <tr key={player.nickname}>
                             <td><img src={getPhoto(player.nickname)} className={"player-photo"} alt={player.nickname}></img></td>
-                            <td>{player.nickname}</td>
+                            <td>{player.nickname} <a className={"player-table-name"}> {player.name}</a> </td>
                             <td className={"star"}>{getStars(player.rank)}</td>
                             <td className={"player-position"} style={{color: getColor(player.position)}}>{player.position.substring(0,3).toUpperCase()}</td>
                             <td>{player.elo}</td>

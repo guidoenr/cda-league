@@ -50,3 +50,10 @@ th {
     font-size: 12px;
     font-weight: 1000;
 }
+
+.player-table-name{
+   text-align: center;
+    font-weight: 20;
+    color: grey;
+    font-size: 9px;
+}
