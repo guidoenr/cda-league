@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import {getColor, getStars, getPhoto} from "../Util";
 import './PlayersTable.css';
 
 const PlayersTableRank = () => {
@@ -21,31 +22,7 @@ const PlayersTableRank = () => {
         fetchPlayers();
     }, []);
 
-    // searching how many stars will the player have
-    function renderStars(player){
-        let stars = [];
-        for (let i = 0; i < player.rank; i++) {
-            stars.push("★");
-        }
-        return stars;
-    }
 
-    function getPhoto(player){
-        return require(`./assets/cartoon/${player.nickname.toLowerCase()}.jpeg`)
-    }
-
-    function getColor(position){
-        switch (position) {
-            case 'delantero':
-                return 'red'
-            case 'defensor':
-                return 'blue'
-            case 'volante':
-                return 'green'
-            default:
-                return '#333';
-            }
-        }
 
     return (
         <div>
@@ -72,9 +49,9 @@ const PlayersTableRank = () => {
                     {players.map((player) => (
 
                         <tr key={player.nickname}>
-                            <td><img src={getPhoto(player)} className={"player-photo"} alt={player.nickname}></img></td>
+                            <td><img src={getPhoto(player.nickname)} className={"player-photo"} alt={player.nickname}></img></td>
                             <td>{player.nickname}</td>
-                            <td className={"star"}>{renderStars(player)}</td>
+                            <td className={"star"}>{getStars(player.rank)}</td>
                             <td className={"player-position"} style={{color: getColor(player.position)}}>{player.position.substring(0,3).toUpperCase()}</td>
                             <td>{player.elo}</td>
                             <td>{player.goalsPerMatch}</td>

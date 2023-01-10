@@ -7,7 +7,6 @@ const PlayerList = () => {
     const [players, setPlayers] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
-
     // Use the useEffect hook to fetch the player data from the REST API when the component mounts
     useEffect(() => {
         const fetchPlayers = async () => {
@@ -22,12 +21,6 @@ const PlayerList = () => {
         };
         fetchPlayers()
     }, []);
-
-    const transitions = useTransition(players, player => player.id, {
-        from: { transform: 'translate3d(-100%,0,0)' },
-        enter: { transform: 'translate3d(0%,0,0)' },
-        leave: { transform: 'translate3d(100%,0,0)' },
-    });
 
     return (
         <div>
