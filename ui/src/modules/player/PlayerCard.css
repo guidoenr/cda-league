@@ -5,8 +5,8 @@
     width: 200px;
     height: 90px;
     margin: 0 auto;
-    background-color: #ffffff;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: whitesmoke;
+    box-shadow: 0 10px 6px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     overflow: hidden;
     transition: all 0.3s ease-in-out;
@@ -17,6 +17,7 @@
 }
 
 .player-photo {
+    margin-left: 20px;
     width: 60px;
     height: 60px;
     object-fit: cover;
@@ -61,7 +62,6 @@
     margin-top: 10px;
 }
 
-
 .position-shape {
     /* Style the rectangle shape */
     width: 34px;
@@ -83,7 +83,7 @@
 @media (max-width: 500px) {
     .player-card {
         /* make the player card take up the full width of the screen on small screens */
-        width: 100%;
+        width: 5%;
     }
 
     .player-photo {
