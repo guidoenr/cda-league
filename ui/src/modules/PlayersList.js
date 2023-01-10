@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PlayerCard from './PlayerCard'; // Import the PlayerCard component
+import './PlayersList.css'
 
 const PlayerList = () => {
     // Use the useState hook to create state variables for the player data and the loading state
@@ -11,7 +12,7 @@ const PlayerList = () => {
     useEffect(() => {
         const fetchPlayers = async () => {
             try {
-                const response = await fetch('http://localhost:8080/players/');
+                const response = await fetch('http://localhost:8080/players/rank');
                 const data = await response.json();
                 setPlayers(data.players);
                 setIsLoading(false);
@@ -37,6 +38,7 @@ const PlayerList = () => {
                             rank={player.rank}
                             position={player.position}
                             description={player.description}
+                            elo={player.elo}
                         />
                     ))}
                 </div>

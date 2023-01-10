@@ -2,25 +2,40 @@
     /* Style the container for the Player Card components */
     display: flex;
     flex-wrap: wrap;
-    margin: -10px;
+    margin: 0 auto;
+
+    /* Set the number of columns to 3 on larger screens */
+    flex-flow: row wrap;
+    justify-content: space-between;
 }
 
 .player-list .player-card {
     /* Style the Player Card components */
-    width: calc(25% - 20px);
+    width: calc(33.333% - 20px);
     margin: 10px;
 }
 
 @media (max-width: 992px) {
+    .player-list {
+        /* Set the number of columns to 2 on medium screens */
+        flex-flow: row wrap;
+        justify-content: space-between;
+    }
+
     .player-list .player-card {
-        /* Style the Player Card components on small screens */
-        width: calc(33.333% - 20px);
+        /* Style the Player Card components on medium screens */
+        width: calc(50% - 20px);
     }
 }
 
 @media (max-width: 768px) {
+    .player-list {
+        /* Set the number of columns to 1 on small screens */
+        flex-flow: column nowrap;
+    }
+
     .player-list .player-card {
-        /* Style the Player Card components on very small screens */
-        width: calc(50% - 20px);
+        /* Style the Player Card components on small screens */
+        width: calc(100% - 20px);
     }
 }
