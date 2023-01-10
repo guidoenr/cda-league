@@ -1,0 +1,26 @@
+.player-list {
+    /* Style the container for the Player Card components */
+    display: flex;
+    flex-wrap: wrap;
+    margin: -10px;
+}
+
+.player-list .player-card {
+    /* Style the Player Card components */
+    width: calc(25% - 20px);
+    margin: 10px;
+}
+
+@media (max-width: 992px) {
+    .player-list .player-card {
+        /* Style the Player Card components on small screens */
+        width: calc(33.333% - 20px);
+    }
+}
+
+@media (max-width: 768px) {
+    .player-list .player-card {
+        /* Style the Player Card components on very small screens */
+        width: calc(50% - 20px);
+    }
+}

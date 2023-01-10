@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import PlayersTableRank from './modules/PlayersTable';
 import PlayerCard from './modules/PlayerCard'
-
+import PlayersList from './modules/PlayersList'
 
 function App(){
     return (
         <div>
+        <PlayersList />
 
-            <PlayerCard position={"Delantero"} name={"Guido Enrique"} nickname={"Guidoti"} rank={4}/>
-     {/*       <PlayersCardsList />*/}
+
         </div>
     )
 }
