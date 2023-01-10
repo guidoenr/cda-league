@@ -34,6 +34,19 @@ const PlayersTableRank = () => {
         return require(`./assets/cartoon/${player.nickname.toLowerCase()}.jpeg`)
     }
 
+    function getColor(position){
+        switch (position) {
+            case 'delantero':
+                return 'red'
+            case 'defensor':
+                return 'blue'
+            case 'volante':
+                return 'green'
+            default:
+                return '#333';
+            }
+        }
+
     return (
         <div>
             {isLoading ? (
@@ -46,8 +59,9 @@ const PlayersTableRank = () => {
                         <th></th>
                         <th>JUGADOR</th>
                         <th>RANK</th>
+                        <th>POS</th>
                         <th>ELO</th>
-                        <th>GOLES</th>
+                        <th>GOL</th>
                         <th>PJ</th>
                         <th>PG</th>
                         <th>PP</th>
@@ -58,9 +72,10 @@ const PlayersTableRank = () => {
                     {players.map((player) => (
 
                         <tr key={player.nickname}>
-                            <td><img src={getPhoto(player)} className={"player-photo"}></img></td>
+                            <td><img src={getPhoto(player)} className={"player-photo"} alt={player.nickname}></img></td>
                             <td>{player.nickname}</td>
                             <td className={"star"}>{renderStars(player)}</td>
+                            <td className={"player-position"} style={{color: getColor(player.position)}}>{player.position.substring(0,3).toUpperCase()}</td>
                             <td>{player.elo}</td>
                             <td>{player.goalsPerMatch}</td>
                             <td>{player.gamesPlayed}</td>

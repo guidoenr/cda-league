@@ -44,3 +44,9 @@ th {
     object-fit: cover;
     border-radius: 100%;
 }
+
+
+.player-position {
+    font-size: 12px;
+    font-weight: 1000;
+}
