@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useTransition, animated } from 'react-spring';
 import './PlayersTable.css';
 
 const PlayersTableRank = () => {
@@ -22,26 +21,33 @@ const PlayersTableRank = () => {
         fetchPlayers();
     }, []);
 
-    // Use the useTransition hook to animate the rows of the table as they are added or removed
-    const transitions = useTransition(players, player => player.nickname, {
-        from: { transform: 'translate3d(-100%,0,0)' },
-        enter: { transform: 'translate3d(0%,0,0)' },
-        leave: { transform: 'translate3d(100%,0,0)' },
-    });
+    // searching how many stars will the player have
+    function renderStars(player){
+        let stars = [];
+        for (let i = 0; i < player.rank; i++) {
+            stars.push("★");
+        }
+        return stars;
+    }
+
+    function getPhoto(player){
+        return require(`./assets/cartoon/${player.nickname.toLowerCase()}.jpeg`)
+    }
 
     return (
         <div>
             {isLoading ? (
                 <div>Loading...</div>
             ) : (
+                <div className={"table-container"}>
                 <table>
                     <thead>
                     <tr>
-                        <th>Jugador</th>
-                        <th>Edad</th>
-                        <th>Rank</th>
-                        <th>Elo</th>
-                        <th>Promedio gol</th>
+                        <th></th>
+                        <th>JUGADOR</th>
+                        <th>RANK</th>
+                        <th>ELO</th>
+                        <th>GOLES</th>
                         <th>PJ</th>
                         <th>PG</th>
                         <th>PP</th>
@@ -49,22 +55,23 @@ const PlayersTableRank = () => {
                     </tr>
                     </thead>
                     <tbody>
-                    {/* Render the rows of the table using the transitions array */}
-                    {transitions.map(({ item: player, key, props }) => (
-                        <animated.tr key={key} style={props}>
+                    {players.map((player) => (
+
+                        <tr key={player.nickname}>
+                            <td><img src={getPhoto(player)} className={"player-photo"}></img></td>
                             <td>{player.nickname}</td>
-                            <td>{player.age}</td>
-                            <td>{player.rank}</td>
+                            <td className={"star"}>{renderStars(player)}</td>
                             <td>{player.elo}</td>
                             <td>{player.goalsPerMatch}</td>
                             <td>{player.gamesPlayed}</td>
                             <td>{player.gamesWon}</td>
                             <td>{player.gamesLost}</td>
                             <td>{player.diff}</td>
-                        </animated.tr>
+                        </tr>
                     ))}
                     </tbody>
                 </table>
+            </div>
             )}
         </div>
     );

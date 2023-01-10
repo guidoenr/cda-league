@@ -1,25 +1,46 @@
-.players-table {
-    border-collapse: collapse;
-    width: 100%;
-}
-
-.players-table th,
-.players-table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-}
-
-.players-table tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-
-.players-table th {
-    background-color: goldenrod;
-    color: white;
-}
-
 .table-container {
-    width: 50%;
-    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr); /* 8 columns, each taking up an equal amount of space */
+    grid-gap: 1rem; /* Add some space between the cells */
+}
+
+table {
+    width: 80%; /* Make the table fill the entire container */
+    border-collapse: collapse; /* Remove the default cell spacing */
+}
+
+th, td {
+    padding: 0.5rem; /* Add some padding to the cells */
+    text-align: center; /* Center the text in the cells */
+    border: 1px solid #ccc; /* Add a border around the cells */
+}
+
+tr:nth-child(n):hover {
+    background-color: whitesmoke;
+}
+
+/* Style the header cells */
+th {
+    background-color: #f2f2f2; /* Add a light gray background color */
+    font-weight: bold; /* Make the text bold */
+}
+
+/* Make the table responsive */
+@media only screen and (max-width: 600px) {
+    .table-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on small screens */
+    }
+}
+
+.star {
+    margin-right: 8px;
+    font-size: 16px;
+    color: goldenrod;
+}
+
+.player-photo {
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    border-radius: 100%;
 }

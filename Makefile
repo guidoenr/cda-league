@@ -1,6 +1,3 @@
-start-app: start-api \
- start-ui
-
 start-api:
 	go run .
 

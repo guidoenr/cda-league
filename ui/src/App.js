@@ -5,8 +5,8 @@ import PlayersTable from "./modules/PlayersTable";
 function App(){
     return (
         <div>
-        <PlayersList />
-        {/*<PlayersTable />*/}
+       {/* <PlayersList />*/}
+        <PlayersTable />
 
         </div>
     )
