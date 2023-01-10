@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useTransition } from 'react';
-import { useSpring, animated } from 'react-spring';
 import PlayerCard from './PlayerCard'; // Import the PlayerCard component
 import './PlayersList.css'
 

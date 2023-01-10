@@ -1,66 +1,73 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
+import { useTransition, animated } from 'react-spring';
 import './PlayersTable.css';
 
-function PlayersTable(props) {
-    const { players } = props;
-
-    return (
-        <div className="table-container">
-        <table className="players-table">
-            <thead>
-            <tr>
-                <th>Apodo</th>
-                <th>Nombre</th>
-                <th>Edad</th>
-                <th>Rank</th>
-                <th>Posicion</th>
-                <th>Elo</th>
-                <th>Promedio gol</th>
-                <th>PJ</th>
-                <th>PG</th>
-                <th>PP</th>
-                <th>DIF</th>
-            </tr>
-            </thead>
-            <tbody>
-            {players.map(player => (
-                <tr key={player.ID}>
-
-                    <td>{player.nickname}</td>
-                    <td>{player.name}</td>
-                    <td>{player.age}</td>
-                    <td>{player.rank}</td>
-                    <td>{player.position}</td>
-                    <td>{player.elo}</td>
-                    <td>{player.goalsPerMatch}</td>
-                    <td>{player.gamesPlayed}</td>
-                    <td>{player.gamesWon}</td>
-                    <td>{player.gamesLost}</td>
-                    <td>{player.diff}</td>
-                </tr>
-            ))}
-            </tbody>
-        </table>
-        </div>
-    );
-}
-
-function PlayersTableRank() {
+const PlayersTableRank = () => {
+    // Use the useState hook to create state variables for the player data and the loading state
     const [players, setPlayers] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
+    // Use the useEffect hook to fetch the player data from the REST API when the component mounts
     useEffect(() => {
-        // Fetch players data from API
-        fetch('http://localhost:8080/players/')
-            .then(response => response.json())
-            .then(data => setPlayers(data.players));
+        const fetchPlayers = async () => {
+            try {
+                const response = await fetch('http://localhost:8080/players/rank');
+                const data = await response.json();
+                setPlayers(data.players);
+                setIsLoading(false);
+            } catch (error) {
+                console.error(error);
+            }
+        };
+        fetchPlayers();
     }, []);
 
+    // Use the useTransition hook to animate the rows of the table as they are added or removed
+    const transitions = useTransition(players, player => player.nickname, {
+        from: { transform: 'translate3d(-100%,0,0)' },
+        enter: { transform: 'translate3d(0%,0,0)' },
+        leave: { transform: 'translate3d(100%,0,0)' },
+    });
+
     return (
-        <div className="center">
-            <h2>Players</h2>
-            <PlayersTable players={players} />
+        <div>
+            {isLoading ? (
+                <div>Loading...</div>
+            ) : (
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Jugador</th>
+                        <th>Edad</th>
+                        <th>Rank</th>
+                        <th>Elo</th>
+                        <th>Promedio gol</th>
+                        <th>PJ</th>
+                        <th>PG</th>
+                        <th>PP</th>
+                        <th>DIF</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {/* Render the rows of the table using the transitions array */}
+                    {transitions.map(({ item: player, key, props }) => (
+                        <animated.tr key={key} style={props}>
+                            <td>{player.nickname}</td>
+                            <td>{player.age}</td>
+                            <td>{player.rank}</td>
+                            <td>{player.elo}</td>
+                            <td>{player.goalsPerMatch}</td>
+                            <td>{player.gamesPlayed}</td>
+                            <td>{player.gamesWon}</td>
+                            <td>{player.gamesLost}</td>
+                            <td>{player.diff}</td>
+                        </animated.tr>
+                    ))}
+                    </tbody>
+                </table>
+            )}
         </div>
     );
-}
+};
 
 export default PlayersTableRank;
