@@ -2,10 +2,9 @@ import React, { useEffect, useState } from 'react';
 import {getColor, getStars, getPhoto} from "../Util";
 import './PlayersTable.css';
 
-const PlayersTableRank = () => {
+function PlayersTableRank() {
     // Use the useState hook to create state variables for the player data and the loading state
     const [players, setPlayers] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
 
     // Use the useEffect hook to fetch the player data from the REST API when the component mounts
     useEffect(() => {
@@ -14,7 +13,6 @@ const PlayersTableRank = () => {
                 const response = await fetch('http://localhost:8080/players/rank');
                 const data = await response.json();
                 setPlayers(data.players);
-                setIsLoading(false);
             } catch (error) {
                 console.error(error);
             }
@@ -25,11 +23,8 @@ const PlayersTableRank = () => {
 
 
     return (
-        <div>
-            {isLoading ? (
-                <div>Loading...</div>
-            ) : (
-                <div className={"table-container"}>
+
+            <div className={"table-container"}>
                 <table>
                     <thead>
                     <tr>
@@ -64,8 +59,6 @@ const PlayersTableRank = () => {
                     </tbody>
                 </table>
             </div>
-            )}
-        </div>
     );
 };
 
