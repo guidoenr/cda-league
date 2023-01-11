@@ -1,0 +1,26 @@
+.mynavbar {
+    position: absolute;
+    height: 90px; /* Reduce the height of the navbar */
+    padding: 0; /* Remove the padding */
+    margin: 0; /* Remove the margin */
+}
+
+.navbar.fixed-top {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+}
+
+@media (max-width: 768px) {
+    .mynavbar {
+        position: relative; /* Change the position from fixed to relative */
+    }
+
+}
+
+
+
+
+

@@ -1,20 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import PlayersList from './modules/player/PlayersList'
 import PlayersTable from "./modules/player/PlayersTable";
-import Header from "./modules/Header";
+import './App.css'
+
+import MyNavbar from "./modules/header/Navbar";
+
+export default App;
+
 
 function App(){
     return (
-        <div>
-            <div className={"fa-2xs"}>
-                <PlayersList />
-            </div>
-            <div>
+        <div className="App" >
+            <MyNavbar />
+            <div className="contents">
                 <PlayersTable />
+                <PlayersList />
             </div>
         </div>
     )
 }
 
 
-export default App;

@@ -16,13 +16,14 @@ th, td {
 }
 
 tr:nth-child(n):hover {
-    background-color: whitesmoke;
+    background-color: beige;
 }
 
 /* Style the header cells */
 th {
-    background-color: #f2f2f2; /* Add a light gray background color */
-    font-weight: bold; /* Make the text bold */
+    color: white;
+    background-color: #38003c; /* Add a light gray background color */
+    font-weight: 400; /* Make the text bold */
 }
 
 /* Make the table responsive */

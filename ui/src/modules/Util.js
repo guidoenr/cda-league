@@ -19,13 +19,13 @@ function getColor(position){
     // what a shit is this
     switch (position) {
         case 'delantero':
-            return 'red'
+            return '#e90052'
         case 'defensor':
-            return 'blue'
+            return '#04f5ff'
         case 'volante':
-            return 'green'
+            return '#00ff85'
         default:
-            return '#333';
+            return '#38003c';
     }
 }
 

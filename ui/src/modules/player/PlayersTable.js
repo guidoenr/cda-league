@@ -34,10 +34,10 @@ const PlayersTableRank = () => {
                     <thead>
                     <tr>
                         <th></th>
-                        <th>JUGADOR</th>
-                        <th>RANK</th>
-                        <th>POS</th>
+                        <th>Jugador</th>
+                        <th>Rank</th>
                         <th>ELO</th>
+                        <th>POS</th>
                         <th>GOL</th>
                         <th>PJ</th>
                         <th>PG</th>
@@ -50,10 +50,10 @@ const PlayersTableRank = () => {
 
                         <tr key={player.nickname}>
                             <td><img src={getPhoto(player.nickname)} className={"player-photo"} alt={player.nickname}></img></td>
-                            <td>{player.nickname} <a className={"player-table-name"}> {player.name}</a> </td>
+                            <td>{player.nickname}  </td>
                             <td className={"star"}>{getStars(player.rank)}</td>
-                            <td className={"player-position"} style={{color: getColor(player.position)}}>{player.position.substring(0,3).toUpperCase()}</td>
                             <td>{player.elo}</td>
+                            <td className={"player-position"} style={{color: getColor(player.position)}}>{player.position.substring(0,3).toUpperCase()}</td>
                             <td>{player.goalsPerMatch}</td>
                             <td>{player.gamesPlayed}</td>
                             <td>{player.gamesWon}</td>
