@@ -12,7 +12,7 @@ function App(){
     return (
         <Router>
         <div className="App" >
-            <MyNavbar />
+          {/*  <MyNavbar />*/}
             <Routes >
                 <Route path="/" exact element={<PlayersTableRank />} />
                 <Route path="players" element={<PlayersList />} />

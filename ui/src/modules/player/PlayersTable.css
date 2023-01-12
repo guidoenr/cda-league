@@ -1,12 +1,7 @@
-.table-container {
-    display: grid;
-    grid-template-columns: repeat(8, 1fr); /* 8 columns, each taking up an equal amount of space */
-    grid-gap: 1rem; /* Add some space between the cells */
-}
-
 table {
-    width: 80%; /* Make the table fill the entire container */
+    width: 100%; /* Make the table fill the entire container */
     border-collapse: collapse; /* Remove the default cell spacing */
+
 }
 
 th, td {
@@ -16,8 +11,9 @@ th, td {
 }
 
 tr:nth-child(n):hover {
-    background-color: beige;
+    background-color: #38003c;
 }
+
 
 /* Style the header cells */
 th {
@@ -26,20 +22,14 @@ th {
     font-weight: 400; /* Make the text bold */
 }
 
-/* Make the table responsive */
-@media only screen and (max-width: 600px) {
-    .table-container {
-        grid-template-columns: repeat(2, 1fr); /* 2 columns on small screens */
-    }
-}
 
-.star {
+.rank {
     margin-right: 8px;
     font-size: 16px;
     color: goldenrod;
 }
 
-.player-photo {
+.photo {
     width: 30px;
     height: 30px;
     object-fit: cover;
@@ -47,14 +37,92 @@ th {
 }
 
 
-.player-position {
+.position {
     font-size: 12px;
     font-weight: 1000;
 }
 
-.player-table-name{
-   text-align: center;
+.name{
+    text-align: center;
     font-weight: 20;
     color: grey;
     font-size: 9px;
+}
+
+.nickname{
+    text-align: center;
+    font-weight: 400;
+    color: #38003c;
+    font-size: 13px;
+}
+
+
+.elo {
+    font-weight: 600;
+}
+
+/* Make the table responsive */
+@media only screen and (max-width: 600px) {
+    table {
+        width: 100%; /* Make the table fill the entire container */
+        border-collapse: collapse; /* Remove the default cell spacing */
+        border: 1px solid black
+    }
+
+    th, td {
+        font-size: 10px;
+        padding: 0.4rem; /* Add some padding to the cells */
+        text-align: center; /* Center the text in the cells */
+        border: 1px solid #ccc; /* Add a border around the cells */
+    }
+
+    tr:nth-child(n):hover {
+        background-color: beige;
+    }
+
+    /* Style the header cells */
+    th {
+        color: white;
+        background-color: #38003c; /* Add a light gray background color */
+        font-weight: 400; /* Make the text bold */
+    }
+
+    .rank {
+        margin-right: 8px;
+        font-size: 9px;
+        color: goldenrod;
+    }
+
+    .nickname{
+        text-align: center;
+        font-weight: 400;
+        color: #38003c;
+        font-size: 11px;
+    }
+
+    .photo {
+        width: 20px;
+        height: 20px;
+        margin-right: -1px;
+        margin-left: 2px;
+        object-fit: cover;
+        border-radius: 100%;
+    }
+
+    .position {
+        font-size: 9px;
+        font-weight: 1000;
+    }
+
+    .name{
+        text-align: center;
+        font-weight: 20;
+        color: grey;
+        font-size: 9px;
+    }
+
+    tr:nth-child(n):hover {
+        background-color: lightgoldenrodyellow;
+    }
+
 }

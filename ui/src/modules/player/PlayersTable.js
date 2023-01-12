@@ -23,43 +23,39 @@ function PlayersTableRank() {
 
 
     return (
+            <table>
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>Jugador</th>
+                    <th>Rank</th>
+                    <th>ELO</th>
+                    <th>POS</th>
+                    <th>GOL</th>
+                    <th>PJ</th>
+                    <th>PG</th>
+                    <th>PP</th>
+                    <th>DIF</th>
+                </tr>
+                </thead>
+                <tbody>
+                {players.map((player) => (
 
-            <div className={"table-container"}>
-                <table>
-                    <thead>
-                    <tr>
-                        <th></th>
-                        <th>Jugador</th>
-                        <th>Rank</th>
-                        <th>ELO</th>
-                        <th>POS</th>
-                        <th>GOL</th>
-                        <th>PJ</th>
-                        <th>PG</th>
-                        <th>PP</th>
-                        <th>DIF</th>
+                    <tr key={player.nickname}>
+                        <td ><img src={getPhoto(player.nickname)} className={"photo"}  alt={player.nickname}></img></td>
+                        <td className={"nickname"}>{player.nickname}  </td>
+                        <td className={"rank"}>{getStars(player.rank)}</td>
+                        <td className={"elo"}>{player.elo}</td>
+                        <td className={"position"} style={{color: getColor(player.position)}}>{player.position.substring(0,3).toUpperCase()}</td>
+                        <td className={"info"}>{player.goalsPerMatch}</td>
+                        <td className={"info"}>{player.gamesPlayed}</td>
+                        <td className={"info"}>{player.gamesWon}</td>
+                        <td className={"info"}>{player.gamesLost}</td>
+                        <td className={"info"}>{player.diff}</td>
                     </tr>
-                    </thead>
-                    <tbody>
-                    {players.map((player) => (
-
-                        <tr key={player.nickname}>
-                            <td><img src={getPhoto(player.nickname)} className={"player-photo"} alt={player.nickname}></img></td>
-                            <td>{player.nickname}  </td>
-                            <td className={"star"}>{getStars(player.rank)}</td>
-                            <td>{player.elo}</td>
-                            <td className={"player-position"} style={{color: getColor(player.position)}}>{player.position.substring(0,3).toUpperCase()}</td>
-                            <td>{player.goalsPerMatch}</td>
-                            <td>{player.gamesPlayed}</td>
-                            <td>{player.gamesWon}</td>
-                            <td>{player.gamesLost}</td>
-                            <td>{player.diff}</td>
-                        </tr>
-                    ))}
-                    </tbody>
-                </table>
-            </div>
-    );
-};
+                ))}
+                </tbody>
+            </table>
+)};
 
 export default PlayersTableRank;
