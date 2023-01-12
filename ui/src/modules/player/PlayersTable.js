@@ -52,7 +52,7 @@ function PlayersTableRank() {
             <table>
                 <thead>
                 <tr>
-                    <th></th>
+                    <th>#</th>
                     <th>Jugador</th>
                     <th>Rank</th>
                     <th>ELO</th>

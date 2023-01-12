@@ -72,7 +72,7 @@ tr:nth-last-child(1){
     text-align: left;
     font-weight: 400;
     color: #38003c;
-    font-size: 9px;
+    font-size: 10px;
 }
 
 .nickname{
@@ -130,7 +130,7 @@ tr:nth-last-child(1){
         width: 20px;
         height: 20px;
         margin-right: -3px;
-        margin-left: 7px;
+        margin-left: 11px;
         object-fit: cover;
         border-radius: 100%;
     }
@@ -157,7 +157,7 @@ tr:nth-last-child(1){
 /* Title */
 h1 {
     text-align: center;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: bold;
     color: #38003c;
     margin-bottom: 1rem;
