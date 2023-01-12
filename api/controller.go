@@ -61,6 +61,27 @@ func (pc *PlayerControler) GetPlayersRankedByElo() ([]model.Player, error) {
 	return players, nil
 }
 
+// GetPlayersRankedByPoints (GET /players)
+// returns all the players sorted by their points
+func (pc *PlayerControler) GetPlayersRankedByPoints() ([]model.Player, error) {
+	log.Info().Msgf("getting ranked by points players")
+	var players []model.Player
+
+	// SELECT * FROM players
+	err := pc.db.BunDB.NewSelect().
+		Model(&players).
+		OrderExpr("points DESC").
+		Scan(context.Background())
+
+	if err != nil {
+		msg := fmt.Sprintf("getting all players points by elo - select query to db: %v", err)
+		log.Error().Msg(msg)
+		return players, errors.New(msg)
+	}
+
+	return players, nil
+}
+
 // GetPlayerByID (GET /players/:id)
 // check in the DB the player finding by id
 func (pc *PlayerControler) GetPlayerByID(id string) (model.Player, error) {

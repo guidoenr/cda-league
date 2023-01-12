@@ -33,17 +33,18 @@ function PlayersTableRank() {
             <div>
                 <div className="note">
                     <p>
-                        <b>ELO: </b> es una medida estandarizada para evaluar el rendimiento del jugador, que toma en cuenta factores como los goles totales, partidos ganados/perdidos, entre otros.
+                        <b>ELO: </b> es una medida estandarizada para evaluar el rendimiento del jugador, que toma en cuenta factores como los goles totales, partidos ganados/perdidos, el rank, entre otros. <b>No influye</b> en la tabla, me sirve para el algoritmo.
+
                     </p>
                 </div>
                 <div className="note">
                     <p>
-                    <b>Rank: </b>es la cantidad de libertadores del jugador, y hablando en serio, es simplemente un numero [1-5] que me ayuda para el algoritmo de armar equipos que se basa en la <b>calidad</b> del jugador.
+                    <b>Rank: </b>es la cantidad de libertadores del jugador, y hablando en serio, es simplemente un numero [1-5] que se basa en la <b>calidad</b> del jugador.
                     </p>
                 </div>
                 <div className="note">
                     <p>
-                        y el resto si no sabes, no se que haces jugando al futbol
+                        y el resto si no sabes, no se que haces jugando al futbol con nosotros
                     </p>
                 </div>
             </div>
@@ -61,13 +62,14 @@ function PlayersTableRank() {
                     <th>PG</th>
                     <th>PP</th>
                     <th>DIF</th>
+                    <th>PTS</th>
                 </tr>
                 </thead>
                 <tbody>
-                {players.map((player) => (
+                {players.map((player, index) => (
 
                     <tr key={player.nickname}>
-                        <td ><img src={getPhoto(player.nickname)} className={"photo"}  alt={player.nickname}></img></td>
+                        <td className={"index"}>{index+1} <img src={getPhoto(player.nickname)} className={"photo"}  alt={player.nickname}></img></td>
                         <td className={"nickname"}>{player.nickname}  </td>
                         <td className={"rank"}>{getStars(player.rank)}</td>
                         <td className={"elo"}>{player.elo}</td>
@@ -77,10 +79,16 @@ function PlayersTableRank() {
                         <td className={"info"}>{player.gamesWon}</td>
                         <td className={"info"}>{player.gamesLost}</td>
                         <td className={"info"}>{player.diff}</td>
+                        <td className={"info"}>{player.points}</td>
                     </tr>
                 ))}
                 </tbody>
             </table>
+            <div className="note">
+                <p>
+                    congelado tenes el pecho
+                </p>
+            </div>
         </Container>
 )}
 

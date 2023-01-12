@@ -77,7 +77,7 @@ func (r *Router) showPlayers() gin.HandlerFunc {
 // showPlayersRanked returns the list of players ordered by their elo-gamesWon-goalsPerMatch
 func (r *Router) showPlayersRanked() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		players, err := r.controller.GetPlayersRankedByElo()
+		players, err := r.controller.GetPlayersRankedByPoints()
 		if err != nil {
 			c.IndentedJSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 			return

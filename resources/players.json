@@ -9,7 +9,8 @@
         "totalGoals": 0,
         "gamesPlayed": 0,
         "gamesWon": 0,
-        "gamesLost": 0
+        "gamesLost": 0,
+        "points": 0
     },
     {
         "nickname": "Marcos",
@@ -21,7 +22,8 @@
         "totalGoals": 0,
         "gamesPlayed": 0,
         "gamesWon": 0,
-        "gamesLost": 0
+        "gamesLost": 0,
+        "points": 0
     },
     {
         "nickname": "Marto",
@@ -33,7 +35,8 @@
         "totalGoals": 0,
         "gamesPlayed": 0,
         "gamesWon": 0,
-        "gamesLost": 0
+        "gamesLost": 0,
+        "points": 0
     },
     {
         "nickname": "Nacho",
@@ -45,7 +48,8 @@
         "totalGoals": 0,
         "gamesPlayed": 0,
         "gamesWon": 0,
-        "gamesLost": 0
+        "gamesLost": 0,
+        "points": 0
     },
     {
         "nickname": "Leo",
@@ -57,7 +61,8 @@
         "totalGoals": 0,
         "gamesPlayed": 0,
         "gamesWon": 0,
-        "gamesLost": 0
+        "gamesLost": 0,
+        "points": 0
     },
     {
         "nickname": "Goyo",
@@ -69,7 +74,8 @@
         "totalGoals": 0,
         "gamesPlayed": 0,
         "gamesWon": 0,
-        "gamesLost": 0
+        "gamesLost": 0,
+        "points": 0
     },
     {
         "nickname": "Oliveti",
@@ -81,7 +87,8 @@
         "totalGoals": 0,
         "gamesPlayed": 0,
         "gamesWon": 0,
-        "gamesLost": 0
+        "gamesLost": 0,
+        "points": 0
     },
     {
         "nickname": "Flaco",
@@ -93,7 +100,8 @@
         "totalGoals": 0,
         "gamesPlayed": 0,
         "gamesWon": 0,
-        "gamesLost": 0
+        "gamesLost": 0,
+        "points": 0
     },
     {
         "nickname": "Gonza",
@@ -105,7 +113,8 @@
         "totalGoals": 0,
         "gamesPlayed": 0,
         "gamesWon": 0,
-        "gamesLost": 0
+        "gamesLost": 0,
+        "points": 0
     },
     {
         "nickname": "Kapanga",
@@ -117,7 +126,8 @@
         "totalGoals": 0,
         "gamesPlayed": 0,
         "gamesWon": 0,
-        "gamesLost": 0
+        "gamesLost": 0,
+        "points": 0
     },
     {
         "nickname": "Manucho",
@@ -129,7 +139,8 @@
         "totalGoals": 0,
         "gamesPlayed": 0,
         "gamesWon": 0,
-        "gamesLost": 0
+        "gamesLost": 0,
+        "points": 0
     },
     {
         "nickname": "Serra",
@@ -141,6 +152,7 @@
         "totalGoals": 0,
         "gamesPlayed": 0,
         "gamesWon": 0,
-        "gamesLost": 0
+        "gamesLost": 0,
+        "points": 0
     }
 ]

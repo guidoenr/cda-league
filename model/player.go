@@ -23,6 +23,7 @@ type Player struct {
 	GamesLost     int      `bun:"gamesLost" json:"gamesLost"`
 	Diff          int      `bun:"diff" json:"diff"`
 	Elo           float64  `bun:"elo" json:"elo"`
+	Points        float64  `bun:"points" json:"points"`
 }
 
 // Init creates the player with their values
@@ -56,6 +57,7 @@ func (p *Player) Init(nickname string, name string, description string, age int,
 	p.GamesLost = gamesLost
 	p.Diff = p.GamesWon - p.GamesLost
 	p.Elo = p.CalculateELO()
+	p.Points = 0
 
 	return nil
 }
