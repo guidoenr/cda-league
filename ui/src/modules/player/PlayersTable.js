@@ -25,21 +25,26 @@ function PlayersTableRank() {
 
     return (
         <Container >
-            <div className="title-container">
+            <Container>
                 <img src={require('../assets/carmen-league.png')} className="logo" alt="logo" />
                 <h1>RANK 2023</h1>
-                <h2>PREMIO: <b>USD 200</b></h2>
-            </div>
+                <h5></h5>
+            </Container>
             <div>
                 <div className="note">
-                    <h4>
-                        <b>ELO: </b> es una medida estandarizada para evaluar el rendimiento del jugador, que toma en cuenta factores como los goles totales, partidos ganados/perdidos, el ranking del jugador, entre otros.
-                    </h4>
+                    <p>
+                        <b>ELO: </b> es una medida estandarizada para evaluar el rendimiento del jugador, que toma en cuenta factores como los goles totales, partidos ganados/perdidos, entre otros.
+                    </p>
                 </div>
                 <div className="note">
-                    <h4>
-                    <b>Rank: </b>es la cantidad de libertadores del jugador, y hablando en serio, es simplemente un numero [1-5] que me ayuda para el algoritmo de armar equipos, fue elegido por criterio propio
-                    </h4>
+                    <p>
+                    <b>Rank: </b>es la cantidad de libertadores del jugador, y hablando en serio, es simplemente un numero [1-5] que me ayuda para el algoritmo de armar equipos que se basa en la <b>calidad</b> del jugador.
+                    </p>
+                </div>
+                <div className="note">
+                    <p>
+                        y el resto si no sabes, no se que haces jugando al futbol
+                    </p>
                 </div>
             </div>
 
@@ -67,7 +72,7 @@ function PlayersTableRank() {
                         <td className={"rank"}>{getStars(player.rank)}</td>
                         <td className={"elo"}>{player.elo}</td>
                         <td className={"position"} style={{color: getColor(player.position)}}>{player.position.substring(0,3).toUpperCase()}</td>
-                        <td className={"info"}>{player.goalsPerMatch}</td>
+                        <td className={"info"}>{player.totalGoals}</td>
                         <td className={"info"}>{player.gamesPlayed}</td>
                         <td className={"info"}>{player.gamesWon}</td>
                         <td className={"info"}>{player.gamesLost}</td>

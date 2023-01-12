@@ -17,7 +17,7 @@ type Player struct {
 	Description   string   `bun:"description" json:"description"`
 	Age           int      `bun:"age" json:"age"`
 	Position      Position `bun:"position" json:"position"`
-	GoalsPerMatch int      `bun:"goalsPerMatch" json:"goalsPerMatch"`
+	TotalGoals    int      `bun:"totalGoals" json:"totalGoals"`
 	GamesPlayed   int      `bun:"gamesPlayed" json:"gamesPlayed"`
 	GamesWon      int      `bun:"gamesWon" json:"gamesWon"`
 	GamesLost     int      `bun:"gamesLost" json:"gamesLost"`
@@ -26,7 +26,7 @@ type Player struct {
 }
 
 // Init creates the player with their values
-func (p *Player) Init(nickname string, name string, description string, age int, rank Rank, position Position, goalsPerMatch int, gamesPlayed int, gamesWon int, gamesLost int) error {
+func (p *Player) Init(nickname string, name string, description string, age int, rank Rank, position Position, totalGoals int, gamesPlayed int, gamesWon int, gamesLost int) error {
 
 	if nickname == "" {
 		msg := fmt.Sprint("nickname cannot be empty")
@@ -50,7 +50,7 @@ func (p *Player) Init(nickname string, name string, description string, age int,
 	p.Rank = rank
 	p.Position = position
 	p.Age = age
-	p.GoalsPerMatch = goalsPerMatch
+	p.TotalGoals = totalGoals
 	p.GamesPlayed = gamesPlayed
 	p.GamesWon = gamesWon
 	p.GamesLost = gamesLost
@@ -65,7 +65,7 @@ func (p *Player) Init(nickname string, name string, description string, age int,
 func (p *Player) CalculateELO() float64 {
 	var ELO float64
 	// the formula is rank * 5 - goals * 3 + gamesWon - (age-23) * 0.2
-	ELO = float64(p.Rank*5) + float64(p.GoalsPerMatch*3) + float64(p.Diff)*2.5 - float64(p.Age-23)*0.2
+	ELO = float64(p.Rank*5) + float64(p.TotalGoals*3) + float64(p.Diff)*2.5 - float64(p.Age-23)*0.2
 	return ELO
 }
 
