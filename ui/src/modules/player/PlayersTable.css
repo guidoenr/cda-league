@@ -1,7 +1,6 @@
 table {
     width: 100%; /* Make the table fill the entire container */
     border-collapse: collapse; /* Remove the default cell spacing */
-
 }
 
 th, td {
@@ -11,7 +10,7 @@ th, td {
 }
 
 tr:nth-child(n):hover {
-    background-color: #38003c;
+    background-color: lightgoldenrodyellow;
 }
 
 

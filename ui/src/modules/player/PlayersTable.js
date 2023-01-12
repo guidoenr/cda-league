@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {getColor, getStars, getPhoto} from "../Util";
 import './PlayersTable.css';
+import Container from 'react-bootstrap/Container';
 
 function PlayersTableRank() {
     // Use the useState hook to create state variables for the player data and the loading state
@@ -23,6 +24,7 @@ function PlayersTableRank() {
 
 
     return (
+        <Container style={{backgroundColor: "black"}}>
             <table>
                 <thead>
                 <tr>
@@ -56,6 +58,7 @@ function PlayersTableRank() {
                 ))}
                 </tbody>
             </table>
-)};
+        </Container>
+)}
 
 export default PlayersTableRank;
