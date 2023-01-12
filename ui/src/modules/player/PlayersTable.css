@@ -1,6 +1,7 @@
 table {
     width: 100%; /* Make the table fill the entire container */
     border-collapse: collapse; /* Remove the default cell spacing */
+    margin-top: 15px;
 }
 
 th, td {
@@ -124,4 +125,54 @@ th {
         background-color: lightgoldenrodyellow;
     }
 
+}
+
+/*TABLE TITLES*/
+/* Title */
+h1 {
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    color: #38003c;
+    margin-bottom: 1rem;
+}
+
+/* Subtitle */
+h2 {
+    text-align: center;
+    font-size: 10px;
+    font-weight: bold;
+    color: #6c757d;
+    margin-top:-12px;
+    margin-bottom: 1rem;
+}
+
+/* Notes */
+p {
+    text-align: center;
+    font-size: 10px;
+    color: #6c757d;
+    margin-bottom: 2rem;
+}
+
+.logo{
+    width: 120px;
+    height: 60px;
+    object-fit: cover;
+    margin-bottom: 10px;
+    margin-top: 120px;
+}
+
+.note {
+    font-size: 9px;
+    background-color: rgb(255,255,230);
+    border-left: 6px solid #38003c;
+    margin-bottom: 7px;
+}
+
+h4{
+    font-size: 9px;
+    text-align: center;
+    margin-right: 20px;
+    margin-left: 20px;
 }

@@ -24,7 +24,25 @@ function PlayersTableRank() {
 
 
     return (
-        <Container style={{backgroundColor: "black"}}>
+        <Container >
+            <div className="title-container">
+                <img src={require('../assets/carmen-league.png')} className="logo" alt="logo" />
+                <h1>RANK 2023</h1>
+                <h2>PREMIO: <b>USD 200</b></h2>
+            </div>
+            <div>
+                <div className="note">
+                    <h4>
+                        <b>ELO: </b> es una medida estandarizada para evaluar el rendimiento del jugador, que toma en cuenta factores como los goles totales, partidos ganados/perdidos, el ranking del jugador, entre otros.
+                    </h4>
+                </div>
+                <div className="note">
+                    <h4>
+                    <b>Rank: </b>es la cantidad de libertadores del jugador, y hablando en serio, es simplemente un numero [1-5] que me ayuda para el algoritmo de armar equipos, fue elegido por criterio propio
+                    </h4>
+                </div>
+            </div>
+
             <table>
                 <thead>
                 <tr>
