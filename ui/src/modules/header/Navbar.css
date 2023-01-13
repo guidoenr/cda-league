@@ -5,6 +5,13 @@
     margin: 0; /* Remove the margin */
 }
 
+.navbar-logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 .navbar.fixed-top {
     position: fixed;
     top: 0;
@@ -13,14 +20,14 @@
     z-index: 999;
 }
 
+
+.hamburger{
+    color: #38003c;
+}
+
 @media (max-width: 768px) {
     .mynavbar {
         position: relative; /* Change the position from fixed to relative */
     }
 
 }
-
-
-
-
-
