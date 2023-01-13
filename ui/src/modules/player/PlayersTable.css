@@ -15,7 +15,7 @@
 
 /* ----------------------------------------------- TABLE -------------- */
 table {
-    margin: 0 auto;
+    margin: 4px auto;
     max-width: 80%;
     border-collapse: collapse; /* Remove the default cell spacing */
 }

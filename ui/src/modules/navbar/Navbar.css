@@ -67,4 +67,8 @@
         left: 0;
     }
 
+    .navbar-color{
+        border-left: none;
+    }
+
 }
