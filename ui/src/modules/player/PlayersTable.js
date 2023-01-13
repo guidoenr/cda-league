@@ -4,7 +4,6 @@ import './PlayersTable.css';
 import Container from 'react-bootstrap/Container';
 import jsonPlayers from '../../resources/players.json'
 import 'animate.css';
-import Particles from "react-tsparticles";
 
 function PlayersTableRank() {
     // Use the useState hook to create state variables for the player data and the loading state
