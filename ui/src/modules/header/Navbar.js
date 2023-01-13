@@ -6,14 +6,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const MyNavbar = () => {
     const logo = require(`../assets/carmen-league.png`)
     return (
-        <Navbar className="mynavbar fixed-top" expand="lg" >
-                <div className="navbar-logo">
+        <Navbar sticky="top" expand="lg" className="navbar navbar-color">
                     <Navbar.Brand href="/">
-                        <img src={logo} alt="CDA League" width="180" height="120" className="d-inline-block align-top nav" />
+                        <img src={logo} alt="CDA League" className="navbar-logo" />
                     </Navbar.Brand>
-                </div>
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav hamburger">
+                <Navbar.Toggle aria-controls="basic-navbar-nav navbar-toggler" className="navbar-hamburger" />
+                <Navbar.Collapse id="esponsive-navbar-nav">
                     <Nav className="me-auto nav-size">
                         <Nav.Link href="/">Home</Nav.Link>
                         <Nav.Link href="players">Jugadores</Nav.Link>
