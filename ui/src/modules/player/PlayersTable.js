@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import {getColor, getStars, getPhoto} from "../Util";
 import './PlayersTable.css';
 import Container from 'react-bootstrap/Container';
+import jsonPlayers from '../../resources/players.json'
 
 function PlayersTableRank() {
     // Use the useState hook to create state variables for the player data and the loading state
@@ -14,45 +15,47 @@ function PlayersTableRank() {
                 const response = await fetch('http://localhost:8080/players/rank');
                 const data = await response.json();
                 setPlayers(data.players);
-            } catch (error) {
-                console.error(error);
-            }
+                } catch (error) {
+                    console.error(error);
+                }
         };
         fetchPlayers();
     }, []);
 
+    console.log(players)
 
+    if (players.length === 0){
+        setPlayers(jsonPlayers)
+    }
 
     return (
-        <Container >
-            <Container>
-                <img src={require('../assets/carmen-league.png')} className="logo" alt="logo" />
-                <h1>RANK 2023</h1>
-                <h5></h5>
-            </Container>
+        <Container className="Container">
             <div>
-                <div className="note">
+                <img src={require('../assets/carmen-league.png')} className="logo" alt="logo" />
+                <h1>RANK TEMPORADA 2023</h1>
+                <h5>TABLA - Torneo de verano</h5>
+            </div>
+{/*                <span className="note">
                     <p>
                         <b>ELO: </b> es una medida estandarizada para evaluar el rendimiento del jugador, que toma en cuenta factores como los goles totales, partidos ganados/perdidos, el rank, entre otros. <b>No influye</b> en la tabla, me sirve para el algoritmo.
 
                     </p>
-                </div>
-                <div className="note">
+                </span>
+                <span className="note">
                     <p>
                     <b>Rank: </b>es la cantidad de libertadores del jugador, y hablando en serio, es simplemente un numero [1-5] que se basa en la <b>calidad</b> del jugador.
                     </p>
-                </div>
-                <div className="note">
+                </span>
+                <span className="note">
                     <p>
                         y el resto si no sabes, no se que haces jugando al futbol con nosotros
                     </p>
-                </div>
-            </div>
-
+                </span>*/}
             <table>
                 <thead>
                 <tr>
                     <th>#</th>
+                    <th></th>
                     <th>Jugador</th>
                     <th>Rank</th>
                     <th>ELO</th>
@@ -69,7 +72,8 @@ function PlayersTableRank() {
                 {players.map((player, index) => (
 
                     <tr key={player.nickname}>
-                        <td className={"index"}>{index+1} <img src={getPhoto(player.nickname)} className={"photo"}  alt={player.nickname}></img></td>
+                        <td className={"index"}>{index+1} </td>
+                        <td className={""}><img src={getPhoto(player.nickname)} className={"photo"}  alt={player.nickname}></img></td>
                         <td className={"nickname"}>{player.nickname}  </td>
                         <td className={"rank"}>{getStars(player.rank)}</td>
                         <td className={"elo"}>{player.elo}</td>
@@ -84,11 +88,11 @@ function PlayersTableRank() {
                 ))}
                 </tbody>
             </table>
-            <div className="note">
+      {/*      <div className="note">
                 <p>
                     congelado tenes el pecho
                 </p>
-            </div>
+            </div>*/}
         </Container>
 )}
 

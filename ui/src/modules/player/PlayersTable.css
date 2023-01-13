@@ -1,8 +1,15 @@
+.Container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
 table {
-    width: 100%; /* Make the table fill the entire container */
+    margin: 0 auto;
+    max-width: 80%;
     border-collapse: collapse; /* Remove the default cell spacing */
-    margin-top: 15px;
-    margin-bottom: 3px;
+    border: 1px #38003c solid;
 }
 
 th, td {
@@ -69,14 +76,14 @@ tr:nth-last-child(1){
 }
 
 .index{
-    text-align: left;
+    text-align: center;
     font-weight: 400;
     color: #38003c;
     font-size: 10px;
 }
 
 .nickname{
-    text-align: center;
+    text-align: left;
     font-weight: 400;
     color: #38003c;
     font-size: 13px;
@@ -90,16 +97,15 @@ tr:nth-last-child(1){
 /* Make the table responsive */
 @media only screen and (max-width: 600px) {
     table {
-        width: 100%; /* Make the table fill the entire container */
-        border-collapse: collapse; /* Remove the default cell spacing */
-        border: 0.001rem solid #38003c;
+        max-width: 80%;
+        border-collapse: separate; /* Remove the default cell spacing */
     }
 
     th, td {
-        font-size: 10px;
-        padding: 0.4rem; /* Add some padding to the cells */
+        font-size: 9px;
+        padding: 0.36rem; /* Add some padding to the cells */
         text-align: center; /* Center the text in the cells */
-        border: 1px solid #ccc; /* Add a border around the cells */
+        border: 20px solid #38003c;
     }
 
     tr:nth-child(n):hover {
@@ -127,10 +133,9 @@ tr:nth-last-child(1){
     }
 
     .photo {
+        display:flex;
         width: 20px;
         height: 20px;
-        margin-right: -3px;
-        margin-left: 11px;
         object-fit: cover;
         border-radius: 100%;
     }
@@ -141,36 +146,65 @@ tr:nth-last-child(1){
     }
 
     .name{
-        text-align: center;
+        text-align: left;
         font-weight: 20;
         color: grey;
         font-size: 9px;
+    }
+
+    .index{
+        text-align: center;
+        font-weight: 400;
+        color: #38003c;
+        font-size: 10px;
     }
 
     tr:nth-child(n):hover {
         background-color: lightgoldenrodyellow;
     }
 
+    h1, h5 {
+        text-align: center;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+
+    h1 {
+        font-size: 15px!important;
+        font-weight: bold;
+        color: #38003c;
+    }
+
+    /* Subtitle */
+    h5 {
+        font-size: 9px!important;
+        font-weight: bold;
+        color: #6c757d;
+    }
+
 }
 
 /*TABLE TITLES*/
 /* Title */
-h1 {
+h1, h5 {
     text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+
+h1 {
     font-size: 12px;
     font-weight: bold;
     color: #38003c;
-    margin-bottom: 1rem;
 }
 
 /* Subtitle */
 h5 {
-    text-align: center;
     font-size: 5px;
     font-weight: bold;
     color: #6c757d;
-    margin-top:-12px;
-    margin-bottom: 1rem;
 }
 
 /* Notes */
