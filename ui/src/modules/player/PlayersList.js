@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useTransition } from 'react';
 import PlayerCard from './PlayerCard'; // Import the PlayerCard component
 import './PlayersList.css'
+import jsonPlayers from '../../resources/players.json'
 
 const PlayerList = () => {
     // Use the useState hook to create state variables for the player data and the loading state
@@ -19,6 +20,11 @@ const PlayerList = () => {
         };
         fetchPlayers()
     }, []);
+
+
+    if (players.length === 0){
+        setPlayers(jsonPlayers)
+    }
 
     return (
             <div className="player-list">
