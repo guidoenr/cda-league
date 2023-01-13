@@ -225,6 +225,11 @@ p {
     margin-top: 20px;
 }
 
+.thropie{
+    width: 10%;
+    height: 10%;
+}
+
 .note {
     font-size: 9px;
     background-color: rgb(255,255,230);
