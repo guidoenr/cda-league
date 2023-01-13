@@ -185,14 +185,13 @@ tr:nth-last-child(1){
 
 }
 
-/*TABLE TITLES*/
+/*---------------------------------------TITLES + LOGO------------------------------------------*/
 /* Title */
 h1, h5 {
     text-align: center;
     margin-right: auto;
     margin-left: auto;
 }
-
 
 h1 {
     font-size: 12px;
@@ -208,13 +207,20 @@ h5 {
 }
 
 /* Notes */
+.note {
+    max-width: 450px;
+    max-height: 500px;
+    background-color: rgb(255,255,240);
+    border-left: 2px solid #38003c;
+    border-right: 2px solid #38003c;
+    margin-bottom: 5px;
+}
 p {
     text-align: center;
-    font-size: 10px;
+    font-size: 9px;
     color: #6c757d;
     margin-bottom: 0.6rem;
-    margin-right: 30px;
-    margin-left: 30px;
+
 }
 
 .logo{
@@ -228,12 +234,96 @@ p {
 .thropie{
     width: 10%;
     height: 10%;
+    margin-top: 30px;
 }
 
-.note {
-    font-size: 9px;
-    background-color: rgb(255,255,230);
-    border-left: 3px solid #38003c;
-    margin-bottom: 5px;
-}
 
+/* Make the table responsive */
+@media only screen and (max-width: 600px) {
+    table {
+        max-width: 80%;
+        border-collapse: separate; /* Remove the default cell spacing */
+    }
+
+    th, td {
+        font-size: 9px;
+        padding: 0.36rem; /* Add some padding to the cells */
+        text-align: center; /* Center the text in the cells */
+        border: 20px solid #38003c;
+    }
+
+    tr:nth-child(n):hover {
+        background-color: beige;
+    }
+
+    /* Style the header cells */
+    th {
+        color: white;
+        background-color: #38003c; /* Add a light gray background color */
+        font-weight: 600; /* Make the text bold */
+    }
+
+    .rank {
+        margin-right: 8px;
+        font-size: 9px;
+        color: goldenrod;
+    }
+
+    .nickname{
+        text-align: center;
+        font-weight: 400;
+        color: #38003c;
+        font-size: 11px;
+    }
+
+    .photo {
+        display:flex;
+        width: 20px;
+        height: 20px;
+        object-fit: cover;
+        border-radius: 100%;
+    }
+
+    .position {
+        font-size: 9px;
+        font-weight: 1000;
+    }
+
+    .name{
+        text-align: left;
+        font-weight: 20;
+        color: grey;
+        font-size: 9px;
+    }
+
+    .index{
+        text-align: center;
+        font-weight: 400;
+        color: #38003c;
+        font-size: 10px;
+    }
+
+    tr:nth-child(n):hover {
+        background-color: lightgoldenrodyellow;
+    }
+
+    h1, h5 {
+        text-align: center;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    h1 {
+        font-size: 15px!important;
+        font-weight: bold;
+        color: #38003c;
+    }
+
+    /* Subtitle */
+    h5 {
+        font-size: 9px!important;
+        font-weight: bold;
+        color: #6c757d;
+    }
+
+}

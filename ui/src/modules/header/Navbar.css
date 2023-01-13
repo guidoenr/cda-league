@@ -16,6 +16,7 @@
 }
 
 .navbar-color{
+    border-left: 2px solid lightgreen;
     background-color: #38003c;
 }
 
@@ -34,9 +35,10 @@
     font-size: 14px;
     color: whitesmoke;
 }
+
 .navbar .nav-link:hover {
     transition: all 0.15s ease-in-out;
-    transform: scale(1.1);
+    transform: scale(1.02);
     text-decoration: underline;
     color: lightgreen;
 }
