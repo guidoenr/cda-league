@@ -1,29 +1,33 @@
 import React, { useState, useEffect } from 'react';
-import PlayersList from '../player/PlayersList';
+import Team from './Team'
 import './Match.css'
 
-function MatchView() {
-    const [team1Players, setTeam1Players] = useState([]);
-    const [team2Players, setTeam2Players] = useState([]);
+const Match = () => {
+    const [team1, setTeam1] = useState({});
+    const [team2, setTeam2] = useState({});
 
     useEffect(() => {
-        // Aquí podrías hacer una llamada a tu API para obtener
-        // los jugadores de cada equipo y actualizar el estado
-        // setTeam1Players y setTeam2Players
+        const fetchPlayers = async () => {
+            try {
+                const response = await fetch('http://localhost:8080/match');
+                const data = await response.json();
+                setTeam1(data.team1)
+                setTeam2(data.team2)
+            } catch (error) {
+                console.error(error);
+            }
+        };
+        fetchPlayers();
     }, []);
 
+
+    console.log(team1, team2)
     return (
         <div className="match-container">
-            <div className="team-container">
-                <h2>Team 1</h2>
-                <PlayersList players={team1Players} />
-            </div>
-            <div className="team-container">
-                <h2>Team 2</h2>
-                <PlayersList players={team2Players} />
-            </div>
+            <Team {...team1} />
+            <Team {...team2} />
         </div>
     );
 }
 
-export default MatchView;
+export default Match;

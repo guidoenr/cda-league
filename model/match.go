@@ -8,10 +8,10 @@ import (
 )
 
 type Match struct {
-	Players       []Player `json:"Players"`
+	Players       []Player `json:"players"`
 	PlayersByRank map[Rank][]Player
-	Team1         Team
-	Team2         Team
+	Team1         Team `json:"team1"`
+	Team2         Team `json:"team2"`
 	Winner        Team
 }
 

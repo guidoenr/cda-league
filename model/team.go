@@ -6,11 +6,11 @@ import (
 )
 
 type Team struct {
-	Name            string
-	TotalPlayers    int
-	Players         []Player
-	points          float64
-	ChanceOfWinning string
+	Name            string   `json:"name"`
+	TotalPlayers    int      `json:"totalPlayers"`
+	Players         []Player `json:"players"`
+	points          float64  `json:"points"`
+	ChanceOfWinning string   `json:"chanceOfWinning"`
 }
 
 func (t *Team) Init(name string, totalPlayers int, players []Player) {
