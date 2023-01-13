@@ -15,9 +15,9 @@ const MyNavbar = () => {
             <Navbar.Toggle aria-controls="basic-navbar-nav navbar-toggler" className="navbar-hamburger" />
             <Navbar.Collapse id="esponsive-navbar-nav">
                 <Nav className="me-auto nav-size">
-                    <Nav.Link className="nav-link" href="players">Jugadores</Nav.Link>
-                    <Nav.Link className="nav-link" href="rank">Tabla/Rank</Nav.Link>
-                    <Nav.Link className="nav-link" href="match">Partido</Nav.Link>
+                    <Nav.Link className="nav-link" href="rank">Tabla de Jugadores</Nav.Link>
+                    <Nav.Link className="nav-link" href="players">Armar Partido</Nav.Link>
+                    <Nav.Link className="nav-link" href="match">Historial</Nav.Link>
                     <Nav.Link className="nav-link" href="paddle">Paddle</Nav.Link>
                 </Nav>
             </Navbar.Collapse>
