@@ -4,3 +4,8 @@ footer {
     text-align: center;
     padding: 9px 0;
 }
+
+.footer-text{
+    color: #00ff85;
+    font-size: 12px;
+}

@@ -4,7 +4,8 @@ import './Footer.css'
 const Footer = () => {
     return (
         <footer>
-            <p>Copyright © {new Date().getFullYear()} My App</p>
+            <p>design by <a className="footer-text" href="https://github.com/guidoenr">@guidoer</a> </p>
+            <p>los algoritmos en 2 dias lo hice, la web de mierda esta 1 semana</p>
         </footer>
     );
 }
