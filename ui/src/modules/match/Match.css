@@ -1,0 +1,11 @@
+.match-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.team-container {
+    width: 45%;
+    padding: 20px;
+    border: 1px solid gray;
+    border-radius: 10px;
+}
