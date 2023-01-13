@@ -13,11 +13,11 @@ const MyNavbar = () => {
                 <Navbar.Toggle aria-controls="basic-navbar-nav navbar-toggler" className="navbar-hamburger" />
                 <Navbar.Collapse id="esponsive-navbar-nav">
                     <Nav className="me-auto nav-size">
-                        <Nav.Link href="/">Home</Nav.Link>
-                        <Nav.Link href="players">Jugadores</Nav.Link>
-                        <Nav.Link href="rank">Tabla/Rank</Nav.Link>
-                        <Nav.Link href="match">Partido</Nav.Link>
-                        <Nav.Link href="paddle">Paddle</Nav.Link>
+                        <Nav.Link className="nav-link" href="/">Home</Nav.Link>
+                        <Nav.Link className="nav-link" href="players">Jugadores</Nav.Link>
+                        <Nav.Link className="nav-link" href="rank">Tabla/Rank</Nav.Link>
+                        <Nav.Link className="nav-link" href="match">Partido</Nav.Link>
+                        <Nav.Link className="nav-link" href="paddle">Paddle</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
         </Navbar>
