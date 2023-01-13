@@ -13,7 +13,6 @@ const PlayerList = () => {
                 const response = await fetch('http://localhost:8080/players/rank');
                 const data = await response.json();
                 setPlayers(data.players);
-                setIsLoading(false);
             } catch (error) {
                 console.error(error);
             }
