@@ -21,11 +21,13 @@ table {
 }
 
 tr, td {
-    border: 1px solid rgb(200,200,200
-    )!important; /* adds a 1px black border to rows and cells */
+    border: 1px solid rgb(200,200,200)!important; /* adds a 1px black border to rows and cells */
 }
 
 
+tr{
+    background-color: rgb(255,255,240);
+}
 th, td {
     padding: 0.5rem; /* Add some padding to the cells */
     text-align: center; /* Center the text in the cells */
