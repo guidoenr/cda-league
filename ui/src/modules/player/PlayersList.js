@@ -21,10 +21,11 @@ const PlayerList = () => {
         fetchPlayers()
     }, []);
 
-
+/*
+    // TODO REMOVE THIS
     if (players.length === 0){
         setPlayers(jsonPlayers)
-    }
+    }*/
 
     return (
             <div className="player-list">
