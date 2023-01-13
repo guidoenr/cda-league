@@ -5,10 +5,6 @@ import {getStars, getPhoto, getColor} from "../Util";
 
 const PlayerCard = ({ nickname, name, rank, elo, position}) => {
 
-    // Use the useState hook to create a state variable to track the visibility of the player description
-    const [isDescriptionVisible, setIsDescriptionVisible] = useState(false);
-
-
     return (
         <div className="player-card ">
             <img src={getPhoto(nickname)} alt={`${name}'s profile photo`} className="player-photo" />

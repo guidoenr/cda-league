@@ -23,11 +23,10 @@ function PlayersTableRank() {
         fetchPlayers();
     }, []);
 
-    console.log(players)
-
+/*
     if (players.length === 0){
         setPlayers(jsonPlayers)
-    }
+    }*/
 
     return (
         <Container className="Container animate__animated animate__bounceInDown">

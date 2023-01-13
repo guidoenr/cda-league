@@ -31,9 +31,9 @@ func (r *Router) StartRouter() {
 
 	// setting the cors config
 	r.ginRouter.Use(cors.New(cors.Config{
-		AllowOrigins:     []string{"http://localhost:3000"},
+		AllowOrigins:     []string{"*"},
 		AllowMethods:     []string{"GET, POST"},
-		AllowHeaders:     []string{"Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control, X-Requested-With"},
+		AllowHeaders:     []string{"Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control, X-Requested-With, Access-Control-Allow-Origin"},
 		ExposeHeaders:    []string{"Content-Length"},
 		AllowCredentials: true,
 		MaxAge:           12 * time.Hour,
@@ -51,7 +51,7 @@ func (r *Router) StartRouter() {
 	}
 
 	// match routes
-	match := r.ginRouter.Group("/match")
+	match := r.ginRouter.Group("/generateMatch")
 	{
 		match.GET("/", r.generateMatch())
 	}
