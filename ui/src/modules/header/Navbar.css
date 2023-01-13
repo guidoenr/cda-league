@@ -3,19 +3,21 @@
 }
 
 .navbar-logo {
-    color: white!important;
+    filter: invert(100%);
     position: absolute;
     width: 90px;
     height: 60px;
     transform: translate(-50%, -50%);
-    margin-left: 60px;
+    right: 0;
 }
 
 .navbar .navbar-toggler {
     filter: invert(100%);
 }
 
-
+.navbar-color{
+    background-color: #38003c;
+}
 
 .navbar .navbar-toggler:hover {
     border-width: 1px;
@@ -29,12 +31,17 @@
 }
 
 .navbar .nav-link{
-    font-size: 12px;
+    font-size: 14px;
     color: whitesmoke;
 }
 .navbar .nav-link:hover {
+    transition: all 0.15s ease-in-out;
+    transform: scale(1.1);
+    text-decoration: underline;
     color: lightgreen;
 }
+
+
 
 @media (max-width: 900px) {
     .mynavbar {
@@ -50,13 +57,12 @@
         margin-left: 60px;
     }
 
-    .navbar-color{
-        background-color: #38003c;
-    }
-
-
     .bg{
         color: #38003c;
+    }
+
+    .navbar-logo {
+        left: 0;
     }
 
 }
