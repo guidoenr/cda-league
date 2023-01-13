@@ -1,3 +1,4 @@
+/* ----------------------------------------------- CONTAINER -------------- */
 .Container {
     display: flex;
     justify-content: center;
@@ -5,6 +6,14 @@
     flex-wrap: wrap;
 }
 
+.center-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* ----------------------------------------------- TABLE -------------- */
 table {
     margin: 0 auto;
     max-width: 80%;
@@ -94,12 +103,11 @@ tr:nth-last-child(1){
     font-size: 13px;
 }
 
-
 .elo {
     font-weight: 600;
 }
 
-/* Make the table responsive */
+/* ----------------------------------------------------------------------------------  MEDIA QUERIES */
 @media only screen and (max-width: 600px) {
     table {
         max-width: 80%;
@@ -189,7 +197,7 @@ tr:nth-last-child(1){
 
 }
 
-/*---------------------------------------TITLES + LOGO------------------------------------------*/
+/*---------------------------------------GENERAL TITLES / NOTES / LOGO------------------------------------------*/
 /* Title */
 h1, h5 {
     text-align: center;
@@ -198,14 +206,14 @@ h1, h5 {
 }
 
 h1 {
-    font-size: 12px;
+    font-size: 20px!important;
     font-weight: bold;
     color: #38003c;
 }
 
 /* Subtitle */
 h5 {
-    font-size: 5px;
+    font-size: 11px!important;
     font-weight: bold;
     color: #6c757d;
 }
@@ -239,10 +247,4 @@ p {
     width: 10%;
     height: 10%;
     margin-top: 30px;
-}
-
-.center-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
