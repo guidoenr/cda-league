@@ -5,7 +5,6 @@ import './PlayersList.css'
 const PlayerList = () => {
     // Use the useState hook to create state variables for the player data and the loading state
     const [players, setPlayers] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
 
     // Use the useEffect hook to fetch the player data from the REST API when the component mounts
     useEffect(() => {
@@ -23,11 +22,7 @@ const PlayerList = () => {
     }, []);
 
     return (
-        <div>
-            {isLoading ? (
-                <div>Loading...</div>
-            ) : (
-                <div className="player-list">
+            <div className="player-list">
                     {/* Map over the players array and render a PlayerCard component for each player */}
                     {players.map(player => (
                         <PlayerCard
@@ -41,8 +36,6 @@ const PlayerList = () => {
                         />
                     ))}
                 </div>
-            )}
-        </div>
     );
 };
 

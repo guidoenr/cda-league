@@ -37,22 +37,6 @@ function PlayersTableRank() {
                 <h1>RANK TEMPORADA 2023</h1>
                 <h5>TABLA - Torneo de verano</h5>
             </div>
-{/*                <span className="note">
-                    <p>
-                        <b>ELO: </b> es una medida estandarizada para evaluar el rendimiento del jugador, que toma en cuenta factores como los goles totales, partidos ganados/perdidos, el rank, entre otros. <b>No influye</b> en la tabla, me sirve para el algoritmo.
-
-                    </p>
-                </span>
-                <span className="note">
-                    <p>
-                    <b>Rank: </b>es la cantidad de libertadores del jugador, y hablando en serio, es simplemente un numero [1-5] que se basa en la <b>calidad</b> del jugador.
-                    </p>
-                </span>
-                <span className="note">
-                    <p>
-                        y el resto si no sabes, no se que haces jugando al futbol con nosotros
-                    </p>
-                </span>*/}
             <table>
                 <thead>
                 <tr>
