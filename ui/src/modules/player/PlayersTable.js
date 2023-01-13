@@ -36,10 +36,10 @@ function PlayersTableRank() {
                 <img src={require('../assets/thropie.png')} className="thropie" alt="thropie" />
                 <h1>TORNEO DE VERANO - 2023</h1>
                 <h5>PREMIO: <b>100 USD</b></h5>
-                <Container>
-                <p className="note"><b>ELO:</b> Medida de estandarizacion que mide el rendimiento del jugador, <b>no influye en la tabla</b>, metrica usada en el algoritmo de armado de equipos. El ELO se basa en los partidos ganados/perdidos, goles, diferencia, etc. Donde el mayor multiplicador es el Rank. </p>
-                <p className="note"><b>RANK:</b> Cantidad de libertadores del jugador, y hablando en serio, mide la <u>calidad</u> que tiene el jugador, me sirve para el calculo del ELO.</p>
-                </Container>
+                <Container className="center-container"><p className="note"><b>ELO:</b> Medida de estandarizacion que mide el rendimiento del jugador, <b>no influye en la tabla</b>, metrica usada en el algoritmo de armado de equipos. El ELO se basa en los partidos ganados/perdidos, goles, diferencia, etc. Donde el mayor multiplicador es el Rank. </p></Container>
+                <Container className="center-container"><p className="note"> <b>RANK:</b> Cantidad de libertadores del jugador, y hablando en serio, mide la <u>calidad</u> que tiene el jugador, me sirve para el calculo del ELO.</p></Container>
+
+
             </div>
             <table>
                 <thead>
