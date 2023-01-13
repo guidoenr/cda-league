@@ -3,6 +3,7 @@ import {getColor, getStars, getPhoto} from "../Util";
 import './PlayersTable.css';
 import Container from 'react-bootstrap/Container';
 import jsonPlayers from '../../resources/players.json'
+import 'animate.css';
 
 function PlayersTableRank() {
     // Use the useState hook to create state variables for the player data and the loading state
@@ -29,7 +30,7 @@ function PlayersTableRank() {
     }
 
     return (
-        <Container className="Container">
+        <Container className="Container animate__animated animate__bounceInDown">
             <div>
                 <img src={require('../assets/carmen-league.png')} className="logo" alt="logo" />
                 <h1>RANK TEMPORADA 2023</h1>
