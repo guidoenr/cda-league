@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import PlayersList from './modules/player/PlayersList'
+import Footer from './modules/footer/Footer'
 import PlayersTable from "./modules/player/PlayersTable";
 import {BrowserRouter as Router , Route, Routes} from "react-router-dom";
 import './App.css'
 
-import MyNavbar from "./modules/header/Navbar";
+import MyNavbar from "./modules/navbar/Navbar";
 import PlayersTableRank from "./modules/player/PlayersTable";
 
 function App(){
@@ -18,6 +19,7 @@ function App(){
                 <Route path="players" element={<PlayersList />} />
                 <Route path="rank" element={<PlayersTable />} />
             </Routes>
+            <Footer />
         </div>
         </Router>
     )

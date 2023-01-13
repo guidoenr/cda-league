@@ -26,7 +26,7 @@ tr, td {
 
 
 tr{
-    background-color: rgb(255,255,240);
+    background-color: rgb(255,255,245);
 }
 th, td {
     padding: 0.5rem; /* Add some padding to the cells */
@@ -39,7 +39,7 @@ tr:nth-child(n):hover {
 }
 
 
-/* Style the header cells */
+/* Style the navbar cells */
 th {
     color: white;
     background-color: #38003c; /* Add a light gray background color */
@@ -126,7 +126,7 @@ tr:nth-last-child(1){
         background-color: beige;
     }
 
-    /* Style the header cells */
+    /* Style the navbar cells */
     th {
         color: white;
         background-color: #38003c; /* Add a light gray background color */

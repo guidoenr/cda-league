@@ -32,8 +32,8 @@ function PlayersTableRank() {
     return (
         <Container className="Container animate__animated animate__bounceInDown">
             <div>
-                <img src={require('../assets/carmen-league.png')} className="logo" alt="logo" />
-                <img src={require('../assets/thropie.png')} className="thropie" alt="thropie" />
+                <img src={require('../../assets/carmen-league.png')} className="logo" alt="logo" />
+                <img src={require('../../assets/thropie.png')} className="thropie" alt="thropie" />
                 <h1>TORNEO DE VERANO - 2023</h1>
                 <h5>PREMIO: <b>100 USD</b></h5>
                 <Container className="center-container"><p className="note"><b>ELO:</b> Medida de estandarizacion que mide el rendimiento del jugador, <b>no influye en la tabla</b>, metrica usada en el algoritmo de armado de equipos. El ELO se basa en los partidos ganados/perdidos, goles, diferencia, etc. Donde el mayor multiplicador es el Rank. </p></Container>

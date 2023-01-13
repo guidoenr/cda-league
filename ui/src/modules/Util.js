@@ -11,7 +11,7 @@ function getStars(rank){
 // searching how many stars will the player have
 function getPhoto(nickname){
     const photoName = nickname.toString().toLowerCase() + ".jpeg"
-    return require(`./assets/cartoon/${photoName}`)
+    return require(`../assets/cartoon/${photoName}`)
 }
 
 function getColor(position){

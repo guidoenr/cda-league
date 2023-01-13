@@ -16,7 +16,7 @@
 }
 
 .navbar-color{
-    border-left: 2px solid lightgreen;
+    border-left: 2px solid #00ff85;
     background-color: #38003c;
 }
 
@@ -40,7 +40,7 @@
     transition: all 0.15s ease-in-out;
     transform: scale(1.02);
     text-decoration: underline;
-    color: lightgreen;
+    color: #00ff85;
 }
 
 
