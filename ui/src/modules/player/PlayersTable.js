@@ -28,7 +28,7 @@ function PlayersTableRank() {
     }*/
 
     return (
-        <Container className="Container animate__animated animate__bounceInDown">
+        <Container className="Container animate__animated animate__bounceIn">
             <div>
                 <img src={require('../../assets/cda-league.png')} className="logo" alt="logo" />
                 <Container className="center-container"><p className="note"><b>ELO:</b> Medida de estandarizacion que mide el rendimiento del jugador, <b>no influye en la tabla</b>, metrica usada en el algoritmo de armado de equipos.</p></Container>
