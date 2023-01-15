@@ -54,9 +54,10 @@
 
 .player-rank {
     text-align: left;
-    margin-right: 8px;
-    font-size: 16px;
-    color: gold;
+    margin-left: -1px;
+    font-size: 12px;
+    color: rgb(255,165,0);
+    filter: grayscale(5%);
 }
 
 .player-description {
