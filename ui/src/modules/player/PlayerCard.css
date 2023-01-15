@@ -2,10 +2,10 @@
     display: flex;
     align-items: center;
     position: relative;
-    width: 180px;
-    height: 80px;
+    width: 150px;
+    height: 60px;
     margin: 0 auto;
-    background-color: whitesmoke;
+    background-color: rgb(255, 2500, 255);
     box-shadow: 0 10px 6px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     overflow: hidden;
@@ -17,23 +17,23 @@
 }
 
 .player-photo {
-    margin-left: 20px;
-    width: 35px;
-    height: 35px;
+    margin-left: 10px;
+    width: 30px;
+    height: 30px;
     object-fit: cover;
     border-radius: 100%;
 }
 
 .player-info {
-    padding: 13px;
+    padding: 11px;
 }
 
 .player-nickname {
     text-align: left;
-    font-size: 12px;
+    font-size: 10px;
     font-weight: bold;
-    margin-top: 4px;
-    margin-bottom: -2px;
+    margin-top: 10px;
+    margin-bottom: -4px;
 }
 
 .player-name {
@@ -41,13 +41,15 @@
     font-size: 9px;
     color: #333333;
     margin-bottom: 8px;
+    margin-top: -4px
 }
 
 .player-elo {
     text-align: left;
     font-size: 9px;
     color: #777777;
-    margin: 0 auto;
+    margin-top: -10px;
+    margin-bottom: 3px;
 }
 
 .player-rank {
