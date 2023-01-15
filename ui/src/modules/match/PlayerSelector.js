@@ -31,7 +31,6 @@ const PlayerSelector = ({ onTeamGeneration }) => {
         <Container>
         <h3>Available players</h3>
         <div className="available-players-container">
-
             {players.map(player => (
                 <div
                     key={player.ID}
@@ -39,9 +38,10 @@ const PlayerSelector = ({ onTeamGeneration }) => {
                     <PlayerCard player={player}/>
                 </div>
             ))}
-
-            <button onClick={() => onTeamGeneration(selectedPlayers)}>Generate teams</button>
         </div>
+            <Container>
+                <button className="btn-border btn btn4" onClick={() => onTeamGeneration(selectedPlayers)}>Armar Equipos</button>
+            </Container>
         </Container>
     )
 };
