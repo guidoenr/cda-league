@@ -225,6 +225,7 @@ h5 {
     max-width: 450px;
     max-height: 500px;
     background-color: rgb(255,255,240);
+    filter: opacity(65%);
     border-left: 2px solid #38003c;
     border-right: 2px solid #38003c;
     margin-bottom: 5px;
