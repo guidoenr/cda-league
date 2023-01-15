@@ -4,7 +4,7 @@ import './Footer.css'
 const Footer = () => {
     return (
         <footer>
-            <p>design by <a className="footer-text" href="https://github.com/guidoenr">@guidoer</a> </p>
+            <p className="footer-text">design by <a href="https://github.com/guidoenr">@guidoer</a> </p>
         </footer>
     );
 }

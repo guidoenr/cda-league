@@ -6,7 +6,7 @@ import './Navbar.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const MyNavbar = () => {
-    const logo = require(`../../assets/carmen-league.png`)
+    const logo = require(`../../assets/cda-league-white.png`)
     return (
         <Navbar sticky="top" expand="lg" className="navbar navbar-color">
             <Navbar.Brand href="/">

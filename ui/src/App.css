@@ -30,7 +30,6 @@
 
 
 .App-bg{
-  background-image: url('assets/background.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-blend-mode: color-dodge;

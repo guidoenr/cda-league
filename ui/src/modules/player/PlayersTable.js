@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import {getColor, getStars, getPhoto} from "../Util";
 import './PlayersTable.css';
 import Container from 'react-bootstrap/Container';
-import jsonPlayers from '../../resources/players.json'
 import 'animate.css';
 
 function PlayersTableRank() {
@@ -31,9 +30,8 @@ function PlayersTableRank() {
     return (
         <Container className="Container animate__animated animate__bounceInDown">
             <div>
-                <img src={require('../../assets/carmen-league.png')} className="logo" alt="logo" />
+                <img src={require('../../assets/cda-league.png')} className="logo" alt="logo" />
                 <img src={require('../../assets/thropie.png')} className="thropie" alt="thropie" />
-                <h1>TORNEO DE VERANO - 2023</h1>
                 <h5>PREMIO: <b>100 USD</b></h5>
                 <Container className="center-container"><p className="note"><b>ELO:</b> Medida de estandarizacion que mide el rendimiento del jugador, <b>no influye en la tabla</b>, metrica usada en el algoritmo de armado de equipos.</p></Container>
                 <Container className="center-container"><p className="note"> <b>RANK:</b> Cantidad de libertadores del jugador, y hablando en serio, mide la <u>calidad</u> que tiene el jugador, me sirve para el calculo del ELO.</p></Container>

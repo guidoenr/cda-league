@@ -1,24 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import Team from './Team'
+import AvailablePlayers from './PlayerSelector'
 import './Match.css'
 
 const Match = () => {
+    const [showTeams, setShowTeams] = useState(false);
+    const [availablePlayers, setAvailablePlayers] = useState([]);
     const [Team1, setTeam1] = useState({});
     const [Team2, setTeam2] = useState({});
 
-    useEffect(() => {
-        const fetchPlayers = async () => {
-            try {
-                const response = await fetch('http://localhost:8080/generateMatch/');
-                const data = await response.json();
-                setTeam1(data.team1);
-                setTeam2(data.team2);
-            } catch (error) {
-                console.error(error);
-            }
-        };
-        fetchPlayers();
-    }, []);
+    const handleTeamGeneration = (selectedPlayers) => {
+        const data = { players: selectedPlayers }
+        fetch('http://localhost:8080/generateMatch/', {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: { 'Content-Type': 'application/json' }
+        })
+            .then(res => res.json())
+            .then(response => {
+                setTeam1(response.team1);
+                setTeam2(response.team2);
+                setShowTeams(true);
+            })
+            .catch(error => console.error('Error:', error));
+    }
 
         return (
             <div className="match-container">
