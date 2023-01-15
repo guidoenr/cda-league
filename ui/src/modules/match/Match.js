@@ -28,6 +28,7 @@ const Match = () => {
                     totalPlayers={Team1.totalPlayers}
                     chanceOfWinning={Team1.chanceOfWinning}
                 />
+                <h3>VS</h3>
                 <Team
                     name={Team2.name}
                     players={Team2.players}

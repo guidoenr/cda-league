@@ -2,24 +2,25 @@
     display: flex;
     align-items: center;
     position: relative;
-    width: 150px;
+    width: 160px;
     height: 60px;
     margin: 0 auto;
-    background-color: rgb(255, 2500, 255);
-    box-shadow: 0 10px 6px rgba(0, 0, 0, 0.1);
+    background-color: rgb(255, 250, 255);
+    box-shadow: 0 10px 6px rgba(0, 0, 0, 0.2);
     border-radius: 8px;
     overflow: hidden;
-    transition: all 0.3s ease-in-out;
+    gap:-1px;
 }
 
 .player-card:hover {
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    animation: linear;
+    color: #38003c;
 }
 
 .player-photo {
     margin-left: 10px;
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
     object-fit: cover;
     border-radius: 100%;
 }
@@ -30,7 +31,7 @@
 
 .player-nickname {
     text-align: left;
-    font-size: 10px;
+    font-size: 12px;
     font-weight: bold;
     margin-top: 10px;
     margin-bottom: -4px;
@@ -38,7 +39,8 @@
 
 .player-name {
     text-align: left;
-    font-size: 9px;
+    font-size: 10px;
+    font-weight: 500;
     color: #333333;
     margin-bottom: 8px;
     margin-top: -4px
