@@ -22,15 +22,14 @@ const Match = () => {
 
         return (
             <div className="match-container">
-                <Team
-                    name={Team1.name}
+                <Team className="team-container"
+                    name="TEAM 1"
                     players={Team1.players}
                     totalPlayers={Team1.totalPlayers}
                     chanceOfWinning={Team1.chanceOfWinning}
                 />
-                <h3>VS</h3>
-                <Team
-                    name={Team2.name}
+                <Team className="team-container"
+                    name="TEAM 2"
                     players={Team2.players}
                     totalPlayers={Team2.totalPlayers}
                     chanceOfWinning={Team2.chanceOfWinning}
