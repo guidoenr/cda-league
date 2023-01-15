@@ -5,31 +5,29 @@
     width: 160px;
     height: 60px;
     margin: 0 auto;
-    background-color: rgb(255, 250, 255);
     box-shadow: 0 10px 6px rgba(0, 0, 0, 0.2);
     border-radius: 8px;
     overflow: hidden;
     gap:-1px;
 }
 
-.player-card:hover {
-    animation: linear;
-    color: #38003c;
+.player-card .background{
+    background-color: rgb(255, 250, 255);
 }
 
-.player-photo {
-    margin-left: 10px;
+
+.player-card .photo {
     width: 35px;
     height: 35px;
     object-fit: cover;
     border-radius: 100%;
 }
 
-.player-info {
+.player-card .info {
     padding: 11px;
 }
 
-.player-nickname {
+.player-card .nickname {
     text-align: left;
     font-size: 12px;
     font-weight: bold;
@@ -37,7 +35,7 @@
     margin-bottom: -4px;
 }
 
-.player-name {
+.player-card .name {
     text-align: left;
     font-size: 9px;
     font-weight: 500;
@@ -46,7 +44,7 @@
     margin-top: -4px
 }
 
-.player-elo {
+.player-card .elo {
     text-align: left;
     font-size: 9px;
     color: #777777;
@@ -54,7 +52,7 @@
     margin-bottom: 3px;
 }
 
-.player-rank {
+.player-card .rank {
     text-align: left;
     margin-left: -1px;
     font-size: 12px;
@@ -62,7 +60,7 @@
     filter: grayscale(5%);
 }
 
-.player-description {
+.player-card .description {
     /* Style the player description */
     font-size: 14px;
     line-height: 1.5;
@@ -70,7 +68,7 @@
     margin-top: 10px;
 }
 
-.position-shape {
+.player-card .position-shape {
     /* Style the rectangle shape */
     width: 20px;
     height: 15px;
@@ -87,19 +85,19 @@
 }
 
 @media (max-width: 500px) {
-    .player-card {
+    .player-card .nickname{
         /* make the player card take up the full width of the screen on small screens */
         width: 3%;
         height: 3%;
     }
 
-    .player-photo {
+    .player-card .nickname {
         /* make the photo smaller on small screens */
         width: 90%;
         height: 90%;
     }
 
-    .player-nickname {
+    .player-card .nickname {
         /* reduce the font size of the nickname on small screens */
         font-size: 50%;
     }

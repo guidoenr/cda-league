@@ -5,8 +5,8 @@
     margin-top: 20px;
 }
 
-.available-players-container .player-card:hover {
-    background-color: red;
+.available-players-container .player-card .background:hover {
+    color: #38003c;
 }
 
 @media (max-width: 700px) {
