@@ -1,23 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './PlayerCard.css'
 import '../Util'
 import {getStars, getPhoto, getColor} from "../Util";
 
-const PlayerCard = ({ nickname, name, rank, elo, position}) => {
+const PlayerCard = ({player}) => {
 
     return (
         <div className="player-card ">
-            <img src={getPhoto(nickname)} alt={`${name}'s profile photo`} className="player-photo" />
+            <img src={getPhoto(player.nickname)} alt={`${player.name}'s profile photo`} className="player-photo" />
             <div className="player-info">
-                <h2 className="player-nickname">{nickname}</h2>
+                <h2 className="player-nickname">{player.nickname}</h2>
                 <div className="player-rank">
-                    {getStars(rank)}
+                    {getStars(player.rank)}
                 </div>
-                <div className="player-name">{name}</div>
-                <div className="player-elo">ELO: {elo}</div>
-                <div className="position-shape" style={{backgroundColor: getColor(position)}}> {position.toUpperCase().substring(0,3)}</div>
-                {/* Add a button to show and hide the player description */}
-                {/* Only show the player description if the isDescriptionVisible state variable is true */}
+                <div className="player-name">{player.name}</div>
+                <div className="player-elo">ELO: {player.elo}</div>
+                <div className="position-shape" style={{backgroundColor: getColor(player.position)}}> {player.position.toUpperCase().substring(0,3)}</div>
             </div>
         </div>
     );

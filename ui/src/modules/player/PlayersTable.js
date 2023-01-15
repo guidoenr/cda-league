@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {getColor, getStars, getPhoto} from "../Util";
-import './PlayersTable.css';
 import Container from 'react-bootstrap/Container';
+import './PlayersTable.css';
 import 'animate.css';
 
 function PlayersTableRank() {

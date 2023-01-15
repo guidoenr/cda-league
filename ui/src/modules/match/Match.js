@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Team from './Team'
-import AvailablePlayers from './PlayerSelector'
+import PlayerSelector from './PlayerSelector'
 import './Match.css'
 
 const Match = () => {
@@ -26,19 +26,23 @@ const Match = () => {
     }
 
         return (
-            <div className="match-container">
-                <Team className="team-container"
-                    name="TEAM 1"
-                    players={Team1.players}
-                    totalPlayers={Team1.totalPlayers}
-                    chanceOfWinning={Team1.chanceOfWinning}
-                />
-                <Team className="team-container"
-                    name="TEAM 2"
-                    players={Team2.players}
-                    totalPlayers={Team2.totalPlayers}
-                    chanceOfWinning={Team2.chanceOfWinning}
-                />
+            <div>
+                <PlayerSelector />
+                <div className="match-container">
+
+                    <Team className="team-container"
+                        name="TEAM 1"
+                        players={Team1.players}
+                        totalPlayers={Team1.totalPlayers}
+                        chanceOfWinning={Team1.chanceOfWinning}
+                    />
+                    <Team className="team-container"
+                        name="TEAM 2"
+                        players={Team2.players}
+                        totalPlayers={Team2.totalPlayers}
+                        chanceOfWinning={Team2.chanceOfWinning}
+                    />
+                </div>
             </div>
         );
 }
