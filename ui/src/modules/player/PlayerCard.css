@@ -28,6 +28,7 @@
 }
 
 .player-card .nickname {
+    color: #282c34;
     text-align: left;
     font-size: 12px;
     font-weight: bold;
@@ -102,3 +103,5 @@
         font-size: 50%;
     }
 }
+
+

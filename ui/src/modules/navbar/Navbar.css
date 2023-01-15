@@ -5,7 +5,7 @@
 .navbar-logo {
     filter:grayscale(100%);
     position: absolute;
-    width: 80px;
+    width: 70px;
     height: 50px;
     transform: translate(-50%, -50%);
     right: 0;

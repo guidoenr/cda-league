@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import './PlayerSelector.css'
 import PlayerCard from "../player/PlayerCard";
 import Container from 'react-bootstrap/Container';
+import './PlayerSelector.css'
+import '../../Button.css'
 
 const PlayerSelector = ({ onTeamGeneration }) => {
     const [players, setPlayers] = useState([]);
@@ -39,9 +40,6 @@ const PlayerSelector = ({ onTeamGeneration }) => {
                 </div>
             ))}
         </div>
-            <Container>
-                <button className="btn-border btn btn4" onClick={() => onTeamGeneration(selectedPlayers)}>Armar Equipos</button>
-            </Container>
         </Container>
     )
 };

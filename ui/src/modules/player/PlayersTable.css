@@ -222,12 +222,12 @@ h5 {
 
 /* Notes */
 .note {
-    max-width: 450px;
-    max-height: 500px;
+    max-width: 300px;
+    max-height: 800px;
     background-color: rgb(255,255,250);
     filter: opacity(65%);
     border-left: 4px solid #38003c;
-    margin-bottom: 5px;
+    margin-bottom: 7px;
 }
 p {
     text-align: center;
@@ -243,6 +243,7 @@ p {
     object-fit: cover;
     margin-left: 2px;
     margin-top: 20px;
+    margin-bottom: 15px;
 }
 
 .thropie{
