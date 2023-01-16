@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PlayersList from '../player/PlayersList.js';
 import './Team.css'
 
-const Team = ({name, players=[], totalPlayers, chanceOfWinning}) => {
+const Team = ({name, players=[], chanceOfWinning}) => {
     return (
         <div className="team-container">
             <h4>{name}</h4>

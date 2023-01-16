@@ -4,6 +4,7 @@ import Container from 'react-bootstrap/Container';
 import './Match.css'
 import Button from "@mui/material/Button";
 import PlayerCard from "../player/PlayerCard";
+import PlayersList from "../player/PlayersList";
 
 const Match = () => {
     const [showTeams, setShowTeams] = useState(false);
@@ -50,7 +51,6 @@ const Match = () => {
             setAvailablePlayers([...availablePlayers, player])
         }
     }
-
 
         return (
             <Container>

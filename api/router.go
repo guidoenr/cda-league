@@ -6,6 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/guidoenr/fulbo/model"
 	"github.com/guidoenr/fulbo/model/psdb"
+	"log"
 	"net/http"
 	"time"
 )
@@ -156,7 +157,10 @@ func (r *Router) generateMatch() gin.HandlerFunc {
 			return
 		}
 
-		fmt.Printf("i received these players: %v", playersToPlay.Players)
+		log.Printf("received players: %d \n", len(playersToPlay.Players))
+		for _, p := range playersToPlay.Players {
+			fmt.Println(p.Nickname)
+		}
 
 		// creating the match
 		var match model.Match
