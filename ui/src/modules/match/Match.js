@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Team from './Team'
 import PlayerSelector from './PlayerSelector'
+import Container from 'react-bootstrap/Container';
 import './Match.css'
 
 const Match = () => {
@@ -26,10 +27,9 @@ const Match = () => {
     }
 
         return (
-            <div>
+            <Container>
                 <PlayerSelector />
                 <div className="match-container">
-
                     <Team className="team-container"
                         name="TEAM 1"
                         players={Team1.players}
@@ -43,7 +43,7 @@ const Match = () => {
                         chanceOfWinning={Team2.chanceOfWinning}
                     />
                 </div>
-            </div>
+            </Container>
         );
 }
 

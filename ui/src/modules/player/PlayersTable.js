@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import {getColor, getStars, getPhoto} from "../Util";
 import Container from 'react-bootstrap/Container';
-import './PlayersTable.css';
 import jsonPlayers from '../../resources/players.json'
 import 'animate.css';
+import './PlayersTable.css';
 
 function PlayersTableRank() {
     // Use the useState hook to create state variables for the player data and the loading state

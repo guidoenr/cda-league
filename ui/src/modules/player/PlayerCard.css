@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     position: relative;
-    width: 160px;
+    width: 150px;
     height: 60px;
     margin: 0 auto;
     box-shadow: 0 10px 6px rgba(0, 0, 0, 0.2);
@@ -14,7 +14,6 @@
 .player-card .background{
     background-color: rgb(255, 250, 255);
 }
-
 
 .player-card .photo {
     width: 35px;
