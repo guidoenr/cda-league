@@ -1,4 +1,5 @@
-[
+{
+    "players": [
         {
             "ID": 1,
             "nickname": "Guidoti",
@@ -191,4 +192,5 @@
             "elo": 10,
             "points": 0
         }
-]
+    ]
+}
