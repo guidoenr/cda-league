@@ -38,43 +38,30 @@ func (pc *PlayerControler) GetPlayers() ([]model.Player, error) {
 	return players, nil
 }
 
-// GetPlayersRankedByElo (GET /players)
+// GetPlayersRankedBy : sortField (might be elo, rank, age) | sortFields (aditionals)
+// (GET /players)
 // returns all the players sorted by their elo, maybe you can think
 // "ok, but you can use getplayers and then sort it" but no...
 // queries in an SQL motor are more performant than in the code
-func (pc *PlayerControler) GetPlayersRankedByElo() ([]model.Player, error) {
+func (pc *PlayerControler) GetPlayersRankedBy(sortField string, sortFields ...string) ([]model.Player, error) {
 	log.Info().Msgf("getting ranked by elo players")
 	var players []model.Player
+	var orderExpr string
 
-	// SELECT * FROM players
-	err := pc.db.BunDB.NewSelect().
-		Model(&players).
-		OrderExpr("elo DESC").
-		Scan(context.Background())
-
-	if err != nil {
-		msg := fmt.Sprintf("getting all players ranked by elo - select query to db: %v", err)
-		log.Error().Msg(msg)
-		return players, errors.New(msg)
+	// generating the orderExpr
+	orderExpr = fmt.Sprintf("%s DESC", sortField)
+	for _, field := range sortFields {
+		orderExpr = fmt.Sprintf("%s, %s DESC", orderExpr, field)
 	}
 
-	return players, nil
-}
-
-// GetPlayersRankedByPoints (GET /players)
-// returns all the players sorted by their points
-func (pc *PlayerControler) GetPlayersRankedByPoints() ([]model.Player, error) {
-	log.Info().Msgf("getting ranked by points players")
-	var players []model.Player
-
-	// SELECT * FROM players
+	// SELECT * FROM players ORDER BY $sortField
 	err := pc.db.BunDB.NewSelect().
 		Model(&players).
-		OrderExpr("points DESC").
+		OrderExpr(orderExpr).
 		Scan(context.Background())
 
 	if err != nil {
-		msg := fmt.Sprintf("getting all players points by elo - select query to db: %v", err)
+		msg := fmt.Sprintf("getting all players ranked by %s - select query to db: %v", sortFields, err)
 		log.Error().Msg(msg)
 		return players, errors.New(msg)
 	}

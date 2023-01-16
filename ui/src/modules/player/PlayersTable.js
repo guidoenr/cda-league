@@ -29,7 +29,8 @@ function PlayersTableRank() {
 
     return (
         <Container className="Container">
-            <div>
+            <div className="headline">
+                <h1>Hola</h1>
                 <img src={require('../../assets/cda-league.png')} className="logo" alt="logo" />
                 <Container className="center-container animate__animated animate__lightSpeedInRight"><p className="note"><b>ELO:</b> Medida de estandarizacion que mide el rendimiento del jugador, <b>no influye en la tabla</b>, metrica usada en el algoritmo de armado de equipos.</p></Container>
                 <Container className="center-container animate__animated animate__lightSpeedInLeft"><p className="note"> <b>RANK:</b> Cantidad de libertadores del jugador, y hablando en serio, mide la <u>calidad</u> que tiene el jugador, me sirve para el calculo del ELO.</p></Container>
