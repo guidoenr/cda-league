@@ -111,6 +111,15 @@ tr:nth-last-child(1){
 
 /* NOTES */
 /* Notes */
+.logo{
+    width: 140px;
+    height: 110px;
+    object-fit: cover;
+    margin-top: -100px;
+}
+
+
+
 .note {
     max-width: 300px;
     max-height: 800px;
@@ -147,14 +156,10 @@ h5 {
     color: #6c757d;
 }
 
-.logo{
-    width: 140px;
-    height: 110px;
-    object-fit: cover;
-    margin-top: -100px;
+.headline{
+    display: block;
+    margin-left: 25px;
 }
-
-
 
 /* ----------------------------------------------------------------------------------  MEDIA QUERIES */
 @media only screen and (max-width: 1000px) {
