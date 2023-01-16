@@ -51,12 +51,10 @@ const Match = () => {
             setAvailablePlayers([...availablePlayers, player])
         }
     }
-
         return (
             <Container>
-                <Container>
-                    <h3>Available players</h3>
-                    <div className="available-players-container">
+                    <Container>
+                        <div className="available-players-container">
                         {availablePlayers.map(player => (
                             <div
                                 key={player.ID}
@@ -65,10 +63,8 @@ const Match = () => {
                             </div>
                         ))}
                     </div>
-                </Container>
-                <Container>
-                    <Button onClick={() => generateMatchWithPlayers()} variant="contained" className="btn-color">Armar Match</Button>
-                </Container>
+                    </Container>
+                <Button className="btn-color" onClick={() => generateMatchWithPlayers()} variant="outlined" >Armar Match</Button>
                 <div className="match-container">
                     <Team className="team-container"
                         name="TEAM 1"

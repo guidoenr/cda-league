@@ -13,7 +13,7 @@ function App(){
 
     return (
         <Router>
-        <div className="App App-bg" >
+        <div className="App" >
             <MyNavbar />
             <Routes >
                 <Route path="/" exact element={<PlayersTableRank />} />

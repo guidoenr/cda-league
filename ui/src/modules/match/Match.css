@@ -7,15 +7,15 @@
 
 .available-players-container {
     display: inline-grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr ;
+    justify-content: center;
+    grid-template-columns: 1fr 1fr ;
     grid-gap: 3px;
-    margin-top: 20px;
+    margin-top: 100px;
+    margin-left:30px;
     margin-bottom: 20px;
+    float: left;
 }
 
-.available-players-container .player-card .background:hover {
-    color: #38003c;
-}
 
 @media (max-width: 700px) {
     .available-players-container {
@@ -34,7 +34,8 @@
 /* -------------------------------------------------------- BUTTTON*/
 
 .btn-color{
-    background-color: #38003c!important;
+    color: #38003c!important;
     border: 1px solid #38003c!important;
     font-size: 15px!important;
+    margin-bottom: 20px;
 }
