@@ -1,6 +1,7 @@
 package api
 
 import (
+	"fmt"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/guidoenr/fulbo/model"
@@ -53,7 +54,7 @@ func (r *Router) StartRouter() {
 	// match routes
 	match := r.ginRouter.Group("/generateMatch")
 	{
-		match.GET("/", r.generateMatch())
+		match.POST("/", r.generateMatch())
 	}
 
 	r.ginRouter.Run()
@@ -139,22 +140,30 @@ func (r *Router) updatePlayer() gin.HandlerFunc {
 
 // -------------------------- CONTROLLERS
 // -------------------------- MATCH
-// createPlayer creates a player
+
+type AvailablePlayers struct {
+	Players []model.Player `json:"players"`
+}
+
+// generateMatch takes the list of the available players (in the body) and generate
+// an equal XvX match
 func (r *Router) generateMatch() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		// TODO
-		// ok, here we have to obtain the list of players
-		// that the user put in the website, then with that
-		// list of players we gonna generate a match
-		// suppose this list of players is the one that the user send us
-		players, _ := r.controller.GetPlayers()
+		// reading the body of the request to obtain the list of available players
+		var playersToPlay AvailablePlayers
+		if err := c.ShouldBindJSON(&playersToPlay); err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+			return
+		}
 
+		fmt.Printf("i received these players: %v", playersToPlay.Players)
+
+		// creating the match
 		var match model.Match
-		match.Init(players)
+		match.Init(playersToPlay.Players)
 		match.GenerateTeams()
 
 		var err error
-
 		if err != nil {
 			c.IndentedJSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 			return

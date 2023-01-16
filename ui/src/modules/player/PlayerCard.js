@@ -5,7 +5,6 @@ import {getStars, getPhoto, getColor} from "../Util";
 import Container from 'react-bootstrap/Container';
 
 const PlayerCard = ({player}) => {
-
     return (
         <Container className="player-card">
             <img src={getPhoto(player.nickname)} alt={`${player.name}'s profile photo`} className="photo" />
