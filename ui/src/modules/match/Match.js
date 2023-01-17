@@ -57,6 +57,7 @@ const Match = () => {
     }
 
 
+
     const cdaLogo = require('../../assets/cda-league-only-logo.png')
     function renderTeams(){
         if (showTeams){
@@ -115,7 +116,7 @@ const Match = () => {
                         ))}
                     </div>
                     </Container>
-                <Button textToDisplay="Armar Match" onClick={() => generateMatchWithPlayers()}/>
+                <Button textToDisplay="Armar Match" onClick={() => generateMatchWithPlayers()} />
                 {renderTeams()}
             </Container>
         );

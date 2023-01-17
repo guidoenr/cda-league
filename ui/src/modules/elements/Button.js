@@ -1,6 +1,6 @@
 import './Button.css'
 
-const Button = ({textToDisplay, onClick}) => {
+const Button = ({textToDisplay}) => {
     return (
         <div className="button-container">
             <button className="button type1">
