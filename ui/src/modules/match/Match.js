@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import Team from './Team'
 import Container from 'react-bootstrap/Container';
-import './Match.css'
 import Button from "@mui/material/Button";
 import PlayerCard from "../player/PlayerCard";
-import PlayersList from "../player/PlayersList";
+import Team from './Team'
+import './Match.css'
+
 
 const Match = () => {
     const [showTeams, setShowTeams] = useState(false);
@@ -66,19 +66,25 @@ const Match = () => {
                     </Container>
                 <Button className="btn-color" onClick={() => generateMatchWithPlayers()} variant="outlined" >Armar Match</Button>
                 <div className="match-container">
-                    <Team className="team-container"
+                    <div className="match">
+                        <div className="match-header">Carmen League</div>
+                        <div className="match-tournament"></div>
+                        <div className="match-content">
+                        <Team className="team-container"
                         name="TEAM 1"
                         players={Team1.players}
                         totalPlayers={Team1.totalPlayers}
                         chanceOfWinning={Team1.chanceOfWinning}
-                    />
-                    <Team className="team-container"
-                        name="TEAM 2"
-                        players={Team2.players}
-                        totalPlayers={Team2.totalPlayers}
-                        chanceOfWinning={Team2.chanceOfWinning}
-                    />
-                </div>
+                        />
+                        <Team className="team-container"
+                            name="TEAM 2"
+                            players={Team2.players}
+                            totalPlayers={Team2.totalPlayers}
+                            chanceOfWinning={Team2.chanceOfWinning}
+                        />
+                        </div>
+                    </div>
+                 </div>
             </Container>
         );
 }

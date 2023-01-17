@@ -84,6 +84,42 @@
     right: 0;
 }
 
+/* SELECTED PLAYER CARD*/
+.player-card.selected {
+    /* styles for selected player card */
+    filter:grayscale(100%);
+    background-color: #282c34;
+    color: #fff;
+}
+
+.player-card.selected .nickname{
+    /* styles for selected player card */
+    color: #fff;
+}
+
+.player-card.selected .name{
+    /* styles for selected player card */
+    color: #fff;
+}
+
+.player-card.selected .position-shape {
+    /* Style the rectangle shape */
+    width: 20px;
+    height: 15px;
+    background-color: #333;
+    color: #38003c;
+    font-size: 8px;
+    font-weight: 900;
+    text-align: center;
+    line-height: 21px;
+    /* Position the rectangle shape in the top right corner of the Player Card */
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+
+
 @media (max-width: 500px) {
     .player-card .nickname{
         /* make the player card take up the full width of the screen on small screens */

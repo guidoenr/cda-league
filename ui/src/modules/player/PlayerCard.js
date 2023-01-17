@@ -1,12 +1,18 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './PlayerCard.css'
 import '../Util'
 import {getStars, getPhoto, getColor} from "../Util";
 import Container from 'react-bootstrap/Container';
 
 const PlayerCard = ({player}) => {
+    const [isSelected, setIsSelected] = useState(false);
+    const handleClick = () => {
+        setIsSelected(!isSelected);
+    }
+
+    const className = isSelected ? "player-card selected" : "player-card";
     return (
-        <Container className="player-card">
+        <Container className={className} onClick={handleClick}>
             <img src={getPhoto(player.nickname)} alt={`${player.name}'s profile photo`} className="photo" />
             <div className="info">
                 <h2 className="nickname">{player.nickname}</h2>

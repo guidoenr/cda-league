@@ -44,6 +44,10 @@
 }
 
 
+*{
+  font-family: 'Inter', sans-serif;
+}
+
 .contents{
   margin-top: 120px;
 }

@@ -5,9 +5,9 @@ import './Team.css'
 const Team = ({name, players=[], chanceOfWinning}) => {
     return (
         <div className="team-container">
-            <h4>{name}</h4>
-            <h5>Chance of Winning: <b>{chanceOfWinning}%</b></h5>
-            <PlayersList players={players} />
+            <div className="team-name">{name}</div> <br/>
+            <div className="chance-of-winning">Chance of winning: {chanceOfWinning}%</div>
+            <PlayersList players={players}/>
         </div>
     );
 }
