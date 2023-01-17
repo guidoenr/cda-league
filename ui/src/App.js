@@ -21,7 +21,7 @@ function App(){
                 <Route path="rank" element={<PlayersTable />} />
                 <Route path="match" element={<Match />} />
             </Routes>
-            <Footer />
+            {/*<Footer />*/}
         </div>
         </Router>
     )

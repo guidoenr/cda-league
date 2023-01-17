@@ -19,6 +19,7 @@
 .chance-of-winning{
     font-size: 1rem;
     font-family: Inter, sans-serif;
+    color: rgb(150,150,150);
     text-align: center;
     margin-bottom: 5px;
 }

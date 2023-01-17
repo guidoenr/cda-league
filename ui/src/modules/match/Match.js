@@ -59,7 +59,7 @@ const Match = () => {
                             <div
                                 key={player.ID}
                                 onClick={() => handleSelectPlayer(player)}>
-                                <PlayerCard player={player}/>
+                                <PlayerCard player={player} match={false}/>
                             </div>
                         ))}
                     </div>

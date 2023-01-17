@@ -6,25 +6,10 @@
     height: 60px;
     margin: 0 auto;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    background-color: rgb(255, 250, 255);
     border-radius: 5px;
     overflow: hidden;
     gap:-1px;
-}
-.player-card.sm {
-    align-items: center;
-    position: relative;
-    width: 150px;
-    height: 30px;
-    margin: 0 auto;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
-    border-radius: 4px;
-    overflow: hidden;
-    gap:-1px;
-}
-
-
-.player-card .background{
-    background-color: rgb(255, 250, 255);
 }
 
 .player-card .photo {
@@ -96,7 +81,7 @@
     right: 0;
 }
 
-/* SELECTED PLAYER CARD*/
+/* ----------- SELECTED PLAYER CARD*/
 .player-card.selected {
     /* styles for selected player card */
     filter:grayscale(100%);
@@ -131,7 +116,6 @@
 }
 
 
-
 @media (max-width: 500px) {
     .player-card .nickname{
         /* make the player card take up the full width of the screen on small screens */
@@ -150,5 +134,4 @@
         font-size: 50%;
     }
 }
-
 
