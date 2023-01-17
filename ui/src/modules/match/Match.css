@@ -29,11 +29,13 @@
 
 .match-header {
     display: grid;
-    font-family: "Inter", serif;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
     font-size: 13px;
     border-bottom: 2px solid rgb(230, 230, 230);
     padding: 4px;
-    justify-content: center;
+    font-family: "Inter", serif;
 }
 
 .match-sub-header{
@@ -44,9 +46,18 @@
 }
 
 .match-logo{
+    display: block;
     width: 50px;
     height: 50px;
 }
+
+img.match-logo {
+    display: block;
+    width: 90px;
+    height: 90px;
+    margin:-15px auto;
+}
+
 
 .available-players-container {
     display: inline-grid;
