@@ -18,11 +18,12 @@ table {
     margin: 4px auto;
     max-width: 80%;
     border-collapse: collapse; /* Remove the default cell spacing */
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
 }
 
 tr {
     border: 1px solid rgb(215,215,215)!important; /* adds a 1px black border to rows and cells */
-    background-color: rgb(255,255,245);
+    background-color: rgb(255,255,252);
 }
 
 th, td {
@@ -32,7 +33,7 @@ th, td {
 }
 
 tr:nth-child(n):hover {
-    background-color: lightgoldenrodyellow;
+    background-color: whitesmoke;
 }
 
 
@@ -45,16 +46,14 @@ th {
 
 tr:nth-child(1) {
     background-color: rgb(240,255,240);
-    font-weight: 900; /* Make the text bold */
 }
 
 tr:nth-child(2) {
     background-color: rgb(240,255,240);
-    font-weight: 900;
 }
 
 tr:nth-child(3) {
-
+    background-color: rgb(240,255,240);
 }
 
 tr:nth-last-child(1){
@@ -169,10 +168,6 @@ h5 {
         font-size: 9px;
         padding: 0.36rem; /* Add some padding to the cells */
         text-align: center; /* Center the text in the cells */
-    }
-
-    tr:nth-child(n):hover {
-        background-color: beige;
     }
 
     /* Style the navbar cells */

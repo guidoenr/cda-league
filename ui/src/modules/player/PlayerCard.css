@@ -5,11 +5,23 @@
     width: 150px;
     height: 60px;
     margin: 0 auto;
-    box-shadow: 0 10px 6px rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    border-radius: 5px;
     overflow: hidden;
     gap:-1px;
 }
+.player-card.sm {
+    align-items: center;
+    position: relative;
+    width: 150px;
+    height: 30px;
+    margin: 0 auto;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    border-radius: 4px;
+    overflow: hidden;
+    gap:-1px;
+}
+
 
 .player-card .background{
     background-color: rgb(255, 250, 255);

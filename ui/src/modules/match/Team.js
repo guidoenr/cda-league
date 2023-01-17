@@ -7,7 +7,7 @@ const Team = ({name, players=[], chanceOfWinning}) => {
         <div className="team-container">
             <div className="team-name">{name}</div> <br/>
             <div className="chance-of-winning">Chance of winning: {chanceOfWinning}%</div>
-            <PlayersList players={players}/>
+            <PlayersList players={players} small={true}/>
         </div>
     );
 }
