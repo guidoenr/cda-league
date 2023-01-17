@@ -43,6 +43,8 @@ const Match = () => {
             .catch(error => console.error('Error:', error));
     }
 
+    console.log(showTeams)
+
     // click the playerCard
     const handleSelectPlayer = (player) => {
         if (availablePlayers.find(p => p.ID === player.ID)) {
@@ -51,6 +53,36 @@ const Match = () => {
             setAvailablePlayers([...availablePlayers, player])
         }
     }
+
+    function renderTeams(){
+        if (showTeams){
+            return (
+            <div className="match-container">
+                <div className="match">
+                    <div className="match-header">Carmen League</div>
+                    <div className="match-tournament"></div>
+                    <div className="match-content">
+                        <Team className="team-container"
+                              name={Team1.name}
+                              players={Team1.players}
+                              totalPlayers={Team1.totalPlayers}
+                              chanceOfWinning={Team1.chanceOfWinning}
+                        />
+                        <Team className="team-container"
+                              name={Team2.name}
+                              players={Team2.players}
+                              totalPlayers={Team2.totalPlayers}
+                              chanceOfWinning={Team2.chanceOfWinning}
+                        />
+                    </div>
+                </div>
+            </div>
+            )
+        } else {
+            return <div></div>
+        }
+    }
+
         return (
             <Container>
                     <Container>
@@ -65,26 +97,7 @@ const Match = () => {
                     </div>
                     </Container>
                 <Button className="btn-color" onClick={() => generateMatchWithPlayers()} variant="outlined" >Armar Match</Button>
-                <div className="match-container">
-                    <div className="match">
-                        <div className="match-header">Carmen League</div>
-                        <div className="match-tournament"></div>
-                        <div className="match-content">
-                        <Team className="team-container"
-                        name="TEAM 1"
-                        players={Team1.players}
-                        totalPlayers={Team1.totalPlayers}
-                        chanceOfWinning={Team1.chanceOfWinning}
-                        />
-                        <Team className="team-container"
-                            name="TEAM 2"
-                            players={Team2.players}
-                            totalPlayers={Team2.totalPlayers}
-                            chanceOfWinning={Team2.chanceOfWinning}
-                        />
-                        </div>
-                    </div>
-                 </div>
+                {renderTeams()}
             </Container>
         );
 }

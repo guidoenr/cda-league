@@ -14,6 +14,12 @@ function getPhoto(nickname){
     return require(`../assets/cartoon/${photoName}`)
 }
 
+function getTeamLogo(name){
+    const logoName = name.toString().toLowerCase().replace(/\s/g,'') + ".png"
+    return require(`../assets/teams/${logoName}`)
+}
+
+
 function getColor(position){
     // Set the color of the rectangle shape based on the value of the position prop
     // what a shit is this
@@ -29,4 +35,5 @@ function getColor(position){
     }
 }
 
-export {getColor, getStars, getPhoto}
+
+export {getColor, getStars, getPhoto, getTeamLogo}
