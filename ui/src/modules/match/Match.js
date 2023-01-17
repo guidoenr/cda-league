@@ -4,7 +4,8 @@ import Button from "@mui/material/Button";
 import PlayerCard from "../player/PlayerCard";
 import Team from './Team'
 import './Match.css'
-
+import 'animate.css';
+import cdaLogo from "../../assets/cda-league-only-logo.png";
 
 const Match = () => {
     const [showTeams, setShowTeams] = useState(false);
@@ -54,32 +55,46 @@ const Match = () => {
         }
     }
 
+
+    const cdaLogo = require('../../assets/cda-league-only-logo.png')
     function renderTeams(){
         if (showTeams){
             return (
+            <Container>
             <div className="match-container">
                 <div className="match">
-                    <div className="match-header">Carmen League</div>
-                    <div className="match-tournament"></div>
-                    <div className="match-content">
-                        <Team className="team-container"
+                    <div className="match-header"> <img className="match-logo" src={cdaLogo} alt="Carmen League"/>
+                        Carmen League<br/>
+                        <div className="match-sub-header">
+                            Torneo de verano 2023
+                        </div>
+                    </div>
+
+                    <div className="match-tournament"> </div>
+                    <div className="match-content ">
+                        <div className="team-container animate__animated animate__fadeInDown">
+                        <Team
                               name={Team1.name}
                               players={Team1.players}
                               totalPlayers={Team1.totalPlayers}
                               chanceOfWinning={Team1.chanceOfWinning}
                         />
-                        <Team className="team-container"
+                        </div>
+                        <div className="team-container animate__animated animate__fadeInDown">
+                        <Team
                               name={Team2.name}
                               players={Team2.players}
                               totalPlayers={Team2.totalPlayers}
                               chanceOfWinning={Team2.chanceOfWinning}
                         />
+                        </div>
                     </div>
                 </div>
             </div>
+            </Container>
             )
         } else {
-            return <div></div>
+            return <Container></Container>
         }
     }
 

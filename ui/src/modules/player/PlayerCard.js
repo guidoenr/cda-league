@@ -2,8 +2,8 @@ import React, {useState} from 'react';
 import Container from 'react-bootstrap/Container';
 import {getStars, getPhoto, getColor} from "../Util";
 import './PlayerCard.css'
-import './PlayerCardMatch.css'
 import '../Util'
+
 
 const PlayerCard = ({player, match} ) => {
     const [isSelected, setIsSelected] = useState(false);
