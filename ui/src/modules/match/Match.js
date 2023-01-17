@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
-import Button from "@mui/material/Button";
 import PlayerCard from "../player/PlayerCard";
 import Team from './Team'
+import Button from '../elements/Button'
+
 import './Match.css'
 import 'animate.css';
 import cdaLogo from "../../assets/cda-league-only-logo.png";
@@ -114,7 +115,7 @@ const Match = () => {
                         ))}
                     </div>
                     </Container>
-                <Button className="btn-color" onClick={() => generateMatchWithPlayers()} variant="outlined" >Armar Match</Button>
+                <Button textToDisplay="Armar Match" onClick={() => generateMatchWithPlayers()}/>
                 {renderTeams()}
             </Container>
         );
