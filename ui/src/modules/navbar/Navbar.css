@@ -45,7 +45,7 @@
 }
 
 
-@media (max-width: 1000px) {
+@media only screen and (max-width: 1000px) {
     .mynavbar {
         position: relative; /* Change the position from fixed to relative */
     }

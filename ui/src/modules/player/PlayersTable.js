@@ -71,7 +71,7 @@ function PlayersTableRank() {
                         <td className={"info"}>{player.gamesWon}</td>
                         <td className={"info"}>{player.gamesLost}</td>
                         <td className={"info"}>{player.diff}</td>
-                        <td className={"info"}>{player.points}</td>
+                        <td className={"points"}>{player.points}</td>
                     </tr>
                 ))}
                 </tbody>

@@ -98,7 +98,9 @@ th {
     margin-top: -100px;
 }
 
-
+.points{
+    font-weight: 700;
+}
 
 .note {
     max-width: 300px;
