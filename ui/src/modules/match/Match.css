@@ -51,6 +51,14 @@
     height: 50px;
 }
 
+.match-status {
+    color: palevioletred;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 14px;
+    margin: auto;
+}
+
 img.match-logo {
     display: block;
     width: 90px;

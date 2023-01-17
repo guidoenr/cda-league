@@ -60,11 +60,14 @@ const Match = () => {
     function renderTeams(){
         if (showTeams){
             return (
-            <Container>
+            <Container className="animate__animated animate__fadeInDown">
             <div className="match-container">
                 <div className="match">
-                    <div className="match-header"> <img className="match-logo" src={cdaLogo} alt="Carmen League"/>
-                        Carmen League<br/>
+                    <div className="match-header">
+                        <div className="match-status">
+                            19:00 hs
+                        </div>
+                        <img className="match-logo" src={cdaLogo} alt="Carmen League"/>Carmen League<br/>
                         <div className="match-sub-header">
                             Torneo de verano 2023
                         </div>
@@ -72,7 +75,7 @@ const Match = () => {
 
                     <div className="match-tournament"> </div>
                     <div className="match-content ">
-                        <div className="team-container animate__animated animate__fadeInDown">
+                        <div className="team-container">
                         <Team
                               name={Team1.name}
                               players={Team1.players}
@@ -80,7 +83,7 @@ const Match = () => {
                               chanceOfWinning={Team1.chanceOfWinning}
                         />
                         </div>
-                        <div className="team-container animate__animated animate__fadeInDown">
+                        <div className="team-container">
                         <Team
                               name={Team2.name}
                               players={Team2.players}
