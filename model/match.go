@@ -2,26 +2,45 @@ package model
 
 import (
 	"github.com/guidoenr/fulbo/config"
+	"github.com/uptrace/bun"
 	"math"
 	"math/rand"
 	"time"
 )
 
-type Match struct {
-	Players       []Player `json:"players"`
-	PlayersByRank map[Rank][]Player
-	Team1         Team `json:"team1"`
-	Team2         Team `json:"team2"`
-	Winner        Team
+type Result struct {
+	PlayerGoals map[Player]int `json:"playersGoals"` // the goals that each player made (e.g: {messi : 3)
+	Winner      Team           `json:"winner"`       // winner of the match
 }
 
+type Match struct {
+	bun.BaseModel `bun:"table:matches,alias:m"`
+	ID            int64             `bun:"id,pk,autoincrement"`
+	PlayersByRank map[Rank][]Player // the players ordered by their rank
+	Players       []Player          `json:"players"`
+	Date          time.Time         `bun:"date"   json:"date"`   // the date of the team
+	Field         string            `bun:"field"  json:"field"`  // field in where the match was played
+	Team1         Team              `bun:"team1"  json:"team1"`  // the first team
+	Team2         Team              `bun:"team2"  json:"team2"`  // the second team
+	MatchResult   Result            `bun:"result" json:"result"` // the match result
+}
+
+// Init initializes the match wit the players
 func (m *Match) Init(players []Player) {
 	m.Players = players
+	m.Date = time.Now()
+}
+
+// SaveResult will return a list of players with the actualized stats
+// looking at a MatchResult
+func (m *Match) SaveResult(result Result) []Player {
+	var playersToUpdate []Player
+
+	return playersToUpdate
 }
 
 // GenerateTeams is the complete algorithm to create evenly teams based on the player's ranking
 // where the first picker is random and each player are distributed based on their ranks
-// TODO, implement the snake draft algorithm?
 func (m *Match) GenerateTeams() {
 	// the Players by rank have a structure like the following
 	// 5 : [ Messi, Maradona ]
@@ -38,7 +57,7 @@ func (m *Match) GenerateTeams() {
 	// now shuffle the teams using the nanoseconds as seed
 	rand.Seed(time.Now().UnixNano())
 	for i, group := range playersByRank {
-		// group is the list of players of a rank
+		// group is the list of players of a rank, example rank 4 : [player1, player2, .. , playerN]
 		rand.Shuffle(len(group), func(i, j int) {
 			group[i], group[j] = group[j], group[i]
 		})
@@ -52,7 +71,6 @@ func (m *Match) GenerateTeams() {
 	// teams = {
 	// 0: [p1, p2, p3, p4, p5] --> team 1
 	// 1: [j1, j2, j3, j4, j5] --> team 2
-	// }
 	teams := make([][]Player, 2)
 
 	// choosing the first/second picker
@@ -74,7 +92,6 @@ func (m *Match) GenerateTeams() {
 		rank--
 	}
 
-	// FOR GOD, PLEASE IMPROVE THIS SHIT. TODO
 	// creating the teams
 	var team1, team2 Team
 	team1Name, team2Name := m.pickTwoTeamNames()
@@ -82,20 +99,10 @@ func (m *Match) GenerateTeams() {
 	team1.Init(team1Name, len(teams[0]), teams[0])
 	team2.Init(team2Name, len(teams[1]), teams[1])
 
-	/*
-		// this aux team is only to compare the players of a team
-		var auxTeam Team
-		auxTeam.Init("aux", len(players1), players1)
-		// if the teams are some kind of 'equal' (3 players are the same)
-		// then we start the algorithm again
-		if !auxTeam.goodMixWith(&team1) {
-			m.GenerateTeams()
-			return
-		} */
-
 	// calculate the total points
-	totalPoints := team1.points + team2.points
+	totalPoints := team1.Points + team2.Points
 
+	// setting the chance of winning of each map
 	team1.setChanceOfWinning(totalPoints)
 	team2.setChanceOfWinning(totalPoints)
 
@@ -103,6 +110,7 @@ func (m *Match) GenerateTeams() {
 	m.Team2 = team2
 }
 
+// pickTwoTeamNames search for the lisf of teams names and chose two random team names
 func (m *Match) pickTwoTeamNames() (string, string) {
 	// reading the config
 	var cfg config.Config

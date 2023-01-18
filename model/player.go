@@ -23,12 +23,13 @@ type Player struct {
 	GamesLost     int      `bun:"gamesLost" json:"gamesLost"`
 	Diff          int      `bun:"diff" json:"diff"`
 	Elo           float64  `bun:"elo" json:"elo"`
-	Points        float64  `bun:"points" json:"points"`
+	Points        int      `bun:"points" json:"points"`
 }
 
 // Init creates the player with their values
 func (p *Player) Init(nickname string, name string, description string, age int, rank Rank, position Position, totalGoals int, gamesPlayed int, gamesWon int, gamesLost int) error {
 
+	// checkers only for me
 	if nickname == "" {
 		msg := fmt.Sprint("nickname cannot be empty")
 		log.Error().Msg(msg)
@@ -57,7 +58,7 @@ func (p *Player) Init(nickname string, name string, description string, age int,
 	p.GamesLost = gamesLost
 	p.Diff = p.GamesWon - p.GamesLost
 	p.Elo = p.CalculateELO()
-	p.Points = 0
+	p.Points = p.CalculatePoints()
 
 	return nil
 }
@@ -69,6 +70,19 @@ func (p *Player) CalculateELO() float64 {
 	// the formula is rank * 5 - goals * 3 + gamesWon - (age-23) * 0.2
 	ELO = float64(p.Rank*5) + float64(p.TotalGoals*3) + float64(p.Diff)*2.5 - float64(p.Age-23)*0.2
 	return ELO
+}
+
+// CalculatePoints calculates the player's points
+func (p *Player) CalculatePoints() int {
+	var points, goalsMultiplier int
+
+	if p.Position == "defensor" {
+		goalsMultiplier = 2
+	}
+	goalsMultiplier = 3
+
+	points = p.GamesWon + p.TotalGoals/goalsMultiplier
+	return points
 }
 
 func (p *Player) ToJSON() []byte {
