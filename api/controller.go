@@ -30,7 +30,7 @@ func (pc *PlayerControler) GetPlayers() ([]model.Player, error) {
 		Scan(context.Background())
 
 	if err != nil {
-		return players, handler.Handler{}.HandleError("getting players: %v", err)
+		return players, handler.HandleError("getting players: %v", err)
 	}
 
 	return players, nil
@@ -60,7 +60,7 @@ func (pc *PlayerControler) GetPlayersRankedBy(sortField string, sortFields ...st
 
 	// WARNING with this
 	if err != nil {
-		return players, handler.Handler{}.HandleError("getting players rankedBy-> %s %s: %v", sortField, sortFields, err)
+		return players, handler.HandleError("getting players rankedBy-> %s %s: %v", sortField, sortFields, err)
 	}
 
 	return players, nil
@@ -79,7 +79,7 @@ func (pc *PlayerControler) GetPlayerByID(id string) (model.Player, error) {
 		Scan(context.Background())
 
 	if err != nil {
-		return player, handler.Handler{}.HandleError("getting player by id '%s': %v", id, err)
+		return player, handler.HandleError("getting player by id '%s': %v", id, err)
 	}
 
 	return player, nil
@@ -96,7 +96,7 @@ func (pc *PlayerControler) GetPlayerByNickname(nickname string) (model.Player, e
 		Scan(context.Background())
 
 	if err != nil {
-		return player, handler.Handler{}.HandleError("selecting player by nickname '%s': %v", nickname, err)
+		return player, handler.HandleError("selecting player by nickname '%s': %v", nickname, err)
 	}
 
 	return player, nil
@@ -110,7 +110,7 @@ func (pc *PlayerControler) UpdatePlayers(matchResult model.Result) (int64, error
 	// validate player IDs
 	for playerId := range matchResult.PlayerGoals {
 		if _, err := pc.GetPlayerByID(playerId); err != nil {
-			return 0, handler.Handler{}.HandleError("invalid player id '%s': %v", playerId, err)
+			return 0, handler.HandleError("invalid player id '%s': %v", playerId, err)
 		}
 	}
 
@@ -121,7 +121,7 @@ func (pc *PlayerControler) UpdatePlayers(matchResult model.Result) (int64, error
 		// get the player data
 		player, err := pc.GetPlayerByID(playerId)
 		if err != nil {
-			return 0, handler.Handler{}.HandleError("getting player ids to update: %v", err)
+			return 0, handler.HandleError("getting player ids to update: %v", err)
 		}
 
 		// check if the player won
@@ -138,7 +138,7 @@ func (pc *PlayerControler) UpdatePlayers(matchResult model.Result) (int64, error
 		Exec(context.Background())
 
 	if err != nil {
-		return 0, handler.Handler{}.HandleError("updating players by match result: %v", err)
+		return 0, handler.HandleError("updating players by match result: %v", err)
 	}
 
 	return result.RowsAffected()

@@ -48,8 +48,8 @@ func (r *Router) StartRouter() {
 		players.GET("/rank", r.showPlayersRanked())
 		players.GET("/:id", r.showPlayerByID())
 		players.GET("/nickname/:nickname", r.showPlayerByNickname())
-		players.POST("/:id/create", r.createPlayer())
-		players.POST("/:id/update", r.updatePlayer())
+		/*		players.POST("/:id/create", r.createPlayer())
+				players.POST("/:id/update", r.updatePlayer())*/
 	}
 
 	// match routes
@@ -112,7 +112,7 @@ func (r *Router) showPlayerByNickname() gin.HandlerFunc {
 	}
 }
 
-// createPlayer creates a player
+/*// createPlayer creates a player
 func (r *Router) createPlayer() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		// TODO, this will be one of the latest thing to code
@@ -124,8 +124,8 @@ func (r *Router) createPlayer() gin.HandlerFunc {
 		}
 		c.IndentedJSON(200, gin.H{"ok": player})
 	}
-}
-
+}*/
+/*
 // createPlayer creates a player
 func (r *Router) updatePlayer() gin.HandlerFunc {
 	return func(c *gin.Context) {
@@ -137,7 +137,7 @@ func (r *Router) updatePlayer() gin.HandlerFunc {
 		}
 		c.IndentedJSON(200, gin.H{"ok": player})
 	}
-}
+}*/
 
 // -------------------------- CONTROLLERS
 // -------------------------- MATCH
