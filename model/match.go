@@ -8,11 +8,6 @@ import (
 	"time"
 )
 
-type Result struct {
-	PlayerGoals map[Player]int `json:"playersGoals"` // the goals that each player made (e.g: {messi : 3)
-	Winner      Team           `json:"winner"`       // winner of the match
-}
-
 type Match struct {
 	bun.BaseModel `bun:"table:matches,alias:m"`
 	ID            int64             `bun:"id,pk,autoincrement"`

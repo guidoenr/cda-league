@@ -1,7 +1,6 @@
 package model
 
 import (
-	"encoding/json"
 	"errors"
 	"fmt"
 	"github.com/rs/zerolog/log"
@@ -58,34 +57,52 @@ func (p *Player) Init(nickname string, name string, description string, age int,
 	p.GamesLost = gamesLost
 	p.Diff = p.GamesWon - p.GamesLost
 	p.Elo = p.CalculateELO()
-	p.Points = p.CalculatePoints()
+	p.Points = p.CalculatePoints(p.TotalGoals)
 
 	return nil
+}
+
+// UpdatePlayer update the entire player struct checking the goals and if the player won or lose
+func (p *Player) UpdatePlayer(goals int, won bool) {
+	p.TotalGoals += goals
+	p.GamesPlayed += 1
+
+	// if the player won
+	if won {
+		p.GamesWon += 1
+		p.Points += 3
+	} else {
+		p.GamesLost += 1
+	}
+
+	p.Diff = p.GamesWon - p.GamesLost
+	p.Points += p.CalculatePoints(goals)
+	p.Elo = p.CalculateELO()
 }
 
 // CalculateELO calculates the player's ELO considering their points (age, goals, gamesWon, etc)
 // is a simple formula, maybe improve it in a future
 func (p *Player) CalculateELO() float64 {
-	var ELO float64
 	// the formula is rank * 5 - goals * 3 + gamesWon - (age-23) * 0.2
-	ELO = float64(p.Rank*5) + float64(p.TotalGoals*3) + float64(p.Diff)*2.5 - float64(p.Age-23)*0.2
+	ELO := float64(p.Rank*5) + float64(p.TotalGoals*3) + float64(p.Diff)*2.5 - float64(p.Age-23)*0.2
 	return ELO
 }
 
 // CalculatePoints calculates the player's points
-func (p *Player) CalculatePoints() int {
-	var points, goalsMultiplier int
+func (p *Player) CalculatePoints(goals int) int {
+	var pointsToPlus, goalsDivider int
 
-	if p.Position == "defensor" {
-		goalsMultiplier = 2
+	// if the player is a defensor, the goals are more valuable because
+	// the volantes and delanteros have more chances to score a goal
+	switch p.Position {
+	case "defensor":
+		goalsDivider = 2
+	default:
+		goalsDivider = 3
 	}
-	goalsMultiplier = 3
 
-	points = p.GamesWon + p.TotalGoals/goalsMultiplier
-	return points
-}
+	// calculate the points to plus
+	pointsToPlus = goals / goalsDivider
 
-func (p *Player) ToJSON() []byte {
-	bytes, _ := json.Marshal(p)
-	return bytes
+	return pointsToPlus
 }
