@@ -48,6 +48,7 @@ const Match = () => {
 
     // click the playerCard
     const handleSelectPlayer = (player) => {
+        player.selected = true
         const newPlayerList = [...availablePlayers];
         const playerIndex = newPlayerList.findIndex(p => p.ID === player.ID);
         newPlayerList[playerIndex] = { ...newPlayerList[playerIndex], selected: !newPlayerList[playerIndex].selected };
@@ -65,9 +66,6 @@ const Match = () => {
                     <div className="match-container">
                         <div className="match">
                             <div className="match-header">
-                                <div className="match-status">
-                                    19:00 hs
-                                </div>
                                 <img className="match-logo" src={cdaLogo} alt="Carmen League"/>Carmen League<br/>
                                 <div className="match-sub-header">
                                     Torneo de verano 2023
