@@ -51,3 +51,11 @@
 .contents{
   margin-top: 120px;
 }
+
+
+/* ----------------------------------------------- CONTAINER -------------- */
+.container {
+  display: inline-grid;
+  justify-content: center;
+  align-items: center;
+}
