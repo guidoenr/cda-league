@@ -85,7 +85,7 @@
 .player-card.selected {
     /* styles for selected player card */
     filter:grayscale(100%);
-    background-color: #282c34;
+    animation: snakedraft;
     color: #fff;
 }
 
@@ -190,3 +190,5 @@
     right: 0;
 }
 
+
+/* KEY FRAMES*/

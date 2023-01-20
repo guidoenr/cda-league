@@ -4,10 +4,8 @@ import PlayerCard from "../player/PlayerCard";
 import Team from './Team'
 import jsonPlayers from '../../resources/players.json'
 import Button from '../elements/Button'
-
 import './Match.css'
 import 'animate.css';
-import cdaLogo from "../../assets/cda-league-only-logo.png";
 
 const Match = () => {
     const [allPlayers, setAllPlayers] = useState([])

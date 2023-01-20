@@ -31,7 +31,6 @@ function PlayersTableRank() {
     }
 
     return (
-        <Container>
         <Container className="Container">
             <div className="headline">
                 {apiFailed}
@@ -81,7 +80,6 @@ function PlayersTableRank() {
                     congelado tenes el pecho
                 </p>
             </div>*/}
-        </Container>
         </Container>
 )}
 
