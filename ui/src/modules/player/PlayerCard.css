@@ -82,23 +82,6 @@
 }
 
 /* ----------- SELECTED PLAYER CARD*/
-.player-card.selected{
-    /* styles for selected player card */
-    filter:grayscale(100%);
-    animation: snakedraft;
-    color: #fff;
-}
-
-.player-card.selected .nickname{
-    /* styles for selected player card */
-    color: #fff;
-}
-
-.player-card.selected .name{
-    /* styles for selected player card */
-    color: #fff;
-}
-
 .player-card.selected .position-shape {
     /* Style the rectangle shape */
     width: 20px;
@@ -203,7 +186,7 @@
     left: 0;
     width: 100%;
     height: 3px;
-    background: linear-gradient(to right, transparent, #1779ff);
+    background: linear-gradient(to right, transparent, deeppink);
     animation: animate1 2s linear infinite;
 }
 
@@ -222,7 +205,7 @@
     right: 0;
     width: 3px;
     height: 100%;
-    background: linear-gradient(to right, transparent, #1779ff);
+    background: linear-gradient(to bottom, transparent, deeppink);
     animation: animate2 2s linear infinite;
     animation-delay: 1s;
 }
@@ -232,7 +215,7 @@
         transform: translateY(-100%);
     }
     100%{
-        transform: translateY(100% );
+        transform: translateY(100%);
     }
 }
 
@@ -242,7 +225,7 @@
     left: 0;
     width: 100%;
     height: 3px;
-    background: linear-gradient(to left, transparent, #1779ff);
+    background: linear-gradient(to left, transparent, deeppink);
     animation: animate3 2s linear infinite;
 }
 
@@ -255,14 +238,13 @@
     }
 }
 
-
 .player-card span:nth-child(4){
     position: absolute;
     top: 0;
     left: 0;
     width: 3px;
     height: 100%;
-    background: linear-gradient(to top, transparent, #1779ff);
+    background: linear-gradient(to top, transparent, deeppink);
     animation: animate4 2s linear infinite;
     animation-delay: 1s;
 }
