@@ -11,7 +11,10 @@ const Team = ({name, players=[], chanceOfWinning}) => {
             <div><img src={logo} className="team-logo"  alt={name}/></div>
             <div className="team-name">{name}</div> <br/>
             <div className="chance-of-winning">WIN Chance: <b>{chanceOfWinning}%</b></div>
-            <PlayersList players={players} match={true}/>
+            <div className="players">
+                <PlayersList players={players} match={true}/>
+            </div>
+
         </div>
     );
 }

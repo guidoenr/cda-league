@@ -1,18 +1,14 @@
-.match {
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    min-width: 400px;
-    border-radius: 10px;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-}
-
 .match-container {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap:50px;
-    background-color:white;
+}
+
+.match {
+    background-color: white;
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
 
 .match-content {
@@ -28,7 +24,7 @@
 }
 
 .match-header {
-    display: grid;
+    display: block;
     justify-content: center;
     text-align: center;
     width: 100%;

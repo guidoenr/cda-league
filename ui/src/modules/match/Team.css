@@ -1,46 +1,38 @@
 .team-container {
     display: flex;
-    flex-direction: column;
-    width: 300px;
-    align-items: center;
     justify-content: center;
-    margin: 20px;
+    align-items: center;
+    flex-direction: column;
+    width: 270px;
+    margin: 3px auto;
     border-radius: 5px;
 }
 
 .team-name {
-    font-size: 18px;
+    font-size: 14px;
     font-family: Inter, sans-serif;
     font-weight: 600;
     text-align: center;
-    margin-bottom: 1px;
+    margin: auto;
 }
 
 .team-logo {
-    width: 55px;
-    height: 55px;
+    width: 30px;
+    height: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .chance-of-winning{
-    font-size: 1rem;
+    font-size: 10px;
     font-family: Inter, sans-serif;
     color: rgb(150,150,150);
     text-align: center;
-    margin-bottom: 5px;
+    margin: auto auto 6px;
 }
 
-
-
-.player {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 5px;
-    padding: 10px;
-    border-radius: 5px;
-    background-color: #f5f5f5;
-    font-size: 1.2rem;
+.players{
+    margin: auto;
+    gap: 2px;
 }

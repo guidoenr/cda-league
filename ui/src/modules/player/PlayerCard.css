@@ -141,31 +141,29 @@
     display: flex;
     align-items: center;
     position: relative;
-    width: 110px;
+    width: 100px;
     height: 37px;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
     background-color: rgb(255, 250, 255);
     border-radius: 5px;
     overflow: hidden;
-    gap:-1px;
+    gap:-4px;
 }
 
 .player-card-match .photo {
-    margin-left: 20px;
     width: 25px;
     height: 25px;
     border-radius: 100%;
 }
 
 .player-card-match .info {
-    padding: 10px;
+    padding: 7px;
 }
 
 .player-card-match .nickname {
     color: #282c34;
-    margin-left: -2px;
     text-align: left;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: bold;
 }
 
@@ -180,15 +178,15 @@
 .player-card-match .position-shape {
     /* Style the rectangle shape */
     width: 20px;
-    height: 40px;
+    height: 10px;
     background-color: #333;
     color: #38003c;
     font-size: 8px;
     font-weight: 900;
-    line-height: 40px;
+    line-height: 12px;
     /* Position the rectangle shape in the top right corner of the Player Card */
     position: absolute;
     top: 0;
-    left: 0;
+    right: 0;
 }
 
