@@ -44,7 +44,7 @@ const PlayerCard = ({player, match} ) => {
             );
         } else {
             return (
-                <Container className={"player-card" + selected} onClick={handleClick}>
+                <Container className={"player-card" + selected} onClick={handleClick} data-position={player.position} >
                     {snakeBorder()}
                     <img src={getPhoto(player.nickname)} alt={`${player.name}'s profile photo`} className="photo" />
                     <div className="info">

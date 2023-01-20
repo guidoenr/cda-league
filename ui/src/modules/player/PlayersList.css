@@ -3,10 +3,8 @@
     display: flex;
     align-items: center;
     flex-wrap: nowrap;
-    margin: 0 auto;
-    /* Set the number of columns to 3 on larger screens */
     flex-flow: column nowrap;
-    gap: 3px
+    margin: 0 auto;
 }
 
 .player-list .player-card {
