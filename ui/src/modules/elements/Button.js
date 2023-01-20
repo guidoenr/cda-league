@@ -1,9 +1,9 @@
 import './Button.css'
 
-const Button = ({textToDisplay}) => {
+const Button = ({textToDisplay, onClick}) => {
     return (
         <div className="button-container">
-            <button className="button type1">
+            <button className="button type1" onClick={onClick}>
                 {textToDisplay}
             </button>
         </div>

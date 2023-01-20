@@ -45,16 +45,15 @@ const Match = () => {
             .catch(error => console.error('Error:', error));
     }
 
-    console.log(showTeams)
 
     // click the playerCard
     const handleSelectPlayer = (player) => {
-        if (availablePlayers.find(p => p.ID === player.ID)) {
-            setAvailablePlayers(availablePlayers.filter(p => p.ID !== player.ID))
-        } else {
-            setAvailablePlayers([...availablePlayers, player])
-        }
+        const newPlayerList = [...availablePlayers];
+        const playerIndex = newPlayerList.findIndex(p => p.ID === player.ID);
+        newPlayerList[playerIndex] = { ...newPlayerList[playerIndex], selected: !newPlayerList[playerIndex].selected };
+        setAvailablePlayers(newPlayerList);
     }
+
 
 
 
@@ -62,66 +61,63 @@ const Match = () => {
     function renderTeams(){
         if (showTeams){
             return (
-            <Container className="animate__animated animate__fadeInDown">
-            <div className="match-container">
-                <div className="match">
-                    <div className="match-header">
-                        <div className="match-status">
-                            19:00 hs
-                        </div>
-                        <img className="match-logo" src={cdaLogo} alt="Carmen League"/>Carmen League<br/>
-                        <div className="match-sub-header">
-                            Torneo de verano 2023
-                        </div>
-                    </div>
+                <Container className="animate__animated animate__fadeInDown">
+                    <div className="match-container">
+                        <div className="match">
+                            <div className="match-header">
+                                <div className="match-status">
+                                    19:00 hs
+                                </div>
+                                <img className="match-logo" src={cdaLogo} alt="Carmen League"/>Carmen League<br/>
+                                <div className="match-sub-header">
+                                    Torneo de verano 2023
+                                </div>
+                            </div>
 
-                    <div className="match-tournament"> </div>
-                    <div className="match-content ">
-                        <div className="team-container">
-                        <Team
-                              name={Team1.name}
-                              players={Team1.players}
-                              totalPlayers={Team1.totalPlayers}
-                              chanceOfWinning={Team1.chanceOfWinning}
-                        />
-                        </div>
-                        <div className="team-container">
-                        <Team
-                              name={Team2.name}
-                              players={Team2.players}
-                              totalPlayers={Team2.totalPlayers}
-                              chanceOfWinning={Team2.chanceOfWinning}
-                        />
+                            <div className="match-tournament"> </div>
+                            <div className="match-content ">
+                                <div className="team-container">
+                                    <Team
+                                        name={Team1.name}
+                                        players={Team1.players}
+                                        totalPlayers={Team1.totalPlayers}
+                                        chanceOfWinning={Team1.chanceOfWinning}
+                                    />
+                                </div>
+                                <div className="team-container">
+                                    <Team
+                                        name={Team2.name}
+                                        players={Team2.players}
+                                        totalPlayers={Team2.totalPlayers}
+                                        chanceOfWinning={Team2.chanceOfWinning}
+                                    />
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            </Container>
+                </Container>
             )
         } else {
             return <Container></Container>
         }
     }
 
-        return (
+    return (
+        <Container>
             <Container>
-                    <Container>
-                        <div className="available-players-container">
-                        {availablePlayers.map(player => (
-                            <div
-                                key={player.ID}
-                                onClick={() => handleSelectPlayer(player)}>
-                                <PlayerCard player={player} match={false}/>
-                            </div>
-                        ))}
-                    </div>
-                    </Container>
-                <Button textToDisplay="Armar Match" onClick={() => generateMatchWithPlayers()} />
-                {renderTeams()}
+                <div className="available-players-container">
+                    {availablePlayers.map(player => (
+                        <div
+                            key={player.ID}
+                            onClick={() => handleSelectPlayer(player)}>
+                            <PlayerCard player={player} match={false}/>
+                        </div>
+                    ))}
+                </div>
             </Container>
-        );
+            <Button onClick={generateMatchWithPlayers} textToDisplay="Armar partido"/>
+            {renderTeams()}
+        </Container>
+    );
 }
-
-
-
 export default Match;
