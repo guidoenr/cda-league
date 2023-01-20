@@ -128,7 +128,7 @@ h5 {
 @media only screen and (max-width: 900px) {
     th, td {
         font-size: 9px;
-        padding: 0.36rem; /* Add some padding to the cells */
+        padding: 0.3rem; /* Add some padding to the cells */
         text-align: center; /* Center the text in the cells */
     }
 
@@ -194,6 +194,10 @@ h5 {
 
     .headline{
         margin-top: 100px;
+    }
+
+    .elo{
+        font-size: 9px;
     }
 
 }
