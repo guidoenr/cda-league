@@ -56,14 +56,11 @@ const Match = () => {
     }
 
 
-
-
     const cdaLogo = require('../../assets/cda-league-only-logo.png')
     function renderTeams(){
         if (showTeams){
             return (
-                <Container className="animate__animated animate__fadeInDown">
-                    <div className="match-container">
+                <div className="match-container animate__animated animate__fadeInDown ">
                         <div className="match">
                             <div className="match-header">
                                 <img className="match-logo" src={cdaLogo} alt="Carmen League"/>Carmen League<br/>
@@ -92,8 +89,7 @@ const Match = () => {
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </Container>
+                </div>
             )
         } else {
             return <Container></Container>
@@ -113,7 +109,9 @@ const Match = () => {
                     ))}
                 </div>
             </Container>
-            <Button onClick={generateMatchWithPlayers} textToDisplay="Armar partido"/>
+            <div className="button-container">
+                <Button onClick={generateMatchWithPlayers} textToDisplay="Armar partido"/>
+            </div>
             {renderTeams()}
         </Container>
     );

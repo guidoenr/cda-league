@@ -2,6 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: -100px auto;
 }
 
 .match {
@@ -24,7 +25,7 @@
 }
 
 .match-header {
-    display: block;
+    display: grid;
     justify-content: center;
     text-align: center;
     width: 100%;
