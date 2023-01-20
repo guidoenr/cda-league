@@ -13,6 +13,20 @@ const PlayerCard = ({player, match} ) => {
 
     const selected = isSelected ? " selected" : "";
 
+    function snakeBorder(){
+        if (selected){
+            return (
+                <div>
+                    <span/>
+                    <span/>
+                    <span/>
+                    <span/>
+                </div>
+            )
+        }
+    }
+
+
     function render(){
         // if the player will be displayed in their match form
         if (match){
@@ -31,6 +45,7 @@ const PlayerCard = ({player, match} ) => {
         } else {
             return (
                 <Container className={"player-card" + selected} onClick={handleClick}>
+                    {snakeBorder()}
                     <img src={getPhoto(player.nickname)} alt={`${player.name}'s profile photo`} className="photo" />
                     <div className="info">
                         <h2 className="nickname">{player.nickname}</h2>
