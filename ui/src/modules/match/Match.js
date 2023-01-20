@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import PlayerCard from "../player/PlayerCard";
 import Team from './Team'
+import jsonPlayers from '../../resources/players.json'
 import Button from '../elements/Button'
 
 import './Match.css'
@@ -9,8 +10,9 @@ import 'animate.css';
 import cdaLogo from "../../assets/cda-league-only-logo.png";
 
 const Match = () => {
+    const [allPlayers, setAllPlayers] = useState([])
+    let [availablePlayers, setAvailablePlayers] = useState([]);
     const [showTeams, setShowTeams] = useState(false);
-    const [availablePlayers, setAvailablePlayers] = useState([]);
     const [Team1, setTeam1] = useState({});
     const [Team2, setTeam2] = useState({});
 
@@ -20,13 +22,17 @@ const Match = () => {
             try {
                 const response = await fetch('http://localhost:8080/players/');
                 const data = await response.json();
-                setAvailablePlayers(data.players);
+                setAllPlayers(data.players);
             } catch (error) {
                 console.error(error);
             }
         };
         getPlayers();
     }, []);
+
+    if (allPlayers.length === 0){
+        setAllPlayers(jsonPlayers.players)
+    }
 
     // generate match with selected players
     const generateMatchWithPlayers = () => {
@@ -48,11 +54,13 @@ const Match = () => {
 
     // click the playerCard
     const handleSelectPlayer = (player) => {
-        player.selected = true
-        const newPlayerList = [...availablePlayers];
-        const playerIndex = newPlayerList.findIndex(p => p.ID === player.ID);
-        newPlayerList[playerIndex] = { ...newPlayerList[playerIndex], selected: !newPlayerList[playerIndex].selected };
-        setAvailablePlayers(newPlayerList);
+        if (player.selected){
+            availablePlayers.pop(player)
+            player.selected=false
+        } else {
+            player.selected = true
+            availablePlayers.push(player)
+        }
     }
 
 
@@ -60,6 +68,7 @@ const Match = () => {
     function renderTeams(){
         if (showTeams){
             return (
+                <Container>
                 <div className="match-container animate__animated animate__fadeInDown ">
                         <div className="match">
                             <div className="match-header">
@@ -90,6 +99,7 @@ const Match = () => {
                             </div>
                         </div>
                 </div>
+                </Container>
             )
         } else {
             return <Container></Container>
@@ -98,9 +108,11 @@ const Match = () => {
 
     return (
         <Container>
-            <Container>
+            <div className="note-container">
+                <p className="match-note">Seleccionar jugadores</p>
+            </div>
                 <div className="available-players-container">
-                    {availablePlayers.map(player => (
+                    {allPlayers.map(player => (
                         <div
                             key={player.ID}
                             onClick={() => handleSelectPlayer(player)}>
@@ -108,10 +120,11 @@ const Match = () => {
                         </div>
                     ))}
                 </div>
-            </Container>
+            <Container>
             <div className="button-container">
                 <Button onClick={generateMatchWithPlayers} textToDisplay="Armar partido"/>
             </div>
+            </Container>
             {renderTeams()}
         </Container>
     );

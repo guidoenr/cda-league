@@ -116,7 +116,7 @@
 }
 
 
-@media (max-width: 500px) {
+@media (max-width: 1000px) {
     .player-card .nickname{
         /* make the player card take up the full width of the screen on small screens */
         width: 3%;

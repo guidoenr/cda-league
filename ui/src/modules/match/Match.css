@@ -76,21 +76,69 @@ img.match-logo {
 }
 
 
-@media (max-width: 700px) {
-    .available-players-container {
-        width: 200px;
-        height: 200px;
-        grid-gap: 5px;
-        margin-top: 20px;
+@media (max-width: 1000px) {
+    .match-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: auto;
     }
 
-    .available-players-container .player-card:hover {
+    .available-players-container {
+        display:grid;
+        justify-content: center;
+        align-items: center;
+        grid-template-columns: 1fr 1fr;
+        width: 200px;
+        grid-gap: 5px;
+        margin: 30px auto;
+        float:none;
+    }
+
+    .available-players-container .player-card{
+        width: 140px;
+        height: 48px;
+    }
+
+
+    .available-players-container .player-card .rank{
+        font-size: 10px;
+    }
+
+    .available-players-container .player-card .nickname{
+        font-size: 9px;
+    }
+
+    .available-players-container .player-card .name{
+        font-size: 6px;
+    }
+
+    .available-players-container .player-card .elo{
+        font-size: 7px;
     }
 
 }
 
 
 /* -------------------------------------------------------- BUTTTON*/
+.note-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+}
+
+.match-note {
+    font-size: 12px;
+    max-width: 250px;
+    max-height: 300px;
+    padding: 9px;
+    background-color: rgb(255,255,250);
+    filter: opacity(65%);
+    border-left: 3px solid #38003c;
+    border-right: 3px solid #38003c;
+    margin-bottom: 7px;
+}
 
 .btn-color{
     color: #38003c!important;
