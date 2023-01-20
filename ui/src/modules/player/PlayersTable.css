@@ -1,23 +1,13 @@
 /* ----------------------------------------------- CONTAINER -------------- */
-.Container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.center-container{
-    display: flex;
+.container {
+    display: inline-grid;
     justify-content: center;
     align-items: center;
 }
-
 
 /* ----------------------------------------------- TABLE -------------- */
 table {
     margin: 20px auto;
-    max-width: 80%;
-    border-collapse: collapse; /* Remove the default cell spacing */
     box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
 }
 
@@ -36,14 +26,12 @@ tr:nth-child(n):hover {
     background-color: whitesmoke;
 }
 
-
 /* The column names*/
 th {
     color: white;
     background-color: #38003c; /* Add a light gray background color */
     font-weight: 400; /* Make the text bold */
 }
-
 
 .rank {
     margin-right: 8px;
@@ -91,7 +79,6 @@ th {
 }
 
 /* NOTES */
-/* Notes */
 .logo{
     width: 140px;
     height: 110px;
@@ -141,17 +128,10 @@ h5 {
 
 .headline{
     display: block;
-    margin-left: 25px;
 }
 
 /* ----------------------------------------------------------------------------------  MEDIA QUERIES */
-@media only screen and (max-width: 1000px) {
-    table {
-        width: 100%;
-        overflow-x: hidden;
-        border-collapse: separate; /* Remove the default cell spacing */
-    }
-
+@media only screen and (max-width: 900px) {
     th, td {
         font-size: 9px;
         padding: 0.36rem; /* Add some padding to the cells */
@@ -166,10 +146,10 @@ h5 {
     }
 
     .rank {
-        margin-right: 8px;
         font-size: 9px;
         color: goldenrod;
     }
+
 
     .nickname{
         text-align: center;
@@ -178,7 +158,6 @@ h5 {
     }
 
     .photo {
-        display:flex;
         width: 20px;
         height: 20px;
         object-fit: cover;
@@ -198,42 +177,17 @@ h5 {
     }
 
 
-    h1, h5 {
-        text-align: center;
-        margin-right: auto;
-        margin-left: auto;
-    }
-
-
-    h1 {
-        font-size: 15px;
-        font-weight: bold;
-        color: #38003c;
-    }
-
-    /* Subtitle */
-    h5 {
-        font-size: 9px!important;
-        font-weight: bold;
-        color: #6c757d;
-    }
 
     /* Notes */
     .note {
-        max-width: 300px;
-        max-height: 800px;
         background-color: rgb(255,255,250);
         filter: opacity(65%);
-        border-left: 4px solid #38003c;
         margin-bottom: 7px;
     }
 
     /* text in notes */
     p {
-        text-align: center;
-        font-size: 10px;
-        color: #6c757d;
-        margin-bottom: 0.6rem;
+        font-size: 9px;
     }
 
     .logo{
@@ -245,9 +199,7 @@ h5 {
     }
 
     .headline{
-        display: block;
         margin-top: 100px;
-        margin-left: 0px;
     }
 
 }
