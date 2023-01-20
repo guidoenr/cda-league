@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Container from "react-bootstrap/Container";
 import { getStars, getPhoto, getColor } from "../Util";
 import "./PlayerCard.css";
 import "../Util";
@@ -29,7 +28,8 @@ const PlayerCard = ({ player, match }) => {
         // if the player will be displayed in their match form
         if (match) {
             return (
-                <Container className={"player-card-match"}>
+                <div className="player-card-container">
+                <div className="player-card-match">
                     <img
                         src={getPhoto(player.nickname)}
                         alt={`${player.name}'s profile photo`}
@@ -46,11 +46,12 @@ const PlayerCard = ({ player, match }) => {
                             {player.position.toUpperCase().substring(0, 3)}
                         </div>
                     </div>
-                </Container>
+                </div>
+            </div>
             );
         } else {
             return (
-                <Container
+                <div
                     className={"player-card" + selected}
                     onClick={handleClick}
                     data-position={player.position}
@@ -74,7 +75,7 @@ const PlayerCard = ({ player, match }) => {
                             {player.position.toUpperCase().substring(0, 3)}
                         </div>
                     </div>
-                </Container>
+                </div>
             );
         }
     }
