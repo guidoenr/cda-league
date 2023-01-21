@@ -45,7 +45,7 @@ func (pdb *PostgreDB) InitDB() error {
 	// setting the bunDB
 	pdb.BunDB = bunDB
 
-	fmt.Printf("connected to bunDB '%s' succesfully", pdb.dbname)
+	log.Info().Msgf("connected to bunDB '%s' succesfully", pdb.dbname)
 	return nil
 }
 

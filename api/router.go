@@ -21,7 +21,7 @@ func (r *Router) Init(postgreDB *psdb.PostgreDB) {
 	var controller PlayerControler
 	controller.Init(postgreDB)
 
-	// gin.SetMode(gin.ReleaseMode) TODO:later
+	gin.SetMode(gin.ReleaseMode)
 	r.ginRouter = gin.Default()
 	r.db = postgreDB
 	r.controller = &controller
