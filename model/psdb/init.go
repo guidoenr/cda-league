@@ -1,6 +1,7 @@
 package psdb
 
 import (
+	"crypto/tls"
 	"database/sql"
 	"errors"
 	"fmt"
@@ -63,6 +64,9 @@ func (pdb *PostgreDB) CloseDB() error {
 
 // loadConnector returns the connector with the ENV variables to connect to the DB
 func (pdb *PostgreDB) loadConnector() {
+	// create the connector
+	var connector *pgdriver.Connector
+
 	// get the vars
 	dbname := os.Getenv("DB_NAME")
 
@@ -70,12 +74,24 @@ func (pdb *PostgreDB) loadConnector() {
 	// something like postgres://postgres:@localhost:5432/test
 	dbUrl := os.Getenv("DATABASE_URL")
 
-	// initializing the connector
-	pgconn := pgdriver.NewConnector(
-		pgdriver.WithDSN(dbUrl),
-	)
+	// if the DATABASE_URL is contains something, that means we are in the
+	// cloud environment, so we will use the DSN option (database URL)
+	if dbUrl != "" {
+		connector = pgdriver.NewConnector(
+			pgdriver.WithDSN(dbUrl),
+		)
+	} else {
+		connector = pgdriver.NewConnector(
+			pgdriver.WithNetwork(os.Getenv("DB_NETWORK")),
+			pgdriver.WithAddr(os.Getenv("DB_ADDR")),
+			pgdriver.WithInsecure(true),
+			pgdriver.WithTLSConfig(&tls.Config{InsecureSkipVerify: true}),
+			pgdriver.WithUser(os.Getenv("DB_USER")),
+			pgdriver.WithPassword(os.Getenv("DB_PASSWORD")),
+			pgdriver.WithDatabase(os.Getenv("DB_NAME")))
+	}
 
 	// setting the connector
 	pdb.dbname = dbname
-	pdb.connector = pgconn
+	pdb.connector = connector
 }

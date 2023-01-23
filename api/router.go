@@ -41,6 +41,11 @@ func (r *Router) StartRouter() {
 		MaxAge:           12 * time.Hour,
 	}))
 
+	r.ginRouter.GET("/", func(c *gin.Context) {
+		c.Header("Content-Type", "text/html")
+		c.File("api/index.html")
+	})
+
 	// players routes
 	players := r.ginRouter.Group("/players")
 	{
@@ -59,6 +64,13 @@ func (r *Router) StartRouter() {
 	}
 
 	r.ginRouter.Run()
+}
+
+/* INDEX */
+func (r *Router) index() gin.HandlerFunc {
+	return func(c *gin.Context) {
+
+	}
 }
 
 // -------------------------- CONTROLLERS

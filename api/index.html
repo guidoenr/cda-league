@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <title>API Routes</title>
+    <style>
+        /* Add some styling to make the page look nice */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #2C3E50; /* dark color for the background */
+            color: #FFFFFF; /* white color for the text */
+        }
+        h1 {
+            text-align: center;
+            margin: 40px 0;
+            color: #FFFFFF; /* white color for the text */
+        }
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            text-align: center; /* center the routes */
+        }
+        li {
+            margin: 10px 0;
+        }
+        p{
+            text-align: center; /* center the message */
+            color: #27AE60; /* light-green color for the message */
+        }
+        /* Add bold to the HTTP verbs */
+        li strong {
+            font-weight: bold;
+        }
+
+        li .code{
+            background-color: black; /* dark color for the background */
+            color: deeppink; /* white color for the text */
+            padding: 5px;
+            border-radius: 5px;
+        }
+        /* Add code-effect to the functions */
+        .function {
+            background-color: #2C3E50; /* dark color for the background */
+            color: #00ff85; /* white color for the text */
+            padding: 5px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+<p style="text-align:center;">API is working</p>
+<h1>API Routes</h1>
+<ul>
+    <li><strong>GET</strong> <span class="code">/players</span> - <span class="function">showPlayers()</span></li>
+    <li><strong>GET</strong> <span class="code">/players/rank</span> - <span class="function">showPlayersRanked()</span></li>
+    <li><strong>GET</strong> <span class="code">/players/:id</span> - <span class="function">showPlayerByID()</span></li>
+    <li><strong>GET</strong> <span class="code">/players/nickname/:nickname</span> - <span class="function">showPlayerByNickname()</span></li>
+</ul>
+
+
+</body>
+</html>
