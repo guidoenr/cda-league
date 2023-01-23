@@ -50,6 +50,7 @@ func (h *Helper) InitializeDatabase(cleanDb ...bool) error {
 
 	// check if the tables were created
 	if !h.TablesCreated() {
+		log.Info().Msg("tables don't exist, creating tables...")
 		// if the tables weren't created, create all the tables
 		err = h.CreateTables()
 		if err != nil {
@@ -161,13 +162,7 @@ func (h *Helper) PingToDb() error {
 
 // TablesCreated will check if the db is running
 func (h *Helper) TablesCreated() bool {
-	// trying to create the tables
-	/*	err := h.CreateTables()
-		if strings.Contains(err.Error(), "exists") {
-			return true
-		}*/
-
-	return false
+	return true
 }
 
 // CleanDB makes a DROP TABLE players;
