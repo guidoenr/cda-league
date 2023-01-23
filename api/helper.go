@@ -41,7 +41,7 @@ func (h *Helper) InitializeDatabase(cleanDb ...bool) error {
 	}
 
 	// clean the DB
-	if cleanDb[0] {
+	if len(cleanDb) > 0 {
 		err = h.CleanDB()
 		if err != nil {
 			return handler.HandleError("cleaning the DB: %v", err)
