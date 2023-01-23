@@ -12,7 +12,7 @@ func main() {
 	var db psdb.PostgreDB
 	err := db.InitDB()
 	if err != nil {
-		log.Error().Msgf("initializing db: %v", err)
+		log.Error().Msgf("creating postgredb connector: %v", err)
 		os.Exit(0)
 	}
 	defer db.CloseDB()
@@ -22,7 +22,11 @@ func main() {
 	helper.Init(&db)
 
 	// initializing the database
-	helper.InitializeDatabase(true)
+	err = helper.InitializeDatabase()
+	if err != nil {
+		log.Error().Msgf("initializing db: %v", err)
+		os.Exit(0)
+	}
 
 	// creating the router and their routes
 	var Router api.Router
