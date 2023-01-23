@@ -3,9 +3,9 @@ package api
 import (
 	"context"
 	"fmt"
-	"github.com/guidoenr/fulbo/handler"
-	"github.com/guidoenr/fulbo/model"
-	"github.com/guidoenr/fulbo/model/psdb"
+	"github.com/guidoenr/cda-league/handler"
+	"github.com/guidoenr/cda-league/model"
+	"github.com/guidoenr/cda-league/model/psdb"
 	"github.com/rs/zerolog/log"
 	"strconv"
 )

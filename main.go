@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/guidoenr/fulbo/api"
-	"github.com/guidoenr/fulbo/model/psdb"
+	"github.com/guidoenr/cda-league/api"
+	"github.com/guidoenr/cda-league/model/psdb"
 	"github.com/rs/zerolog/log"
 	"os"
 )

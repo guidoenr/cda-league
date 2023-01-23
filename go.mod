@@ -1,4 +1,4 @@
-module github.com/guidoenr/fulbo
+module github.com/guidoenr/cda-league
 
 go 1.19
 
