@@ -95,8 +95,6 @@ func (h *Helper) MakeBackup() error {
 		Model(&matches).
 		Scan(context.Background())
 
-	fmt.Printf("players: %v", players)
-
 	if err != nil {
 		return handler.HandleError("[critical]- making backup: %v", err)
 	}
@@ -226,10 +224,7 @@ func (h *Helper) CreateTables() error {
 
 // readPlayersFromJSON reads all the players json list from /resources/zero-day-players.json
 func (h *Helper) readPlayersFromJSON() error {
-	// getting the bytes
-	currentPath, _ := os.Getwd()
-	log.Info().Msg(currentPath)
-
+	// reading the first players state
 	jsonData, err := os.ReadFile("api/backup/zero-day-players.json")
 	if err != nil {
 		return handler.HandleError("reading zero day players file : %v", err)
