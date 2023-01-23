@@ -10,7 +10,6 @@ import (
 	"github.com/guidoenr/fulbo/model/psdb"
 	"github.com/rs/zerolog/log"
 	"os"
-	"strings"
 	"time"
 )
 
@@ -25,7 +24,9 @@ func (h *Helper) Init(db *psdb.PostgreDB) {
 
 // InitializeDatabase knows how to start the DB, checking the tables, making pings
 // and doing all the operations of sanitizing the database
-func (h *Helper) InitializeDatabase() error {
+func (h *Helper) InitializeDatabase(cleanDb ...bool) error {
+	log.Info().Msg("initializing database...")
+
 	// first let's ping the db
 	err := h.PingToDb()
 	if err != nil {
@@ -39,9 +40,17 @@ func (h *Helper) InitializeDatabase() error {
 		}
 	}
 
+	// clean the DB
+	if cleanDb[0] {
+		err = h.CleanDB()
+		if err != nil {
+			return handler.HandleError("cleaning the DB: %v", err)
+		}
+	}
+
 	// check if the tables were created
-	tablesCreated := h.TablesCreated()
-	if !tablesCreated {
+	if !h.TablesCreated() {
+		// if the tables weren't created, create all the tables
 		err = h.CreateTables()
 		if err != nil {
 			return handler.HandleError("creating tables: %v", err)
@@ -53,11 +62,92 @@ func (h *Helper) InitializeDatabase() error {
 		if err != nil {
 			return handler.HandleError("dumping players to db: %v", err)
 		}
-		log.Info().Msg("tables created succesfully")
+		log.Info().Msg("tables created successfully")
+	}
+
+	// creating the backup (json files)
+	// TODO, improve this?
+	err = h.MakeBackup()
+	if err != nil {
+		return handler.HandleError("making backup: %v", err)
 	}
 
 	log.Info().Msg("[Database OK] - Ready to go ;)")
 	return nil
+}
+
+// MakeBackup will do a backup of the current state of the database in JSON files
+// this backup is only in case the DB stop working
+func (h *Helper) MakeBackup() error {
+	// creating the variables to dump the data
+	var players []model.Player
+	var matches []model.Match
+
+	// SELECT * FROM players
+	err := h.db.BunDB.
+		NewSelect().
+		Model(&players).
+		Scan(context.Background())
+
+	// SELECT * FROM matches
+	err = h.db.BunDB.
+		NewSelect().
+		Model(&matches).
+		Scan(context.Background())
+
+	fmt.Printf("players: %v", players)
+
+	if err != nil {
+		return handler.HandleError("[critical]- making backup: %v", err)
+	}
+
+	// marshall the structs into JSON
+	JSONPlayers, _ := json.MarshalIndent(players, "", " ")
+	JSONMatches, _ := json.MarshalIndent(matches, "", " ")
+
+	// create the file names
+	FilePlayers, err := h.generateBackupFileName("players")
+	if err != nil {
+		return handler.HandleError("creating backup filename for players: %v", err)
+	}
+	FileMatches, err := h.generateBackupFileName("matches")
+	if err != nil {
+		return handler.HandleError("creating backup filename for matches: %v", err)
+	}
+
+	// write files
+	err = os.WriteFile(FilePlayers, JSONPlayers, 0644)
+	if err != nil {
+		return handler.HandleError("writing file for players: %v", err)
+	}
+	err = os.WriteFile(FileMatches, JSONMatches, 0644)
+	if err != nil {
+		return handler.HandleError("writing file for matches: %v", err)
+	}
+
+	if err != nil {
+		return handler.HandleError("[critical]- dumping players into backup files: %v", err)
+	}
+
+	return nil
+}
+
+// generateBackupFileName returns the correct backup file name for the given table
+func (h *Helper) generateBackupFileName(tableName string) (string, error) {
+	// get current date and time
+	year, month, day := time.Now().Date()
+	hour := time.Now().Hour()
+	minute := time.Now().Minute()
+
+	// creating the name of the file
+	fileName := fmt.Sprintf("api/backup/{%d-%s-%d|%d:%d}-backup-%s.json", day, month.String(), year, hour, minute, tableName)
+
+	_, err := os.Create(fileName)
+	if err != nil {
+		return "", handler.HandleError("creating filename '%s': %v", fileName, err)
+	}
+
+	return fileName, nil
 }
 
 // PingToDb will check if the db is running
@@ -73,20 +163,19 @@ func (h *Helper) PingToDb() error {
 
 // TablesCreated will check if the db is running
 func (h *Helper) TablesCreated() bool {
-	created := false
-
 	// trying to create the tables
-	err := h.CreateTables()
-	if strings.Contains(err.Error(), "exists") {
-		created = true
-	}
+	/*	err := h.CreateTables()
+		if strings.Contains(err.Error(), "exists") {
+			return true
+		}*/
 
-	return created
+	return false
 }
 
 // CleanDB makes a DROP TABLE players;
 func (h *Helper) CleanDB() error {
-	_, err := h.db.BunDB.Query("DROP TABLE players;")
+	_, err := h.db.BunDB.Query("DROP TABLE matches;")
+	_, err = h.db.BunDB.Query("DROP TABLE players;")
 	if err != nil {
 		msg := fmt.Sprintf("cleaning db: %v", err)
 		return errors.New(msg)
@@ -94,21 +183,21 @@ func (h *Helper) CleanDB() error {
 	return nil
 }
 
-// DumpPlayersToDB initializes the db with all the players written in players.json
+// DumpPlayersToDB initializes the db with all the players written in zero-day-players.json
 func (h *Helper) DumpPlayersToDB() error {
 	// first read the json file
-	// TODO, maybe create a backup?
-	h.readPlayersFromJSON()
+	err := h.readPlayersFromJSON()
+	if err != nil {
+		return handler.HandleError("reading players from json: %v", err)
+	}
 
 	// making the query
-	_, err := h.db.BunDB.NewInsert().
+	_, err = h.db.BunDB.NewInsert().
 		Model(&h.players).
 		Exec(context.Background())
 
 	if err != nil {
-		msg := fmt.Sprintf("dumping players to db: %v", err)
-		log.Error().Msg(msg)
-		return errors.New(msg)
+		return handler.HandleError("dumping players to db: %v", err)
 	}
 	return nil
 }
@@ -121,23 +210,36 @@ func (h *Helper) CreateTables() error {
 		Exec(context.Background())
 
 	if err != nil {
-		msg := fmt.Sprintf("creating schemas: %v", err)
-		log.Error().Msg(msg)
-		return errors.New(msg)
+		return handler.HandleError("creating players table: %v", err)
 	}
+
+	_, err = h.db.BunDB.NewCreateTable().
+		Model((*model.Match)(nil)).
+		Exec(context.Background())
+
+	if err != nil {
+		return handler.HandleError("creating matches table: %v", err)
+	}
+
 	return nil
 }
 
-// readPlayersFromJSON reads all the players json list from /resources/players.json
-func (h *Helper) readPlayersFromJSON() {
+// readPlayersFromJSON reads all the players json list from /resources/zero-day-players.json
+func (h *Helper) readPlayersFromJSON() error {
 	// getting the bytes
-	jsonData, _ := os.ReadFile("resources/players.json")
+	currentPath, _ := os.Getwd()
+	log.Info().Msg(currentPath)
+
+	jsonData, err := os.ReadFile("api/backup/zero-day-players.json")
+	if err != nil {
+		return handler.HandleError("reading zero day players file : %v", err)
+	}
 
 	// unmarshalling into JsonPlayers
 	var jsonPlayers []model.Player
-	err := json.Unmarshal(jsonData, &jsonPlayers)
+	err = json.Unmarshal(jsonData, &jsonPlayers)
 	if err != nil {
-		log.Error().Msgf("UNMARSHALLING")
+		return handler.HandleError("unmarshalling players: %v", err)
 	}
 
 	// we must initialize each player to calculate the elo
@@ -147,4 +249,5 @@ func (h *Helper) readPlayersFromJSON() {
 		h.players = append(h.players, newPlayer)
 	}
 
+	return nil
 }

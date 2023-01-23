@@ -25,7 +25,8 @@ func (pc *PlayerControler) GetPlayers() ([]model.Player, error) {
 	var players []model.Player
 
 	// SELECT * FROM players
-	err := pc.db.BunDB.NewSelect().
+	err := pc.db.BunDB.
+		NewSelect().
 		Model(&players).
 		Scan(context.Background())
 
@@ -53,7 +54,8 @@ func (pc *PlayerControler) GetPlayersRankedBy(sortField string, sortFields ...st
 	}
 
 	// SELECT * FROM players ORDER BY $sortField
-	err := pc.db.BunDB.NewSelect().
+	err := pc.db.BunDB.
+		NewSelect().
 		Model(&players).
 		OrderExpr(orderExpr).
 		Scan(context.Background())
@@ -73,7 +75,8 @@ func (pc *PlayerControler) GetPlayerByID(id string) (model.Player, error) {
 	playerId, _ := strconv.Atoi(id)
 
 	// find the player by id
-	err := pc.db.BunDB.NewSelect().
+	err := pc.db.BunDB.
+		NewSelect().
 		Model(&player).
 		Where("id = ?", playerId).
 		Scan(context.Background())
@@ -90,7 +93,8 @@ func (pc *PlayerControler) GetPlayerByNickname(nickname string) (model.Player, e
 	var player model.Player
 
 	// find player by nickname
-	err := pc.db.BunDB.NewSelect().
+	err := pc.db.BunDB.
+		NewSelect().
 		Model(&player).
 		Where("nickname = ?", nickname).
 		Scan(context.Background())
@@ -133,7 +137,8 @@ func (pc *PlayerControler) UpdatePlayers(matchResult model.Result) (int64, error
 	}
 
 	// update all players in a batch
-	result, err := pc.db.BunDB.NewUpdate().
+	result, err := pc.db.BunDB.
+		NewUpdate().
 		Model(&players).
 		Exec(context.Background())
 

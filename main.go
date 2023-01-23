@@ -4,14 +4,16 @@ import (
 	"github.com/guidoenr/fulbo/api"
 	"github.com/guidoenr/fulbo/model/psdb"
 	"github.com/rs/zerolog/log"
+	"os"
 )
 
 func main() {
-	// initializing the database
+	// creating the database
 	var db psdb.PostgreDB
 	err := db.InitDB()
 	if err != nil {
 		log.Error().Msgf("initializing db: %v", err)
+		os.Exit(0)
 	}
 	defer db.CloseDB()
 
@@ -19,8 +21,10 @@ func main() {
 	var helper api.Helper
 	helper.Init(&db)
 
-	helper.InitializeDatabase()
+	// initializing the database
+	helper.InitializeDatabase(true)
 
+	// creating the router and their routes
 	var Router api.Router
 	Router.Init(&db)
 
