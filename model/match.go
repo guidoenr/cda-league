@@ -20,6 +20,20 @@ type Match struct {
 	MatchResult   Result            `bun:"result" json:"result"` // the match result
 }
 
+// Init initializes the match wit the players
+func (m *Match) Init(players []Player) {
+	m.Players = players
+	m.Date = time.Now()
+}
+
+// SaveResult will return a list of players with the actualized stats
+// looking at a MatchResult
+func (m *Match) SaveResult(result Result) []Player {
+	var playersToUpdate []Player
+
+	return playersToUpdate
+}
+
 // GenerateTeams is the complete algorithm to create evenly teams based on the player's ranking
 // where the first picker is random and each player are distributed based on their ranks
 func (m *Match) GenerateTeams() {
