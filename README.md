@@ -19,3 +19,16 @@ user=root
 password=root 
 db=fulbo
 ```
+
+
+# Deploying
+## use buildpacks:
+1. `go` buildpack
+2. `react` buildpack
+
+## see current buildpacks
+- `heroku buildpacks`
+
+## add buildpacks [CLI]
+- `heroku buildpacks:add --index 2 https://github.com/mars/create-react-app-buildpack.git`
+- the go buildpack is detected automatically

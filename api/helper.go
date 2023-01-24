@@ -49,7 +49,7 @@ func (h *Helper) InitializeDatabase(cleanDb ...bool) error {
 	}
 
 	// check if the tables were created
-	if !h.TablesCreated() {
+	if !h.TablesExist() {
 		log.Info().Msg("tables don't exist, creating tables...")
 		// if the tables weren't created, create all the tables
 		err = h.CreateTables()
@@ -124,10 +124,6 @@ func (h *Helper) MakeBackup() error {
 		return handler.HandleError("writing file for matches: %v", err)
 	}
 
-	if err != nil {
-		return handler.HandleError("[critical]- dumping players into backup files: %v", err)
-	}
-
 	return nil
 }
 
@@ -160,8 +156,31 @@ func (h *Helper) PingToDb() error {
 	return nil
 }
 
-// TablesCreated will check if the db is running
-func (h *Helper) TablesCreated() bool {
+// TablesExist will check if the db is running
+func (h *Helper) TablesExist() bool {
+	var players []model.Player
+	var matches []model.Match
+
+	// SELECT * FROM players
+	err := h.db.BunDB.
+		NewSelect().
+		Model(&players).
+		Scan(context.Background())
+
+	if err != nil || len(players) == 0 {
+		return false
+	}
+
+	// SELECT * FROM matches
+	err = h.db.BunDB.
+		NewSelect().
+		Model(&matches).
+		Scan(context.Background())
+
+	if err != nil || len(matches) == 0 {
+		return false
+	}
+
 	return true
 }
 
