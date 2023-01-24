@@ -1,4 +1,4 @@
-module github.com/guidoenr/cda-league
+module github.com/guidoenr/cda-league/core
 
 go 1.19
 

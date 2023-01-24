@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
-	"github.com/guidoenr/cda-league/back/model/psdb"
-	model2 "github.com/guidoenr/cda-league/core/model"
+	model "github.com/guidoenr/cda-league/core/model"
+	"github.com/guidoenr/cda-league/core/model/psdb"
 	"log"
 	"net/http"
 	"time"
@@ -155,7 +155,7 @@ func (r *Router) updatePlayer() gin.HandlerFunc {
 // -------------------------- MATCH
 
 type AvailablePlayers struct {
-	Players []model2.Player `json:"players"`
+	Players []model.Player `json:"players"`
 }
 
 // generateMatch takes the list of the available players (in the body) and generate
@@ -175,7 +175,7 @@ func (r *Router) generateMatch() gin.HandlerFunc {
 		}
 
 		// creating the match
-		var match model2.Match
+		var match model.Match
 		match.Init(playersToPlay.Players)
 		match.GenerateTeams()
 
