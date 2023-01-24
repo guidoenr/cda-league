@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 	"github.com/guidoenr/cda-league/back/handler"
-	model2 "github.com/guidoenr/cda-league/back/model"
 	"github.com/guidoenr/cda-league/back/model/psdb"
+	model2 "github.com/guidoenr/cda-league/core/model"
 	"github.com/rs/zerolog/log"
 	"strconv"
 )

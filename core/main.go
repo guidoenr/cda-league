@@ -1,8 +1,8 @@
 package main
 
 import (
-	api2 "github.com/guidoenr/cda-league/back/api"
-	"github.com/guidoenr/cda-league/back/model/psdb"
+	api2 "github.com/guidoenr/cda-league/core/api"
+	"github.com/guidoenr/cda-league/core/model/psdb"
 	"github.com/rs/zerolog/log"
 	"os"
 )
