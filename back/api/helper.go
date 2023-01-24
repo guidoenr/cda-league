@@ -5,9 +5,9 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/guidoenr/cda-league/handler"
-	"github.com/guidoenr/cda-league/model"
-	"github.com/guidoenr/cda-league/model/psdb"
+	"github.com/guidoenr/cda-league/back/handler"
+	model2 "github.com/guidoenr/cda-league/back/model"
+	"github.com/guidoenr/cda-league/back/model/psdb"
 	"github.com/rs/zerolog/log"
 	"os"
 	"time"
@@ -15,7 +15,7 @@ import (
 
 type Helper struct {
 	db      *psdb.PostgreDB
-	players []model.Player
+	players []model2.Player
 }
 
 func (h *Helper) Init(db *psdb.PostgreDB) {
@@ -81,8 +81,8 @@ func (h *Helper) InitializeDatabase(cleanDb ...bool) error {
 // this backup is only in case the DB stop working
 func (h *Helper) MakeBackup() error {
 	// creating the variables to dump the data
-	var players []model.Player
-	var matches []model.Match
+	var players []model2.Player
+	var matches []model2.Match
 
 	// SELECT * FROM players
 	err := h.db.BunDB.
@@ -158,8 +158,8 @@ func (h *Helper) PingToDb() error {
 
 // TablesExist will check if the db is running
 func (h *Helper) TablesExist() bool {
-	var players []model.Player
-	var matches []model.Match
+	var players []model2.Player
+	var matches []model2.Match
 
 	// SELECT * FROM players
 	err := h.db.BunDB.
@@ -218,7 +218,7 @@ func (h *Helper) DumpPlayersToDB() error {
 func (h *Helper) CreateTables() error {
 	// creating players table
 	_, err := h.db.BunDB.NewCreateTable().
-		Model((*model.Player)(nil)).
+		Model((*model2.Player)(nil)).
 		Exec(context.Background())
 
 	if err != nil {
@@ -226,7 +226,7 @@ func (h *Helper) CreateTables() error {
 	}
 
 	_, err = h.db.BunDB.NewCreateTable().
-		Model((*model.Match)(nil)).
+		Model((*model2.Match)(nil)).
 		Exec(context.Background())
 
 	if err != nil {
@@ -245,14 +245,14 @@ func (h *Helper) readPlayersFromJSON() error {
 	}
 
 	// unmarshalling into JsonPlayers
-	var jsonPlayers []model.Player
+	var jsonPlayers []model2.Player
 	err = json.Unmarshal(jsonData, &jsonPlayers)
 	if err != nil {
 		return handler.HandleError("unmarshalling players: %v", err)
 	}
 
 	// we must initialize each player to calculate the elo
-	var newPlayer model.Player
+	var newPlayer model2.Player
 	for _, p := range jsonPlayers {
 		newPlayer.Init(p.Nickname, p.Name, p.Description, p.Age, p.Rank, p.Position, p.TotalGoals, p.GamesPlayed, p.GamesWon, p.GamesLost)
 		h.players = append(h.players, newPlayer)

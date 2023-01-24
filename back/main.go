@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/guidoenr/cda-league/api"
-	"github.com/guidoenr/cda-league/model/psdb"
+	api2 "github.com/guidoenr/cda-league/back/api"
+	"github.com/guidoenr/cda-league/back/model/psdb"
 	"github.com/rs/zerolog/log"
 	"os"
 )
@@ -18,7 +18,7 @@ func main() {
 	defer db.CloseDB()
 
 	// creating the helper
-	var helper api.Helper
+	var helper api2.Helper
 	helper.Init(&db)
 
 	// initializing the database
@@ -29,7 +29,7 @@ func main() {
 	}
 
 	// creating the router and their routes
-	var Router api.Router
+	var Router api2.Router
 	Router.Init(&db)
 
 	Router.StartRouter()

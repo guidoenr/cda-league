@@ -3,9 +3,9 @@ package api
 import (
 	"context"
 	"fmt"
-	"github.com/guidoenr/cda-league/handler"
-	"github.com/guidoenr/cda-league/model"
-	"github.com/guidoenr/cda-league/model/psdb"
+	"github.com/guidoenr/cda-league/back/handler"
+	model2 "github.com/guidoenr/cda-league/back/model"
+	"github.com/guidoenr/cda-league/back/model/psdb"
 	"github.com/rs/zerolog/log"
 	"strconv"
 )
@@ -20,9 +20,9 @@ func (pc *PlayerControler) Init(db *psdb.PostgreDB) {
 
 // GetPlayers (GET /players)
 // check in the DB all the stored players and return them in JSON format
-func (pc *PlayerControler) GetPlayers() ([]model.Player, error) {
+func (pc *PlayerControler) GetPlayers() ([]model2.Player, error) {
 	log.Info().Msgf("getting players")
-	var players []model.Player
+	var players []model2.Player
 
 	// SELECT * FROM players
 	err := pc.db.BunDB.
@@ -42,9 +42,9 @@ func (pc *PlayerControler) GetPlayers() ([]model.Player, error) {
 // returns all the players sorted by their elo, maybe you can think
 // "ok, but you can use getplayers and then sort it" but no...
 // queries in an SQL motor are more performant than in the code
-func (pc *PlayerControler) GetPlayersRankedBy(sortField string, sortFields ...string) ([]model.Player, error) {
+func (pc *PlayerControler) GetPlayersRankedBy(sortField string, sortFields ...string) ([]model2.Player, error) {
 	log.Info().Msgf("getting ranked by elo players")
-	var players []model.Player
+	var players []model2.Player
 	var orderExpr string
 
 	// generating the orderExpr
@@ -70,8 +70,8 @@ func (pc *PlayerControler) GetPlayersRankedBy(sortField string, sortFields ...st
 
 // GetPlayerByID (GET /players/:id)
 // check in the DB the player finding by id
-func (pc *PlayerControler) GetPlayerByID(id string) (model.Player, error) {
-	var player model.Player
+func (pc *PlayerControler) GetPlayerByID(id string) (model2.Player, error) {
+	var player model2.Player
 	playerId, _ := strconv.Atoi(id)
 
 	// find the player by id
@@ -89,8 +89,8 @@ func (pc *PlayerControler) GetPlayerByID(id string) (model.Player, error) {
 }
 
 // GetPlayerByNickname (GET /players/) found a player by their nickname
-func (pc *PlayerControler) GetPlayerByNickname(nickname string) (model.Player, error) {
-	var player model.Player
+func (pc *PlayerControler) GetPlayerByNickname(nickname string) (model2.Player, error) {
+	var player model2.Player
 
 	// find player by nickname
 	err := pc.db.BunDB.
@@ -109,7 +109,7 @@ func (pc *PlayerControler) GetPlayerByNickname(nickname string) (model.Player, e
 // UpdatePlayers (POST /players/:id/update) updates the players fields given a match result
 // and return the updated rows count
 // (NOTE: this function receives a map[int]int that contains the id of the player and the goals
-func (pc *PlayerControler) UpdatePlayers(matchResult model.Result) (int64, error) {
+func (pc *PlayerControler) UpdatePlayers(matchResult model2.Result) (int64, error) {
 
 	// validate player IDs
 	for playerId := range matchResult.PlayerGoals {
@@ -119,7 +119,7 @@ func (pc *PlayerControler) UpdatePlayers(matchResult model.Result) (int64, error
 	}
 
 	// create the players slice to update
-	players := make([]model.Player, 0, len(matchResult.PlayerGoals))
+	players := make([]model2.Player, 0, len(matchResult.PlayerGoals))
 
 	for playerId, goals := range matchResult.PlayerGoals {
 		// get the player data
