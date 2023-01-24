@@ -1,7 +1,7 @@
 package model
 
 import (
-	"github.com/guidoenr/cda-league/core/back/config"
+	"github.com/guidoenr/cda-league/core/config"
 	"github.com/uptrace/bun"
 	"math"
 	"math/rand"

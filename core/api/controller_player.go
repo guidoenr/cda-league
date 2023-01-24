@@ -3,9 +3,9 @@ package api
 import (
 	"context"
 	"fmt"
-	"github.com/guidoenr/cda-league/core/back/handler"
-	"github.com/guidoenr/cda-league/core/back/model/psdb"
-	model "github.com/guidoenr/cda-league/core/core/model"
+	"github.com/guidoenr/cda-league/core/handler"
+	model "github.com/guidoenr/cda-league/core/model"
+	"github.com/guidoenr/cda-league/core/model/psdb"
 	"github.com/rs/zerolog/log"
 	"strconv"
 )
