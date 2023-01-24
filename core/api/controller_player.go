@@ -3,35 +3,37 @@ package api
 import (
 	"context"
 	"fmt"
-	"github.com/guidoenr/cda-league/core/handler"
-	model "github.com/guidoenr/cda-league/core/model"
+	h "github.com/guidoenr/cda-league/core/handler"
+	"github.com/guidoenr/cda-league/core/model"
 	"github.com/guidoenr/cda-league/core/model/psdb"
 	"github.com/rs/zerolog/log"
 	"strconv"
 )
 
-type PlayerControler struct {
+// ControllerPlayer handles all the player persist logic
+type ControllerPlayer struct {
 	db *psdb.PostgreDB
 }
 
-func (pc *PlayerControler) Init(db *psdb.PostgreDB) {
-	pc.db = db
+func (cp *ControllerPlayer) Init(db *psdb.PostgreDB) {
+	cp.db = db
 }
 
 // GetPlayers (GET /players)
 // check in the DB all the stored players and return them in JSON format
-func (pc *PlayerControler) GetPlayers() ([]model.Player, error) {
+func (cp *ControllerPlayer) GetPlayers() ([]model.Player, error) {
 	log.Info().Msgf("getting players")
 	var players []model.Player
 
 	// SELECT * FROM players
-	err := pc.db.BunDB.
+	err := cp.db.BunDB.
 		NewSelect().
 		Model(&players).
 		Scan(context.Background())
 
 	if err != nil {
-		return players, handler.HandleError("getting players: %v", err)
+		err := h.Newf(h.PlayerError, "getting players from DB: %v", err)
+		return nil, h.HandleError(err)
 	}
 
 	return players, nil
@@ -42,7 +44,7 @@ func (pc *PlayerControler) GetPlayers() ([]model.Player, error) {
 // returns all the players sorted by their elo, maybe you can think
 // "ok, but you can use getplayers and then sort it" but no...
 // queries in an SQL motor are more performant than in the code
-func (pc *PlayerControler) GetPlayersRankedBy(sortField string, sortFields ...string) ([]model.Player, error) {
+func (cp *ControllerPlayer) GetPlayersRankedBy(sortField string, sortFields ...string) ([]model.Player, error) {
 	log.Info().Msgf("getting ranked by elo players")
 	var players []model.Player
 	var orderExpr string
@@ -54,7 +56,7 @@ func (pc *PlayerControler) GetPlayersRankedBy(sortField string, sortFields ...st
 	}
 
 	// SELECT * FROM players ORDER BY $sortField
-	err := pc.db.BunDB.
+	err := cp.db.BunDB.
 		NewSelect().
 		Model(&players).
 		OrderExpr(orderExpr).
@@ -62,7 +64,8 @@ func (pc *PlayerControler) GetPlayersRankedBy(sortField string, sortFields ...st
 
 	// WARNING with this
 	if err != nil {
-		return players, handler.HandleError("getting players rankedBy-> %s %s: %v", sortField, sortFields, err)
+		err := h.Newf(h.PlayerError, "getting players rankedBy-> %s %s: %v", sortField, sortFields, err)
+		return nil, h.HandleError(err)
 	}
 
 	return players, nil
@@ -70,37 +73,39 @@ func (pc *PlayerControler) GetPlayersRankedBy(sortField string, sortFields ...st
 
 // GetPlayerByID (GET /players/:id)
 // check in the DB the player finding by id
-func (pc *PlayerControler) GetPlayerByID(id string) (model.Player, error) {
+func (cp *ControllerPlayer) GetPlayerByID(id string) (model.Player, error) {
 	var player model.Player
 	playerId, _ := strconv.Atoi(id)
 
 	// find the player by id
-	err := pc.db.BunDB.
+	err := cp.db.BunDB.
 		NewSelect().
 		Model(&player).
 		Where("id = ?", playerId).
 		Scan(context.Background())
 
 	if err != nil {
-		return player, handler.HandleError("getting player by id '%s': %v", id, err)
+		err := h.Newf(h.PlayerError, "getting player by id '%s': %v", id, err)
+		return player, h.HandleError(err)
 	}
 
 	return player, nil
 }
 
 // GetPlayerByNickname (GET /players/) found a player by their nickname
-func (pc *PlayerControler) GetPlayerByNickname(nickname string) (model.Player, error) {
+func (cp *ControllerPlayer) GetPlayerByNickname(nickname string) (model.Player, error) {
 	var player model.Player
 
 	// find player by nickname
-	err := pc.db.BunDB.
+	err := cp.db.BunDB.
 		NewSelect().
 		Model(&player).
 		Where("nickname = ?", nickname).
 		Scan(context.Background())
 
 	if err != nil {
-		return player, handler.HandleError("selecting player by nickname '%s': %v", nickname, err)
+		err := h.Newf(h.PlayerError, "getting player by nickname '%s': %v", nickname, err)
+		return player, h.HandleError(err)
 	}
 
 	return player, nil
@@ -109,12 +114,13 @@ func (pc *PlayerControler) GetPlayerByNickname(nickname string) (model.Player, e
 // UpdatePlayers (POST /players/:id/update) updates the players fields given a match result
 // and return the updated rows count
 // (NOTE: this function receives a map[int]int that contains the id of the player and the goals
-func (pc *PlayerControler) UpdatePlayers(matchResult model.Result) (int64, error) {
+func (cp *ControllerPlayer) UpdatePlayers(matchResult model.Result) (int64, error) {
 
 	// validate player IDs
 	for playerId := range matchResult.PlayerGoals {
-		if _, err := pc.GetPlayerByID(playerId); err != nil {
-			return 0, handler.HandleError("invalid player id '%s': %v", playerId, err)
+		if _, err := cp.GetPlayerByID(playerId); err != nil {
+			err := h.Newf(h.PlayerError, "invalid player id '%s': %v", playerId, err)
+			return -1, h.HandleError(err)
 		}
 	}
 
@@ -123,9 +129,10 @@ func (pc *PlayerControler) UpdatePlayers(matchResult model.Result) (int64, error
 
 	for playerId, goals := range matchResult.PlayerGoals {
 		// get the player data
-		player, err := pc.GetPlayerByID(playerId)
+		player, err := cp.GetPlayerByID(playerId)
 		if err != nil {
-			return 0, handler.HandleError("getting player ids to update: %v", err)
+			err := h.Newf(h.PlayerError, "getting player ids to update: %v", err)
+			return -1, h.HandleError(err)
 		}
 
 		// check if the player won
@@ -137,13 +144,14 @@ func (pc *PlayerControler) UpdatePlayers(matchResult model.Result) (int64, error
 	}
 
 	// update all players in a batch
-	result, err := pc.db.BunDB.
+	result, err := cp.db.BunDB.
 		NewUpdate().
 		Model(&players).
 		Exec(context.Background())
 
 	if err != nil {
-		return 0, handler.HandleError("updating players by match result: %v", err)
+		err := h.Newf(h.PlayerError, "updating players by match result: %v", err)
+		return -1, h.HandleError(err)
 	}
 
 	return result.RowsAffected()

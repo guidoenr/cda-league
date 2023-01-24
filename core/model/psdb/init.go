@@ -5,6 +5,7 @@ import (
 	"database/sql"
 	"errors"
 	"fmt"
+	h "github.com/guidoenr/cda-league/core/handler"
 	"github.com/rs/zerolog/log"
 	"github.com/uptrace/bun"
 	"github.com/uptrace/bun/dialect/pgdialect"
@@ -37,15 +38,14 @@ func (pdb *PostgreDB) InitDB() error {
 	// pinging to DB
 	err := bunDB.Ping()
 	if err != nil {
-		msg := fmt.Sprintf("pinging to bunDB: %v", err)
-		log.Error().Msgf(msg)
-		return errors.New(msg)
+		err := h.Newf(h.DbError, "ping to db: %v", err)
+		return h.HandleError(err)
 	}
 
 	// setting the bunDB
 	pdb.BunDB = bunDB
 
-	log.Info().Msgf("connected to bunDB '%s' succesfully", pdb.dbname)
+	h.LogInfo("connected to DB '%s' successfully", pdb.dbname)
 	return nil
 }
 
@@ -58,7 +58,7 @@ func (pdb *PostgreDB) CloseDB() error {
 		return errors.New(msg)
 	}
 
-	log.Info().Msg("database closed successfully")
+	h.LogInfo("database '%s' closed successfully", pdb.dbname)
 	return nil
 }
 
@@ -77,10 +77,12 @@ func (pdb *PostgreDB) loadConnector() {
 	// if the DATABASE_URL is contains something, that means we are in the
 	// cloud environment, so we will use the DSN option (database URL)
 	if dbUrl != "" {
+		h.LogInfo("CLOUD ENV - using DATABASE_URL")
 		connector = pgdriver.NewConnector(
 			pgdriver.WithDSN(dbUrl),
 		)
 	} else {
+		h.LogInfo("LOCAL ENV - using local env vars")
 		connector = pgdriver.NewConnector(
 			pgdriver.WithNetwork(os.Getenv("DB_NETWORK")),
 			pgdriver.WithAddr(os.Getenv("DB_ADDR")),

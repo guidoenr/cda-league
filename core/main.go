@@ -18,7 +18,7 @@ func main() {
 	defer db.CloseDB()
 
 	// creating the helper
-	var helper api2.Helper
+	var helper psdb.DbManager
 	helper.Init(&db)
 
 	// initializing the database

@@ -13,12 +13,12 @@ import (
 
 type Router struct {
 	db         *psdb.PostgreDB
-	controller *PlayerControler
+	controller *ControllerPlayer
 	ginRouter  *gin.Engine
 }
 
 func (r *Router) Init(postgreDB *psdb.PostgreDB) {
-	var controller PlayerControler
+	var controller ControllerPlayer
 	controller.Init(postgreDB)
 
 	gin.SetMode(gin.ReleaseMode)
@@ -41,6 +41,7 @@ func (r *Router) StartRouter() {
 		MaxAge:           12 * time.Hour,
 	}))
 
+	// index path
 	r.ginRouter.GET("/", func(c *gin.Context) {
 		c.Header("Content-Type", "text/html")
 		c.File("api/index.html")
@@ -64,13 +65,6 @@ func (r *Router) StartRouter() {
 	}
 
 	r.ginRouter.Run()
-}
-
-/* INDEX */
-func (r *Router) index() gin.HandlerFunc {
-	return func(c *gin.Context) {
-
-	}
 }
 
 // -------------------------- CONTROLLERS
