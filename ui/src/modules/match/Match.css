@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: -100px auto;
+    margin: -10px auto;
 }
 
 .match {
@@ -137,7 +137,7 @@ img.match-logo {
     filter: opacity(65%);
     border-left: 3px solid #38003c;
     border-right: 3px solid #38003c;
-    margin-bottom: 7px;
+    margin-bottom: -70px;
 }
 
 .btn-color{

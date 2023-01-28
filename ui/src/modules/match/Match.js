@@ -11,7 +11,7 @@ const Match = () => {
     const [showTeams, setShowTeams] = useState(false);
     const [Team1, setTeam1] = useState({});
     const [Team2, setTeam2] = useState({});
-    let availablePlayers = []
+    const [availablePlayers, setAvailablePlayers] = useState([]);
 
     // obtain the players
     useEffect(() => {
@@ -27,17 +27,12 @@ const Match = () => {
         getPlayers();
     }, []);
 
-    if (allPlayers.length === 0) {
-        setAllPlayers(jsonPlayers.players);
-    }
-
     // generate match with selected players
     const generateMatchWithPlayers = () => {
-        if (availablePlayers.length === 0) {
-            alert("AVAILABLE PLAYERS === 0")
+        if (availablePlayers.length === 0 || availablePlayers.length === 1) {
+            alert("Debes seleccionar al menos dos jugadores")
         } else {
             const data = { players: availablePlayers };
-            console.log(data)
             fetch("http://localhost:8080/generateMatch/", {
                 method: "POST",
                 body: JSON.stringify(data),
@@ -56,7 +51,9 @@ const Match = () => {
 
     // click the playerCard
     const handleSelectPlayer = (player) => {
-            availablePlayers.push(player);
+        if (player.selected) {
+            setAvailablePlayers([...availablePlayers, player])
+        }
     };
 
     const cdaLogo = require("../../assets/cda-league-only-logo.png");
@@ -105,8 +102,11 @@ const Match = () => {
                 <p className="match-note">Seleccionar jugadores</p>
             </div>
             <div className="available-players-container">
+
                 {allPlayers.map((player) => (
-                    <PlayerCard key={player.id} player={player} onClick={handleSelectPlayer} />
+                    <div onClick={handleSelectPlayer}>
+                        <PlayerCard key={player.id} player={player} />
+                    </div>
                 ))}
             </div>
                 <div className="button-container">
