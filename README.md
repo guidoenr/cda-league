@@ -1,26 +1,26 @@
-# fulbo
-1978 - 1986 - 2022
+# Cda-League
+> :bulb: this was never deployed to any environment, development stopped when client was unable to pay.
 
-# connect to db in linx
+
+# Local 
+### connect to db in linx
 `sudo -u postgres psql postgres`
 
-# creating the database
+### creating the database
 `CREATE DATABASE fulbo`
 
-# creating an user
+### creating an user
 `CREATE user root WITH encrypted password 'root';`
 
-# granting permissions
+### granting permissions
 `GRANT ALL privileges ON database fulbo to root;`
 
-## USERS
+### USERS
 ```bash
 user=root
 password=root 
 db=fulbo
 ```
-
-
 # Deploying
 ## use buildpacks:
 1. `go` buildpack
